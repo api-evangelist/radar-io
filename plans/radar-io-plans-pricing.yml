@@ -1,0 +1,105 @@
+specification: API Commons Plans
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
+provider: Radar
+providerId: radar-io
+created: '2026-07-01'
+modified: '2026-07-01'
+reconciled: false
+tags:
+- Location
+- Geocoding
+- Geofencing
+- Maps
+- Routing
+- Plans
+description: >-
+  Radar offers a generous Free tier that includes a monthly allotment of API
+  calls and tracked users, then usage-based overages and volume-committed
+  Enterprise plans. Pricing is metered per API request across geocoding,
+  search, routing, and address validation, and per tracked user for the SDK /
+  Track surfaces. Exact allotments and per-call overage rates are published on
+  the Radar pricing page and vary by product.
+notes: >-
+  Free tier historically includes on the order of 100,000 API calls per month
+  and a monthly tracked-user allotment; verify current allotments, overage
+  rates, and product-specific pricing on the Radar pricing page during
+  reconciliation.
+sources:
+- https://radar.com/pricing
+- https://radar.com/documentation
+plans:
+- id: radar-free
+  name: Free
+  type: usage
+  description: >-
+    Free tier with a monthly allotment of API calls and tracked users across
+    all Radar products, with pay-as-you-go overages once the allotment is
+    exceeded.
+  entries:
+  - label: Included API Calls
+    name: free_api_calls
+    type: usage
+    metric: requests
+    limit: 100000
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: included
+    userMultiplied: false
+  - label: Included Tracked Users
+    name: free_tracked_users
+    type: usage
+    metric: users
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: included (see pricing page for monthly allotment)
+    userMultiplied: true
+  - label: API Call Overage
+    name: api_call_overage
+    type: usage
+    metric: requests
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1000
+    price: pay-as-you-go per 1,000 calls (see pricing page)
+    userMultiplied: false
+  elements:
+  - name: Geocoding
+  - name: Search & Autocomplete
+  - name: Routing / Distance / Matrix
+  - name: Geofences
+  - name: Track & Users
+  - name: Events
+  - name: Trips
+  - name: Address Verification
+  - name: Maps & Tiles
+- id: radar-enterprise
+  name: Enterprise
+  type: enterprise
+  description: >-
+    Volume-committed plans with higher allotments, SLAs, SSO, premium support,
+    on-premises / dedicated deployment options, and negotiated per-product
+    pricing. Contact Radar sales.
+  entries:
+  - label: Enterprise Agreement
+    name: enterprise
+    type: flat
+    metric: contract
+    limit: -1
+    timeFrame: year
+    geo: global
+    unit: 1
+    price: contact sales
+    userMultiplied: false
+  elements:
+  - name: Custom Volume Pricing
+  - name: SLA & Premium Support
+  - name: SSO / SAML
+  - name: On-Premises / Dedicated Deployment
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

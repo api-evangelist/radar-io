@@ -1,0 +1,600 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Radar API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "apikey": {
+        "key": "Authorization",
+        "value": "{{radarApiKey}}",
+        "in": "header"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Geocoding",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Forward geocode an address.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.radar.io/v1/geocode/forward",
+            "params": [
+              {
+                "name": "query",
+                "value": "841 Broadway, New York, NY 10003",
+                "type": "query",
+                "description": "The address to geocode."
+              }
+            ]
+          },
+          "docs": "Geocodes an address, converting an address string to coordinates."
+        },
+        {
+          "info": {
+            "name": "Reverse geocode coordinates.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.radar.io/v1/geocode/reverse",
+            "params": [
+              {
+                "name": "coordinates",
+                "value": "40.73430,-73.99110",
+                "type": "query",
+                "description": "The latitude and longitude to reverse geocode."
+              }
+            ]
+          },
+          "docs": "Reverse geocodes a location, converting coordinates to an address."
+        },
+        {
+          "info": {
+            "name": "IP geocode.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.radar.io/v1/geocode/ip"
+          },
+          "docs": "Geocodes the requester's IP address to a city, state, and country."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Search",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Autocomplete addresses and places.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.radar.io/v1/search/autocomplete",
+            "params": [
+              {
+                "name": "query",
+                "value": "841 Broadway",
+                "type": "query",
+                "description": "The partial address or place to autocomplete."
+              }
+            ]
+          },
+          "docs": "Autocompletes partial addresses and place names, returning ranked suggestions."
+        },
+        {
+          "info": {
+            "name": "Search for places.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.radar.io/v1/search/places",
+            "params": [
+              {
+                "name": "near",
+                "value": "40.78382,-73.97536",
+                "type": "query",
+                "description": "The latitude,longitude to search near."
+              }
+            ]
+          },
+          "docs": "Searches for places near a location, filtered by chain, category, or Radar place group."
+        },
+        {
+          "info": {
+            "name": "Search for geofences.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.radar.io/v1/search/geofences",
+            "params": [
+              {
+                "name": "near",
+                "value": "40.78382,-73.97536",
+                "type": "query",
+                "description": "The latitude,longitude to search near."
+              }
+            ]
+          },
+          "docs": "Searches for geofences near a location, filtered by tag and metadata."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Routing",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Calculate travel distance and duration.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.radar.io/v1/route/distance",
+            "params": [
+              {
+                "name": "origin",
+                "value": "40.78382,-73.97536",
+                "type": "query",
+                "description": "The origin latitude,longitude."
+              },
+              {
+                "name": "destination",
+                "value": "40.70390,-73.98730",
+                "type": "query",
+                "description": "The destination latitude,longitude."
+              },
+              {
+                "name": "modes",
+                "value": "car,foot",
+                "type": "query",
+                "description": "Comma-separated travel modes."
+              }
+            ]
+          },
+          "docs": "Calculates the travel distance and duration between an origin and a destination."
+        },
+        {
+          "info": {
+            "name": "Calculate a distance matrix.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.radar.io/v1/route/matrix",
+            "params": [
+              {
+                "name": "origins",
+                "value": "40.78382,-73.97536|40.70390,-73.98730",
+                "type": "query",
+                "description": "Pipe-separated origin latitude,longitude pairs."
+              },
+              {
+                "name": "destinations",
+                "value": "40.73430,-73.99110|40.75080,-73.99340",
+                "type": "query",
+                "description": "Pipe-separated destination latitude,longitude pairs."
+              },
+              {
+                "name": "mode",
+                "value": "car",
+                "type": "query",
+                "description": "The travel mode."
+              }
+            ]
+          },
+          "docs": "Calculates travel distances and durations between multiple origins and destinations."
+        },
+        {
+          "info": {
+            "name": "Get turn-by-turn directions.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.radar.io/v1/route/directions",
+            "params": [
+              {
+                "name": "locations",
+                "value": "40.78382,-73.97536|40.70390,-73.98730",
+                "type": "query",
+                "description": "Pipe-separated latitude,longitude waypoints."
+              },
+              {
+                "name": "mode",
+                "value": "car",
+                "type": "query",
+                "description": "The travel mode."
+              }
+            ]
+          },
+          "docs": "Returns turn-by-turn directions and route geometry between a series of locations."
+        },
+        {
+          "info": {
+            "name": "Match a GPS trace to roads.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.radar.io/v1/route/match",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Snaps a sequence of noisy GPS coordinates to the road network and returns the matched route."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Geofences",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List geofences.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.radar.io/v1/geofences"
+          },
+          "docs": "Lists geofences, sorted by creation date descending."
+        },
+        {
+          "info": {
+            "name": "Create or update a geofence.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.radar.io/v1/geofences/:tag/:externalId",
+            "params": [
+              {
+                "name": "tag",
+                "value": "",
+                "type": "path",
+                "description": "The geofence tag."
+              },
+              {
+                "name": "externalId",
+                "value": "",
+                "type": "path",
+                "description": "The external ID that uniquely identifies the geofence within the tag."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates or updates a geofence identified by a tag and external ID."
+        },
+        {
+          "info": {
+            "name": "Get a geofence.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.radar.io/v1/geofences/:tag/:externalId",
+            "params": [
+              {
+                "name": "tag",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "externalId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieves a geofence by tag and external ID."
+        },
+        {
+          "info": {
+            "name": "Delete a geofence.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.radar.io/v1/geofences/:tag/:externalId",
+            "params": [
+              {
+                "name": "tag",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "externalId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Deletes a geofence by tag and external ID."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Track",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Track a device location.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.radar.io/v1/track",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Tracks a device's location server-side, generating events and updating the user. Requires a secret key."
+        },
+        {
+          "info": {
+            "name": "List users.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.radar.io/v1/users"
+          },
+          "docs": "Lists users, sorted by last updated descending."
+        },
+        {
+          "info": {
+            "name": "Get a user.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.radar.io/v1/users/:userId",
+            "params": [
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path",
+                "description": "The Radar _id, or an external ID prefixed with externalId=."
+              }
+            ]
+          },
+          "docs": "Retrieves a user by Radar ID or external ID."
+        },
+        {
+          "info": {
+            "name": "Delete a user.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.radar.io/v1/users/:userId",
+            "params": [
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Deletes a user and associated location data."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Events",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List events.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.radar.io/v1/events"
+          },
+          "docs": "Lists geofence, place, and trip events, sorted by creation date descending."
+        },
+        {
+          "info": {
+            "name": "Get an event.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.radar.io/v1/events/:eventId",
+            "params": [
+              {
+                "name": "eventId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieves an event by ID."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Trips",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List trips.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.radar.io/v1/trips"
+          },
+          "docs": "Lists trips, sorted by creation date descending."
+        },
+        {
+          "info": {
+            "name": "Create or update a trip.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.radar.io/v1/trips/:externalId",
+            "params": [
+              {
+                "name": "externalId",
+                "value": "",
+                "type": "path",
+                "description": "The external ID that uniquely identifies the trip."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates or updates a trip identified by an external ID."
+        },
+        {
+          "info": {
+            "name": "Get a trip.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.radar.io/v1/trips/:externalId",
+            "params": [
+              {
+                "name": "externalId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieves a trip by external ID."
+        },
+        {
+          "info": {
+            "name": "Update a trip.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.radar.io/v1/trips/:externalId",
+            "params": [
+              {
+                "name": "externalId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates the status or metadata of an existing trip."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Addresses",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Validate an address.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.radar.io/v1/addresses/validate",
+            "params": [
+              {
+                "name": "countryCode",
+                "value": "US",
+                "type": "query",
+                "description": "The ISO 3166 country code."
+              }
+            ]
+          },
+          "docs": "Validates and standardizes an address, returning a verification status and standardized components."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Tiles",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get a raster map tile.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.radar.io/v1/maps/tiles/:z/:x/:y.png",
+            "params": [
+              {
+                "name": "z",
+                "value": "",
+                "type": "path",
+                "description": "The zoom level."
+              },
+              {
+                "name": "x",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "y",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Returns a raster (PNG) map tile for the given zoom, x, and y coordinates."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

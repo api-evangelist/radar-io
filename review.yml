@@ -1,0 +1,84 @@
+aid: radar-io
+name: Radar
+review:
+  question: Does Radar expose a documented public WebSocket API?
+  answer: false
+  date: '2026-07-01'
+  reviewer: API Evangelist
+  asyncapiSpecCreated: false
+  asyncapiScopeNote: |
+    No AsyncAPI document was authored. Radar's public platform is a REST
+    (HTTPS) API under https://api.radar.io/v1. Realtime location updates in
+    Radar are delivered as server-to-server webhooks (HTTP callbacks) and via
+    the mobile SDKs, not as a documented WebSocket or HTTP streaming surface,
+    so there is no message-driven transport to model.
+findings:
+  summary: |
+    Radar does not publish a documented public WebSocket API. The Radar API is
+    a request/response REST (HTTPS) API under https://api.radar.io/v1,
+    authenticated with a publishable (prj_..._pk_...) or secret (prj_..._sk_...)
+    key in the Authorization header. Realtime geofence, place, and trip events
+    are pushed to customer endpoints via HTTP webhooks, and captured on-device
+    by the Radar SDKs; neither is a WebSocket (ws:// or wss://) surface. No
+    bidirectional streaming endpoint is documented.
+  transports:
+    - protocol: REST
+      scheme: https
+      baseURL: https://api.radar.io/v1
+      documented: true
+    - protocol: Webhooks
+      scheme: https
+      note: Event notifications are delivered as outbound HTTP POST callbacks to a customer-configured URL. Not WebSocket.
+      documented: true
+    - protocol: WebSocket
+      scheme: wss
+      documented: false
+      note: No WebSocket endpoint is documented in the Radar API reference as of the review date.
+  endpointsConfirmedRest:
+    - GET  https://api.radar.io/v1/geocode/forward
+    - GET  https://api.radar.io/v1/geocode/reverse
+    - GET  https://api.radar.io/v1/geocode/ip
+    - GET  https://api.radar.io/v1/search/autocomplete
+    - GET  https://api.radar.io/v1/search/places
+    - GET  https://api.radar.io/v1/search/geofences
+    - GET  https://api.radar.io/v1/route/distance
+    - GET  https://api.radar.io/v1/route/matrix
+    - GET  https://api.radar.io/v1/route/directions
+    - POST https://api.radar.io/v1/route/match
+    - GET  https://api.radar.io/v1/geofences
+    - PUT  https://api.radar.io/v1/geofences/{tag}/{externalId}
+    - GET  https://api.radar.io/v1/geofences/{tag}/{externalId}
+    - DELETE https://api.radar.io/v1/geofences/{tag}/{externalId}
+    - POST https://api.radar.io/v1/track
+    - GET  https://api.radar.io/v1/users
+    - GET  https://api.radar.io/v1/users/{userId}
+    - DELETE https://api.radar.io/v1/users/{userId}
+    - GET  https://api.radar.io/v1/events
+    - GET  https://api.radar.io/v1/events/{eventId}
+    - GET  https://api.radar.io/v1/trips
+    - POST https://api.radar.io/v1/trips/{externalId}
+    - GET  https://api.radar.io/v1/trips/{externalId}
+    - PATCH https://api.radar.io/v1/trips/{externalId}
+    - GET  https://api.radar.io/v1/addresses/validate
+    - GET  https://api.radar.io/v1/maps/tiles/{z}/{x}/{y}.png
+sources:
+  - url: https://radar.com/documentation/api
+    type: APIReference
+    note: All documented endpoints are HTTPS REST under api.radar.io/v1.
+  - url: https://radar.com/documentation
+    type: Documentation
+    note: Platform overview; describes SDKs and webhooks, no WebSocket surface.
+  - url: https://radar.com/documentation/api#webhooks
+    type: Documentation
+    note: Realtime events are delivered as outbound HTTP webhooks, not WebSocket.
+actions:
+  asyncapiPath: null
+  apisYmlUpdated: true
+  reason: |
+    No WebSocket protocol surface exists and event delivery is via HTTP
+    webhooks rather than a message-driven streaming transport, so no AsyncAPI
+    document was created. The apis.yml catalogs the documented REST surfaces
+    only.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

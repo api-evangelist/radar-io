@@ -1,0 +1,63 @@
+specification: API Commons Rate Limits
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/RateLimits
+provider: Radar
+providerId: radar-io
+created: '2026-07-01'
+modified: '2026-07-01'
+reconciled: false
+tags:
+- Location
+- Geocoding
+- Geofencing
+- Maps
+- Routing
+- Rate Limiting
+- Quotas
+- Throttling
+description: >-
+  Radar enforces per-organization rate limits on the api.radar.io/v1 REST API,
+  expressed primarily as requests per second, and separately meters monthly
+  API-call and tracked-user quotas by plan. Server (secret key) endpoints such
+  as track, geofence management, and users have their own limits distinct from
+  client (publishable key) endpoints such as geocoding, search, and routing.
+  Specific per-endpoint values are set per organization and plan and are not
+  reconciled in this artifact.
+notes: >-
+  Confirm per-endpoint requests-per-second limits, monthly call quotas, and
+  tracked-user allotments in the Radar dashboard and pricing/documentation on
+  reconciliation; limits scale with Free vs. Enterprise plans.
+sources:
+- https://radar.com/documentation/api
+- https://radar.com/pricing
+responseCodes:
+  throttled: 429
+limits:
+- name: Requests Per Second (Client Key)
+  scope: organization
+  metric: requests
+  limit: see provider documentation
+  notes: Applies to publishable-key surfaces (geocoding, search, routing, tiles); varies by plan.
+- name: Requests Per Second (Server Key)
+  scope: organization
+  metric: requests
+  limit: see provider documentation
+  notes: Applies to secret-key surfaces (track, geofence CRUD, users, trips); varies by plan.
+- name: Monthly API Calls
+  scope: organization
+  metric: requests
+  limit: see plan allotment
+  notes: Free tier includes a monthly call allotment; overages are pay-as-you-go.
+- name: Monthly Tracked Users
+  scope: organization
+  metric: users
+  limit: see plan allotment
+  notes: Applies to Track / SDK usage; varies by plan.
+policies:
+- name: Tiered Limits
+  description: Limits and quotas raise as organizations move from Free to Enterprise plans.
+- name: Backoff Strategy
+  description: Clients should implement exponential backoff with jitter and honor 429 responses.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

@@ -1,0 +1,203 @@
+aid: radar-io
+url: https://raw.githubusercontent.com/api-evangelist/radar-io/refs/heads/main/apis.yml
+name: Radar
+kind: company
+description: Radar is a geofencing and maps platform that gives developers a unified
+  location infrastructure - forward and reverse geocoding, IP geocoding, address and
+  place autocomplete, place and geofence search, routing (distance, matrix, directions,
+  and route matching), geofence management, device tracking, events, trips, address
+  verification, and map tiles - all under a single api.radar.io/v1 REST interface.
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+tags:
+- Location
+- Geocoding
+- Geofencing
+- Maps
+- Routing
+created: '2026-07-01'
+modified: '2026-07-01'
+specificationVersion: '0.19'
+apis:
+- aid: radar-io:radar-geocoding-api
+  name: Radar Geocoding API
+  tags:
+  - Geocoding
+  - Reverse Geocoding
+  - IP Geocoding
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://radar.com/documentation/api#geocoding
+  baseURL: https://api.radar.io/v1
+  properties:
+  - url: https://radar.com/documentation/api#geocoding
+    type: Documentation
+  - url: https://radar.com/documentation/api#forward-geocode
+    type: APIReference
+  - url: openapi/radar-io-openapi.yml
+    type: OpenAPI
+  description: Forward geocoding (address to coordinates), reverse geocoding (coordinates
+    to address), and IP geocoding (IP to city/state/country) over api.radar.io/v1/geocode.
+- aid: radar-io:radar-search-autocomplete-api
+  name: Radar Search & Autocomplete API
+  tags:
+  - Autocomplete
+  - Search
+  - Places
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://radar.com/documentation/api#search
+  baseURL: https://api.radar.io/v1
+  properties:
+  - url: https://radar.com/documentation/api#search
+    type: Documentation
+  - url: https://radar.com/documentation/api#autocomplete
+    type: APIReference
+  - url: openapi/radar-io-openapi.yml
+    type: OpenAPI
+  description: Address and place autocomplete, place search by chain/category near a
+    location, and geofence search over api.radar.io/v1/search.
+- aid: radar-io:radar-routing-api
+  name: Radar Routing, Distance & Matrix API
+  tags:
+  - Routing
+  - Distance
+  - Matrix
+  - Directions
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://radar.com/documentation/api#routing
+  baseURL: https://api.radar.io/v1
+  properties:
+  - url: https://radar.com/documentation/api#routing
+    type: Documentation
+  - url: https://radar.com/documentation/api#distance
+    type: APIReference
+  - url: openapi/radar-io-openapi.yml
+    type: OpenAPI
+  description: Travel distance and duration, distance matrix across multiple origins
+    and destinations, turn-by-turn directions, and GPS trace-to-road matching over
+    api.radar.io/v1/route.
+- aid: radar-io:radar-geofences-api
+  name: Radar Geofences API
+  tags:
+  - Geofences
+  - Geofencing
+  - CRUD
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://radar.com/documentation/api#geofences
+  baseURL: https://api.radar.io/v1
+  properties:
+  - url: https://radar.com/documentation/api#geofences
+    type: Documentation
+  - url: https://radar.com/documentation/api#list-geofences
+    type: APIReference
+  - url: openapi/radar-io-openapi.yml
+    type: OpenAPI
+  description: Create, read, update, and delete circle, polygon, and isochrone geofences
+    keyed by tag and external ID over api.radar.io/v1/geofences.
+- aid: radar-io:radar-track-users-api
+  name: Radar Track & Users API
+  tags:
+  - Tracking
+  - Users
+  - Devices
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://radar.com/documentation/api#track
+  baseURL: https://api.radar.io/v1
+  properties:
+  - url: https://radar.com/documentation/api#track
+    type: Documentation
+  - url: https://radar.com/documentation/api#users
+    type: APIReference
+  - url: openapi/radar-io-openapi.yml
+    type: OpenAPI
+  description: Server-side device tracking that generates geofence and place events,
+    plus user (device) listing, retrieval, and deletion over api.radar.io/v1/track
+    and /users.
+- aid: radar-io:radar-events-api
+  name: Radar Events API
+  tags:
+  - Events
+  - Geofence Events
+  - Webhooks
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://radar.com/documentation/api#events
+  baseURL: https://api.radar.io/v1
+  properties:
+  - url: https://radar.com/documentation/api#events
+    type: Documentation
+  - url: https://radar.com/documentation/api#list-events
+    type: APIReference
+  - url: openapi/radar-io-openapi.yml
+    type: OpenAPI
+  description: List and retrieve geofence, place, and trip events (entered/exited,
+    approaching, arrived) generated by tracking over api.radar.io/v1/events.
+- aid: radar-io:radar-trips-api
+  name: Radar Trips API
+  tags:
+  - Trips
+  - Trip Tracking
+  - ETA
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://radar.com/documentation/api#trips
+  baseURL: https://api.radar.io/v1
+  properties:
+  - url: https://radar.com/documentation/api#trips
+    type: Documentation
+  - url: https://radar.com/documentation/api#upsert-trip
+    type: APIReference
+  - url: openapi/radar-io-openapi.yml
+    type: OpenAPI
+  description: Create, update, list, and retrieve trips for trip tracking with destination
+    geofences, ETAs, and approaching/arrived events over api.radar.io/v1/trips.
+- aid: radar-io:radar-address-verification-api
+  name: Radar Address Verification API
+  tags:
+  - Address Verification
+  - Address Validation
+  - Standardization
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://radar.com/documentation/api#address-validation
+  baseURL: https://api.radar.io/v1
+  properties:
+  - url: https://radar.com/documentation/api#address-validation
+    type: Documentation
+  - url: https://radar.com/documentation/api#validate-an-address
+    type: APIReference
+  - url: openapi/radar-io-openapi.yml
+    type: OpenAPI
+  description: Validate and standardize postal addresses, returning a verification
+    status and standardized components over api.radar.io/v1/addresses/validate.
+- aid: radar-io:radar-maps-tiles-api
+  name: Radar Maps & Tiles API
+  tags:
+  - Maps
+  - Tiles
+  - Raster
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://radar.com/documentation/maps
+  baseURL: https://api.radar.io/v1
+  properties:
+  - url: https://radar.com/documentation/maps
+    type: Documentation
+  - url: https://radar.com/documentation/maps/tiles
+    type: APIReference
+  - url: openapi/radar-io-openapi.yml
+    type: OpenAPI
+  description: Raster and vector map tiles across Radar map styles (default, light,
+    dark) served by z/x/y over api.radar.io/v1/maps/tiles.
+common:
+- type: GitHubOrganization
+  url: https://github.com/radarlabs
+- type: LinkedIn
+  url: https://www.linkedin.com/company/radarlabs
+- type: Website
+  url: https://radar.com/
+- type: Documentation
+  url: https://radar.com/documentation
+- type: Plans
+  url: plans/radar-io-plans-pricing.yml
+- type: RateLimits
+  url: rate-limits/radar-io-rate-limits.yml
+- type: FinOps
+  url: finops/radar-io-finops.yml
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com
