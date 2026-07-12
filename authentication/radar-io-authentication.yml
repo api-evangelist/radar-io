@@ -1,0 +1,18 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/radar-io-openapi.yml
+summary:
+  types:
+  - apiKey
+  api_key_in:
+  - header
+schemes:
+- name: RadarKey
+  type: apiKey
+  in: header
+  parameter: Authorization
+  description: A Radar publishable (client) key (prj_live_pk_... / prj_test_pk_...) or secret
+    (server) key (prj_live_sk_... / prj_test_sk_...), passed in the Authorization header without
+    a Bearer prefix.
+  sources:
+  - openapi/radar-io-openapi.yml

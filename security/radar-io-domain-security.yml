@@ -1,0 +1,27 @@
+generated: '2026-07-11'
+method: probed
+source: live DNS/TLS/HTTP probes of apis.yml + OpenAPI hosts
+hosts:
+- host: radar.com
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Aug 25 05:23:12 2026 GMT
+  hsts: false
+- host: api.radar.io
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Aug 12 09:21:30 2026 GMT
+  hsts: null
+domains:
+- domain: radar.com
+  dnssec: false
+  caa: []
+  spf: true
+  dmarc: true
+  dmarc_policy: quarantine
+- domain: radar.io
+  dnssec: false
+  caa: []
+  spf: true
+  dmarc: true
+  dmarc_policy: none
