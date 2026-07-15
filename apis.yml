@@ -184,6 +184,8 @@ apis:
   description: Raster and vector map tiles across Radar map styles (default, light,
     dark) served by z/x/y over api.radar.io/v1/maps/tiles.
 common:
+- type: AgenticAccess
+  url: agentic-access/radar-io-agentic-access.yml
 - type: DomainSecurity
   url: security/radar-io-domain-security.yml
 - type: Authentication
