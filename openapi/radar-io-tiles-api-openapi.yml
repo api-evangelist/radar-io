@@ -1,0 +1,72 @@
+openapi: 3.0.3
+info:
+  title: Radar Addresses Tiles API
+  description: Radar is a geofencing and maps platform. The Radar API provides forward and reverse geocoding, IP geocoding, address and place search with autocomplete, geofence search, routing (distance, matrix, directions, and route matching), geofence management, user (device) tracking, events, trips, address verification, and map tiles. All requests are authenticated with an Authorization header containing a publishable (client) key prefixed `prj_live_pk_` / `prj_test_pk_` or a secret (server) key prefixed `prj_live_sk_` / `prj_test_sk_`.
+  termsOfService: https://radar.com/terms
+  contact:
+    name: Radar Support
+    email: support@radar.com
+    url: https://radar.com/documentation
+  version: '1.0'
+servers:
+- url: https://api.radar.io/v1
+  description: Radar production API
+security:
+- RadarKey: []
+tags:
+- name: Tiles
+  description: Raster and vector map tiles.
+paths:
+  /maps/tiles/{z}/{x}/{y}.png:
+    get:
+      operationId: getRasterTile
+      tags:
+      - Tiles
+      summary: Get a raster map tile.
+      description: Returns a raster (PNG) map tile for the given zoom, x, and y coordinates.
+      parameters:
+      - name: z
+        in: path
+        required: true
+        description: The zoom level.
+        schema:
+          type: integer
+      - name: x
+        in: path
+        required: true
+        schema:
+          type: integer
+      - name: y
+        in: path
+        required: true
+        schema:
+          type: integer
+      - name: style
+        in: query
+        required: false
+        description: The map style (e.g. radar-default-v1, radar-light-v1, radar-dark-v1).
+        schema:
+          type: string
+          default: radar-default-v1
+      - name: scale
+        in: query
+        required: false
+        description: The tile scale (1 or 2 for retina).
+        schema:
+          type: integer
+          default: 1
+      responses:
+        '200':
+          description: OK
+          content:
+            image/png:
+              schema:
+                type: string
+                format: binary
+components:
+  securitySchemes:
+    RadarKey:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: A Radar publishable (client) key (prj_live_pk_... / prj_test_pk_...) or secret (server) key (prj_live_sk_... / prj_test_sk_...), passed in the Authorization header without a Bearer prefix.

@@ -1,0 +1,293 @@
+openapi: 3.0.3
+info:
+  title: Radar Addresses Track API
+  description: Radar is a geofencing and maps platform. The Radar API provides forward and reverse geocoding, IP geocoding, address and place search with autocomplete, geofence search, routing (distance, matrix, directions, and route matching), geofence management, user (device) tracking, events, trips, address verification, and map tiles. All requests are authenticated with an Authorization header containing a publishable (client) key prefixed `prj_live_pk_` / `prj_test_pk_` or a secret (server) key prefixed `prj_live_sk_` / `prj_test_sk_`.
+  termsOfService: https://radar.com/terms
+  contact:
+    name: Radar Support
+    email: support@radar.com
+    url: https://radar.com/documentation
+  version: '1.0'
+servers:
+- url: https://api.radar.io/v1
+  description: Radar production API
+security:
+- RadarKey: []
+tags:
+- name: Track
+  description: Track device location and manage users.
+paths:
+  /track:
+    post:
+      operationId: track
+      tags:
+      - Track
+      summary: Track a device location.
+      description: Tracks a device's location server-side, generating events and updating the user. Requires a secret key.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TrackRequest'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TrackResponse'
+  /users:
+    get:
+      operationId: listUsers
+      tags:
+      - Track
+      summary: List users.
+      description: Lists users, sorted by last updated descending.
+      parameters:
+      - name: limit
+        in: query
+        required: false
+        description: The maximum number of users (default 100, max 1000).
+        schema:
+          type: integer
+          default: 100
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserListResponse'
+  /users/{userId}:
+    get:
+      operationId: getUser
+      tags:
+      - Track
+      summary: Get a user.
+      description: Retrieves a user by Radar ID or external ID.
+      parameters:
+      - name: userId
+        in: path
+        required: true
+        description: The Radar _id, or an external ID prefixed with externalId=.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserResponse'
+    delete:
+      operationId: deleteUser
+      tags:
+      - Track
+      summary: Delete a user.
+      description: Deletes a user and associated location data.
+      parameters:
+      - name: userId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+components:
+  schemas:
+    UserResponse:
+      type: object
+      properties:
+        meta:
+          $ref: '#/components/schemas/Meta'
+        user:
+          $ref: '#/components/schemas/User'
+    Location:
+      type: object
+      properties:
+        type:
+          type: string
+          example: Point
+        coordinates:
+          type: array
+          items:
+            type: number
+    UserListResponse:
+      type: object
+      properties:
+        meta:
+          $ref: '#/components/schemas/Meta'
+        users:
+          type: array
+          items:
+            $ref: '#/components/schemas/User'
+    TrackResponse:
+      type: object
+      properties:
+        meta:
+          $ref: '#/components/schemas/Meta'
+        user:
+          $ref: '#/components/schemas/User'
+        events:
+          type: array
+          items:
+            $ref: '#/components/schemas/Event'
+    Meta:
+      type: object
+      properties:
+        code:
+          type: integer
+          example: 200
+    Place:
+      type: object
+      properties:
+        _id:
+          type: string
+        name:
+          type: string
+        categories:
+          type: array
+          items:
+            type: string
+        chain:
+          type: object
+          properties:
+            name:
+              type: string
+            slug:
+              type: string
+        location:
+          type: object
+          properties:
+            type:
+              type: string
+              example: Point
+            coordinates:
+              type: array
+              items:
+                type: number
+    User:
+      type: object
+      properties:
+        _id:
+          type: string
+        userId:
+          type: string
+        deviceId:
+          type: string
+        description:
+          type: string
+        metadata:
+          type: object
+          additionalProperties: true
+        location:
+          $ref: '#/components/schemas/Location'
+        locationAccuracy:
+          type: number
+        geofences:
+          type: array
+          items:
+            $ref: '#/components/schemas/Geofence'
+        place:
+          $ref: '#/components/schemas/Place'
+        updatedAt:
+          type: string
+          format: date-time
+    TrackRequest:
+      type: object
+      required:
+      - deviceId
+      - latitude
+      - longitude
+      - accuracy
+      properties:
+        deviceId:
+          type: string
+        userId:
+          type: string
+        latitude:
+          type: number
+          format: double
+        longitude:
+          type: number
+          format: double
+        accuracy:
+          type: number
+        foreground:
+          type: boolean
+        stopped:
+          type: boolean
+        deviceType:
+          type: string
+        metadata:
+          type: object
+          additionalProperties: true
+    Event:
+      type: object
+      properties:
+        _id:
+          type: string
+        type:
+          type: string
+          example: user.entered_geofence
+        live:
+          type: boolean
+        user:
+          $ref: '#/components/schemas/User'
+        geofence:
+          $ref: '#/components/schemas/Geofence'
+        place:
+          $ref: '#/components/schemas/Place'
+        confidence:
+          type: integer
+        createdAt:
+          type: string
+          format: date-time
+    Geofence:
+      type: object
+      properties:
+        _id:
+          type: string
+        description:
+          type: string
+        tag:
+          type: string
+        externalId:
+          type: string
+        type:
+          type: string
+          enum:
+          - circle
+          - polygon
+          - isochrone
+        geometryCenter:
+          type: object
+          properties:
+            type:
+              type: string
+              example: Point
+            coordinates:
+              type: array
+              items:
+                type: number
+        geometryRadius:
+          type: integer
+        enabled:
+          type: boolean
+        metadata:
+          type: object
+          additionalProperties: true
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+  securitySchemes:
+    RadarKey:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: A Radar publishable (client) key (prj_live_pk_... / prj_test_pk_...) or secret (server) key (prj_live_sk_... / prj_test_sk_...), passed in the Authorization header without a Bearer prefix.

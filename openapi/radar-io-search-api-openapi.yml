@@ -1,0 +1,309 @@
+openapi: 3.0.3
+info:
+  title: Radar Addresses Search API
+  description: Radar is a geofencing and maps platform. The Radar API provides forward and reverse geocoding, IP geocoding, address and place search with autocomplete, geofence search, routing (distance, matrix, directions, and route matching), geofence management, user (device) tracking, events, trips, address verification, and map tiles. All requests are authenticated with an Authorization header containing a publishable (client) key prefixed `prj_live_pk_` / `prj_test_pk_` or a secret (server) key prefixed `prj_live_sk_` / `prj_test_sk_`.
+  termsOfService: https://radar.com/terms
+  contact:
+    name: Radar Support
+    email: support@radar.com
+    url: https://radar.com/documentation
+  version: '1.0'
+servers:
+- url: https://api.radar.io/v1
+  description: Radar production API
+security:
+- RadarKey: []
+tags:
+- name: Search
+  description: Address and place autocomplete, place search, and geofence search.
+paths:
+  /search/autocomplete:
+    get:
+      operationId: autocomplete
+      tags:
+      - Search
+      summary: Autocomplete addresses and places.
+      description: Autocompletes partial addresses and place names, returning ranked suggestions.
+      parameters:
+      - name: query
+        in: query
+        required: true
+        description: The partial address or place to autocomplete.
+        schema:
+          type: string
+        example: 841 Broadway
+      - name: near
+        in: query
+        required: false
+        description: Optional latitude,longitude to bias results toward.
+        schema:
+          type: string
+        example: 40.70390,-73.98730
+      - name: limit
+        in: query
+        required: false
+        description: The maximum number of results (default 10, max 100).
+        schema:
+          type: integer
+          default: 10
+      - name: layers
+        in: query
+        required: false
+        description: Optional comma-separated layers to filter (e.g. address, street, locality, place).
+        schema:
+          type: string
+      - name: countryCode
+        in: query
+        required: false
+        description: Optional ISO 3166 country code to filter.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AutocompleteResponse'
+  /search/places:
+    get:
+      operationId: searchPlaces
+      tags:
+      - Search
+      summary: Search for places.
+      description: Searches for places near a location, filtered by chain, category, or Radar place group.
+      parameters:
+      - name: near
+        in: query
+        required: true
+        description: The latitude,longitude to search near.
+        schema:
+          type: string
+        example: 40.78382,-73.97536
+      - name: radius
+        in: query
+        required: false
+        description: The radius to search within, in meters (max 10000).
+        schema:
+          type: integer
+          default: 1000
+      - name: chains
+        in: query
+        required: false
+        description: Optional comma-separated chain slugs to filter (e.g. starbucks).
+        schema:
+          type: string
+      - name: categories
+        in: query
+        required: false
+        description: Optional comma-separated categories to filter (e.g. food-beverage).
+        schema:
+          type: string
+      - name: limit
+        in: query
+        required: false
+        description: The maximum number of results (default 10, max 100).
+        schema:
+          type: integer
+          default: 10
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PlaceSearchResponse'
+  /search/geofences:
+    get:
+      operationId: searchGeofences
+      tags:
+      - Search
+      summary: Search for geofences.
+      description: Searches for geofences near a location, filtered by tag and metadata.
+      parameters:
+      - name: near
+        in: query
+        required: true
+        description: The latitude,longitude to search near.
+        schema:
+          type: string
+        example: 40.78382,-73.97536
+      - name: radius
+        in: query
+        required: false
+        description: The radius to search within, in meters (max 10000).
+        schema:
+          type: integer
+          default: 1000
+      - name: tags
+        in: query
+        required: false
+        description: Optional comma-separated geofence tags to filter.
+        schema:
+          type: string
+      - name: limit
+        in: query
+        required: false
+        description: The maximum number of results (default 100, max 1000).
+        schema:
+          type: integer
+          default: 100
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeofenceListResponse'
+components:
+  schemas:
+    GeofenceListResponse:
+      type: object
+      properties:
+        meta:
+          $ref: '#/components/schemas/Meta'
+        geofences:
+          type: array
+          items:
+            $ref: '#/components/schemas/Geofence'
+    Address:
+      type: object
+      properties:
+        latitude:
+          type: number
+          format: double
+        longitude:
+          type: number
+          format: double
+        geometry:
+          type: object
+          properties:
+            type:
+              type: string
+              example: Point
+            coordinates:
+              type: array
+              items:
+                type: number
+        country:
+          type: string
+        countryCode:
+          type: string
+        state:
+          type: string
+        stateCode:
+          type: string
+        city:
+          type: string
+        postalCode:
+          type: string
+        number:
+          type: string
+        street:
+          type: string
+        addressLabel:
+          type: string
+        formattedAddress:
+          type: string
+        layer:
+          type: string
+        confidence:
+          type: string
+    PlaceSearchResponse:
+      type: object
+      properties:
+        meta:
+          $ref: '#/components/schemas/Meta'
+        places:
+          type: array
+          items:
+            $ref: '#/components/schemas/Place'
+    Meta:
+      type: object
+      properties:
+        code:
+          type: integer
+          example: 200
+    AutocompleteResponse:
+      type: object
+      properties:
+        meta:
+          $ref: '#/components/schemas/Meta'
+        addresses:
+          type: array
+          items:
+            $ref: '#/components/schemas/Address'
+    Place:
+      type: object
+      properties:
+        _id:
+          type: string
+        name:
+          type: string
+        categories:
+          type: array
+          items:
+            type: string
+        chain:
+          type: object
+          properties:
+            name:
+              type: string
+            slug:
+              type: string
+        location:
+          type: object
+          properties:
+            type:
+              type: string
+              example: Point
+            coordinates:
+              type: array
+              items:
+                type: number
+    Geofence:
+      type: object
+      properties:
+        _id:
+          type: string
+        description:
+          type: string
+        tag:
+          type: string
+        externalId:
+          type: string
+        type:
+          type: string
+          enum:
+          - circle
+          - polygon
+          - isochrone
+        geometryCenter:
+          type: object
+          properties:
+            type:
+              type: string
+              example: Point
+            coordinates:
+              type: array
+              items:
+                type: number
+        geometryRadius:
+          type: integer
+        enabled:
+          type: boolean
+        metadata:
+          type: object
+          additionalProperties: true
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+  securitySchemes:
+    RadarKey:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: A Radar publishable (client) key (prj_live_pk_... / prj_test_pk_...) or secret (server) key (prj_live_sk_... / prj_test_sk_...), passed in the Authorization header without a Bearer prefix.

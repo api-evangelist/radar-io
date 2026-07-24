@@ -1,0 +1,151 @@
+openapi: 3.0.3
+info:
+  title: Radar Addresses API
+  description: Radar is a geofencing and maps platform. The Radar API provides forward and reverse geocoding, IP geocoding, address and place search with autocomplete, geofence search, routing (distance, matrix, directions, and route matching), geofence management, user (device) tracking, events, trips, address verification, and map tiles. All requests are authenticated with an Authorization header containing a publishable (client) key prefixed `prj_live_pk_` / `prj_test_pk_` or a secret (server) key prefixed `prj_live_sk_` / `prj_test_sk_`.
+  termsOfService: https://radar.com/terms
+  contact:
+    name: Radar Support
+    email: support@radar.com
+    url: https://radar.com/documentation
+  version: '1.0'
+servers:
+- url: https://api.radar.io/v1
+  description: Radar production API
+security:
+- RadarKey: []
+tags:
+- name: Addresses
+  description: Validate and verify addresses.
+paths:
+  /addresses/validate:
+    get:
+      operationId: validateAddress
+      tags:
+      - Addresses
+      summary: Validate an address.
+      description: Validates and standardizes an address, returning a verification status and standardized components.
+      parameters:
+      - name: countryCode
+        in: query
+        required: true
+        description: The ISO 3166 country code.
+        schema:
+          type: string
+        example: US
+      - name: stateCode
+        in: query
+        required: false
+        schema:
+          type: string
+        example: NY
+      - name: city
+        in: query
+        required: false
+        schema:
+          type: string
+        example: New York
+      - name: postalCode
+        in: query
+        required: false
+        schema:
+          type: string
+        example: '10003'
+      - name: number
+        in: query
+        required: false
+        schema:
+          type: string
+        example: '841'
+      - name: street
+        in: query
+        required: false
+        schema:
+          type: string
+        example: Broadway
+      - name: addressLabel
+        in: query
+        required: false
+        description: A full single-line address to validate.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AddressValidationResponse'
+components:
+  schemas:
+    AddressValidationResponse:
+      type: object
+      properties:
+        meta:
+          $ref: '#/components/schemas/Meta'
+        address:
+          $ref: '#/components/schemas/Address'
+        result:
+          type: object
+          properties:
+            verificationStatus:
+              type: string
+              enum:
+              - verified
+              - partially verified
+              - ambiguous
+              - unverified
+    Address:
+      type: object
+      properties:
+        latitude:
+          type: number
+          format: double
+        longitude:
+          type: number
+          format: double
+        geometry:
+          type: object
+          properties:
+            type:
+              type: string
+              example: Point
+            coordinates:
+              type: array
+              items:
+                type: number
+        country:
+          type: string
+        countryCode:
+          type: string
+        state:
+          type: string
+        stateCode:
+          type: string
+        city:
+          type: string
+        postalCode:
+          type: string
+        number:
+          type: string
+        street:
+          type: string
+        addressLabel:
+          type: string
+        formattedAddress:
+          type: string
+        layer:
+          type: string
+        confidence:
+          type: string
+    Meta:
+      type: object
+      properties:
+        code:
+          type: integer
+          example: 200
+  securitySchemes:
+    RadarKey:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: A Radar publishable (client) key (prj_live_pk_... / prj_test_pk_...) or secret (server) key (prj_live_sk_... / prj_test_sk_...), passed in the Authorization header without a Bearer prefix.

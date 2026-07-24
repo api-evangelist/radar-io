@@ -1,0 +1,278 @@
+openapi: 3.0.3
+info:
+  title: Radar Addresses Routing API
+  description: Radar is a geofencing and maps platform. The Radar API provides forward and reverse geocoding, IP geocoding, address and place search with autocomplete, geofence search, routing (distance, matrix, directions, and route matching), geofence management, user (device) tracking, events, trips, address verification, and map tiles. All requests are authenticated with an Authorization header containing a publishable (client) key prefixed `prj_live_pk_` / `prj_test_pk_` or a secret (server) key prefixed `prj_live_sk_` / `prj_test_sk_`.
+  termsOfService: https://radar.com/terms
+  contact:
+    name: Radar Support
+    email: support@radar.com
+    url: https://radar.com/documentation
+  version: '1.0'
+servers:
+- url: https://api.radar.io/v1
+  description: Radar production API
+security:
+- RadarKey: []
+tags:
+- name: Routing
+  description: Distance, matrix, directions, and route matching.
+paths:
+  /route/distance:
+    get:
+      operationId: routeDistance
+      tags:
+      - Routing
+      summary: Calculate travel distance and duration.
+      description: Calculates the travel distance and duration between an origin and a destination for one or more travel modes.
+      parameters:
+      - name: origin
+        in: query
+        required: true
+        description: The origin latitude,longitude.
+        schema:
+          type: string
+        example: 40.78382,-73.97536
+      - name: destination
+        in: query
+        required: true
+        description: The destination latitude,longitude.
+        schema:
+          type: string
+        example: 40.70390,-73.98730
+      - name: modes
+        in: query
+        required: true
+        description: Comma-separated travel modes (foot, bike, car, truck, motorbike).
+        schema:
+          type: string
+        example: car,foot
+      - name: units
+        in: query
+        required: false
+        description: The distance units (metric or imperial).
+        schema:
+          type: string
+          enum:
+          - metric
+          - imperial
+          default: imperial
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DistanceResponse'
+  /route/matrix:
+    get:
+      operationId: routeMatrix
+      tags:
+      - Routing
+      summary: Calculate a distance matrix.
+      description: Calculates travel distances and durations between multiple origins and destinations.
+      parameters:
+      - name: origins
+        in: query
+        required: true
+        description: Pipe-separated list of origin latitude,longitude pairs.
+        schema:
+          type: string
+        example: 40.78382,-73.97536|40.70390,-73.98730
+      - name: destinations
+        in: query
+        required: true
+        description: Pipe-separated list of destination latitude,longitude pairs.
+        schema:
+          type: string
+        example: 40.73430,-73.99110|40.75080,-73.99340
+      - name: mode
+        in: query
+        required: true
+        description: The travel mode (foot, bike, car, truck, motorbike).
+        schema:
+          type: string
+        example: car
+      - name: units
+        in: query
+        required: false
+        description: The distance units (metric or imperial).
+        schema:
+          type: string
+          enum:
+          - metric
+          - imperial
+          default: imperial
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MatrixResponse'
+  /route/directions:
+    get:
+      operationId: routeDirections
+      tags:
+      - Routing
+      summary: Get turn-by-turn directions.
+      description: Returns turn-by-turn directions and route geometry between a series of locations.
+      parameters:
+      - name: locations
+        in: query
+        required: true
+        description: Pipe-separated list of latitude,longitude waypoints.
+        schema:
+          type: string
+        example: 40.78382,-73.97536|40.70390,-73.98730
+      - name: mode
+        in: query
+        required: true
+        description: The travel mode (foot, bike, car, truck, motorbike).
+        schema:
+          type: string
+        example: car
+      - name: units
+        in: query
+        required: false
+        description: The distance units (metric or imperial).
+        schema:
+          type: string
+          enum:
+          - metric
+          - imperial
+          default: imperial
+      - name: geometry
+        in: query
+        required: false
+        description: The geometry encoding (linestring, polyline, or polyline6).
+        schema:
+          type: string
+          default: linestring
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DirectionsResponse'
+  /route/match:
+    post:
+      operationId: routeMatch
+      tags:
+      - Routing
+      summary: Match a GPS trace to roads.
+      description: Snaps a sequence of noisy GPS coordinates to the road network and returns the matched route.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RouteMatchRequest'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DirectionsResponse'
+components:
+  schemas:
+    DirectionsResponse:
+      type: object
+      properties:
+        meta:
+          $ref: '#/components/schemas/Meta'
+        routes:
+          type: array
+          items:
+            type: object
+            properties:
+              distance:
+                type: object
+              duration:
+                type: object
+              geometry:
+                type: object
+              legs:
+                type: array
+                items:
+                  type: object
+    RouteMatchRequest:
+      type: object
+      required:
+      - coordinates
+      - mode
+      properties:
+        coordinates:
+          type: array
+          description: An ordered list of [longitude, latitude] GPS points.
+          items:
+            type: array
+            items:
+              type: number
+        mode:
+          type: string
+          example: car
+        timestamps:
+          type: array
+          description: Optional UNIX timestamps aligned with coordinates.
+          items:
+            type: integer
+    MatrixResponse:
+      type: object
+      properties:
+        meta:
+          $ref: '#/components/schemas/Meta'
+        origins:
+          type: array
+          items:
+            type: object
+        destinations:
+          type: array
+          items:
+            type: object
+        matrix:
+          type: array
+          description: A 2D array of route legs indexed by origin then destination.
+          items:
+            type: array
+            items:
+              $ref: '#/components/schemas/RouteLeg'
+    Meta:
+      type: object
+      properties:
+        code:
+          type: integer
+          example: 200
+    DistanceResponse:
+      type: object
+      properties:
+        meta:
+          $ref: '#/components/schemas/Meta'
+        routes:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/RouteLeg'
+    RouteLeg:
+      type: object
+      properties:
+        distance:
+          type: object
+          properties:
+            value:
+              type: number
+            text:
+              type: string
+        duration:
+          type: object
+          properties:
+            value:
+              type: number
+            text:
+              type: string
+  securitySchemes:
+    RadarKey:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: A Radar publishable (client) key (prj_live_pk_... / prj_test_pk_...) or secret (server) key (prj_live_sk_... / prj_test_sk_...), passed in the Authorization header without a Bearer prefix.

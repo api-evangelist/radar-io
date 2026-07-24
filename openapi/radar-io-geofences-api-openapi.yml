@@ -1,0 +1,221 @@
+openapi: 3.0.3
+info:
+  title: Radar Addresses Geofences API
+  description: Radar is a geofencing and maps platform. The Radar API provides forward and reverse geocoding, IP geocoding, address and place search with autocomplete, geofence search, routing (distance, matrix, directions, and route matching), geofence management, user (device) tracking, events, trips, address verification, and map tiles. All requests are authenticated with an Authorization header containing a publishable (client) key prefixed `prj_live_pk_` / `prj_test_pk_` or a secret (server) key prefixed `prj_live_sk_` / `prj_test_sk_`.
+  termsOfService: https://radar.com/terms
+  contact:
+    name: Radar Support
+    email: support@radar.com
+    url: https://radar.com/documentation
+  version: '1.0'
+servers:
+- url: https://api.radar.io/v1
+  description: Radar production API
+security:
+- RadarKey: []
+tags:
+- name: Geofences
+  description: Create, read, update, and delete geofences.
+paths:
+  /geofences:
+    get:
+      operationId: listGeofences
+      tags:
+      - Geofences
+      summary: List geofences.
+      description: Lists geofences, sorted by creation date descending.
+      parameters:
+      - name: tag
+        in: query
+        required: false
+        description: Optional geofence tag to filter.
+        schema:
+          type: string
+      - name: limit
+        in: query
+        required: false
+        description: The maximum number of geofences (default 100, max 1000).
+        schema:
+          type: integer
+          default: 100
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeofenceListResponse'
+  /geofences/{tag}/{externalId}:
+    put:
+      operationId: upsertGeofence
+      tags:
+      - Geofences
+      summary: Create or update a geofence.
+      description: Creates or updates a geofence identified by a tag and external ID.
+      parameters:
+      - name: tag
+        in: path
+        required: true
+        description: The geofence tag.
+        schema:
+          type: string
+      - name: externalId
+        in: path
+        required: true
+        description: The external ID that uniquely identifies the geofence within the tag.
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GeofenceUpsertRequest'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeofenceResponse'
+    get:
+      operationId: getGeofence
+      tags:
+      - Geofences
+      summary: Get a geofence.
+      description: Retrieves a geofence by tag and external ID.
+      parameters:
+      - name: tag
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: externalId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeofenceResponse'
+    delete:
+      operationId: deleteGeofence
+      tags:
+      - Geofences
+      summary: Delete a geofence.
+      description: Deletes a geofence by tag and external ID.
+      parameters:
+      - name: tag
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: externalId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+components:
+  schemas:
+    GeofenceListResponse:
+      type: object
+      properties:
+        meta:
+          $ref: '#/components/schemas/Meta'
+        geofences:
+          type: array
+          items:
+            $ref: '#/components/schemas/Geofence'
+    GeofenceUpsertRequest:
+      type: object
+      required:
+      - description
+      - type
+      properties:
+        description:
+          type: string
+        type:
+          type: string
+          enum:
+          - circle
+          - polygon
+          - isochrone
+        coordinates:
+          type: array
+          description: For circle, [longitude, latitude]. For polygon, an array of [lng, lat] pairs.
+          items: {}
+        radius:
+          type: integer
+          description: The radius in meters (for circle geofences).
+        enabled:
+          type: boolean
+          default: true
+        metadata:
+          type: object
+          additionalProperties: true
+    GeofenceResponse:
+      type: object
+      properties:
+        meta:
+          $ref: '#/components/schemas/Meta'
+        geofence:
+          $ref: '#/components/schemas/Geofence'
+    Meta:
+      type: object
+      properties:
+        code:
+          type: integer
+          example: 200
+    Geofence:
+      type: object
+      properties:
+        _id:
+          type: string
+        description:
+          type: string
+        tag:
+          type: string
+        externalId:
+          type: string
+        type:
+          type: string
+          enum:
+          - circle
+          - polygon
+          - isochrone
+        geometryCenter:
+          type: object
+          properties:
+            type:
+              type: string
+              example: Point
+            coordinates:
+              type: array
+              items:
+                type: number
+        geometryRadius:
+          type: integer
+        enabled:
+          type: boolean
+        metadata:
+          type: object
+          additionalProperties: true
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+  securitySchemes:
+    RadarKey:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: A Radar publishable (client) key (prj_live_pk_... / prj_test_pk_...) or secret (server) key (prj_live_sk_... / prj_test_sk_...), passed in the Authorization header without a Bearer prefix.

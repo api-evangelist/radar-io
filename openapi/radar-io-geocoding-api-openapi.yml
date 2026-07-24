@@ -1,0 +1,179 @@
+openapi: 3.0.3
+info:
+  title: Radar Addresses Geocoding API
+  description: Radar is a geofencing and maps platform. The Radar API provides forward and reverse geocoding, IP geocoding, address and place search with autocomplete, geofence search, routing (distance, matrix, directions, and route matching), geofence management, user (device) tracking, events, trips, address verification, and map tiles. All requests are authenticated with an Authorization header containing a publishable (client) key prefixed `prj_live_pk_` / `prj_test_pk_` or a secret (server) key prefixed `prj_live_sk_` / `prj_test_sk_`.
+  termsOfService: https://radar.com/terms
+  contact:
+    name: Radar Support
+    email: support@radar.com
+    url: https://radar.com/documentation
+  version: '1.0'
+servers:
+- url: https://api.radar.io/v1
+  description: Radar production API
+security:
+- RadarKey: []
+tags:
+- name: Geocoding
+  description: Forward, reverse, and IP geocoding.
+paths:
+  /geocode/forward:
+    get:
+      operationId: forwardGeocode
+      tags:
+      - Geocoding
+      summary: Forward geocode an address.
+      description: Geocodes an address, converting an address string to coordinates.
+      parameters:
+      - name: query
+        in: query
+        required: true
+        description: The address to geocode.
+        schema:
+          type: string
+        example: 841 Broadway, New York, NY 10003
+      - name: layers
+        in: query
+        required: false
+        description: Optional comma-separated layers to filter (e.g. address, postalCode, locality).
+        schema:
+          type: string
+      - name: country
+        in: query
+        required: false
+        description: Optional comma-separated ISO 3166 country codes to filter.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeocodeResponse'
+  /geocode/reverse:
+    get:
+      operationId: reverseGeocode
+      tags:
+      - Geocoding
+      summary: Reverse geocode coordinates.
+      description: Reverse geocodes a location, converting coordinates to an address.
+      parameters:
+      - name: coordinates
+        in: query
+        required: true
+        description: The latitude and longitude to reverse geocode, comma-separated.
+        schema:
+          type: string
+        example: 40.73430,-73.99110
+      - name: layers
+        in: query
+        required: false
+        description: Optional comma-separated layers to filter.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeocodeResponse'
+  /geocode/ip:
+    get:
+      operationId: ipGeocode
+      tags:
+      - Geocoding
+      summary: IP geocode.
+      description: Geocodes the requester's IP address (or an explicitly provided IP) to a city, state, and country.
+      parameters:
+      - name: ip
+        in: query
+        required: false
+        description: Optional IP address to geocode. Defaults to the requester IP.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IpGeocodeResponse'
+components:
+  schemas:
+    IpGeocodeResponse:
+      type: object
+      properties:
+        meta:
+          $ref: '#/components/schemas/Meta'
+        ip:
+          type: string
+        address:
+          $ref: '#/components/schemas/Address'
+        proxy:
+          type: boolean
+    Address:
+      type: object
+      properties:
+        latitude:
+          type: number
+          format: double
+        longitude:
+          type: number
+          format: double
+        geometry:
+          type: object
+          properties:
+            type:
+              type: string
+              example: Point
+            coordinates:
+              type: array
+              items:
+                type: number
+        country:
+          type: string
+        countryCode:
+          type: string
+        state:
+          type: string
+        stateCode:
+          type: string
+        city:
+          type: string
+        postalCode:
+          type: string
+        number:
+          type: string
+        street:
+          type: string
+        addressLabel:
+          type: string
+        formattedAddress:
+          type: string
+        layer:
+          type: string
+        confidence:
+          type: string
+    GeocodeResponse:
+      type: object
+      properties:
+        meta:
+          $ref: '#/components/schemas/Meta'
+        addresses:
+          type: array
+          items:
+            $ref: '#/components/schemas/Address'
+    Meta:
+      type: object
+      properties:
+        code:
+          type: integer
+          example: 200
+  securitySchemes:
+    RadarKey:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: A Radar publishable (client) key (prj_live_pk_... / prj_test_pk_...) or secret (server) key (prj_live_sk_... / prj_test_sk_...), passed in the Authorization header without a Bearer prefix.
