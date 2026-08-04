@@ -1,0 +1,30 @@
+{
+  "provider": "radar-io",
+  "sources": [
+    "radar-io-addresses-api-openapi.yml",
+    "radar-io-events-api-openapi.yml",
+    "radar-io-geocoding-api-openapi.yml",
+    "radar-io-geofences-api-openapi.yml",
+    "radar-io-routing-api-openapi.yml",
+    "radar-io-search-api-openapi.yml",
+    "radar-io-tiles-api-openapi.yml",
+    "radar-io-track-api-openapi.yml",
+    "radar-io-trips-api-openapi.yml"
+  ],
+  "outputs": [
+    "radar-io-addresses-api-openapi.yml",
+    "radar-io-events-api-openapi.yml",
+    "radar-io-geocoding-api-openapi.yml",
+    "radar-io-geofences-api-openapi.yml",
+    "radar-io-routing-api-openapi.yml",
+    "radar-io-search-api-openapi.yml",
+    "radar-io-tiles-api-openapi.yml",
+    "radar-io-track-api-openapi.yml",
+    "radar-io-trips-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
