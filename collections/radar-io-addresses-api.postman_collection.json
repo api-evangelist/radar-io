@@ -1,0 +1,196 @@
+{
+  "item": [
+    {
+      "id": "f650f79c-bfda-4d2d-ae2f-ce9a85ca93f7",
+      "name": "Addresses",
+      "description": {
+        "content": "Validate and verify addresses.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "e00ae713-8e0f-489f-8def-4fbee3c11827",
+          "name": "Validate an address.",
+          "request": {
+            "name": "Validate an address.",
+            "description": {
+              "content": "Validates and standardizes an address, returning a verification status and standardized components.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "addresses",
+                "validate"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "countryCode",
+                  "value": "<string>",
+                  "description": "(Required) The ISO 3166 country code."
+                },
+                {
+                  "disabled": false,
+                  "key": "stateCode",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "city",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "postalCode",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "number",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "street",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "addressLabel",
+                  "value": "<string>",
+                  "description": "A full single-line address to validate."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "cfb79b1b-120f-43b8-86a3-061a8c07f58c",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "addresses",
+                    "validate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "countryCode",
+                      "value": "US"
+                    },
+                    {
+                      "key": "stateCode",
+                      "value": "NY"
+                    },
+                    {
+                      "key": "city",
+                      "value": "New York"
+                    },
+                    {
+                      "key": "postalCode",
+                      "value": "10003"
+                    },
+                    {
+                      "key": "number",
+                      "value": "841"
+                    },
+                    {
+                      "key": "street",
+                      "value": "Broadway"
+                    },
+                    {
+                      "key": "addressLabel",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"code\": 200\n  },\n  \"address\": {\n    \"latitude\": 1349.4793589282906,\n    \"longitude\": 1732.6442001967869,\n    \"geometry\": {\n      \"type\": \"Point\",\n      \"coordinates\": [\n        9756.367535083948,\n        3721.5294564365354\n      ]\n    },\n    \"country\": \"string\",\n    \"countryCode\": \"string\",\n    \"state\": \"string\",\n    \"stateCode\": \"string\",\n    \"city\": \"string\",\n    \"postalCode\": \"string\",\n    \"number\": \"string\",\n    \"street\": \"string\",\n    \"addressLabel\": \"string\",\n    \"formattedAddress\": \"string\",\n    \"layer\": \"string\",\n    \"confidence\": \"string\"\n  },\n  \"result\": {\n    \"verificationStatus\": \"unverified\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.radar.io/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "e924a480-b645-4b53-af90-6b232c7d550f",
+    "name": "Radar Addresses API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Radar is a geofencing and maps platform. The Radar API provides forward and reverse geocoding, IP geocoding, address and place search with autocomplete, geofence search, routing (distance, matrix, directions, and route matching), geofence management, user (device) tracking, events, trips, address verification, and map tiles. All requests are authenticated with an Authorization header containing a publishable (client) key prefixed `prj_live_pk_` / `prj_test_pk_` or a secret (server) key prefixed `prj_live_sk_` / `prj_test_sk_`.\n\nContact Support:\n Name: Radar Support\n Email: support@radar.com",
+      "type": "text/plain"
+    }
+  }
+}

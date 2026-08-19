@@ -1,0 +1,149 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Radar Addresses Search API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Search",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Autocomplete addresses and places.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.radar.io/v1/search/autocomplete",
+            "params": [
+              {
+                "name": "query",
+                "value": "841 Broadway",
+                "type": "query",
+                "description": "The partial address or place to autocomplete."
+              },
+              {
+                "name": "near",
+                "value": "40.70390,-73.98730",
+                "type": "query",
+                "description": "Optional latitude,longitude to bias results toward."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The maximum number of results (default 10, max 100)."
+              },
+              {
+                "name": "layers",
+                "value": "",
+                "type": "query",
+                "description": "Optional comma-separated layers to filter (e.g. address, street, locality, place)."
+              },
+              {
+                "name": "countryCode",
+                "value": "",
+                "type": "query",
+                "description": "Optional ISO 3166 country code to filter."
+              }
+            ]
+          },
+          "docs": "Autocompletes partial addresses and place names, returning ranked suggestions."
+        },
+        {
+          "info": {
+            "name": "Search for places.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.radar.io/v1/search/places",
+            "params": [
+              {
+                "name": "near",
+                "value": "40.78382,-73.97536",
+                "type": "query",
+                "description": "The latitude,longitude to search near."
+              },
+              {
+                "name": "radius",
+                "value": "",
+                "type": "query",
+                "description": "The radius to search within, in meters (max 10000)."
+              },
+              {
+                "name": "chains",
+                "value": "",
+                "type": "query",
+                "description": "Optional comma-separated chain slugs to filter (e.g. starbucks)."
+              },
+              {
+                "name": "categories",
+                "value": "",
+                "type": "query",
+                "description": "Optional comma-separated categories to filter (e.g. food-beverage)."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The maximum number of results (default 10, max 100)."
+              }
+            ]
+          },
+          "docs": "Searches for places near a location, filtered by chain, category, or Radar place group."
+        },
+        {
+          "info": {
+            "name": "Search for geofences.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.radar.io/v1/search/geofences",
+            "params": [
+              {
+                "name": "near",
+                "value": "40.78382,-73.97536",
+                "type": "query",
+                "description": "The latitude,longitude to search near."
+              },
+              {
+                "name": "radius",
+                "value": "",
+                "type": "query",
+                "description": "The radius to search within, in meters (max 10000)."
+              },
+              {
+                "name": "tags",
+                "value": "",
+                "type": "query",
+                "description": "Optional comma-separated geofence tags to filter."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The maximum number of results (default 100, max 1000)."
+              }
+            ]
+          },
+          "docs": "Searches for geofences near a location, filtered by tag and metadata."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

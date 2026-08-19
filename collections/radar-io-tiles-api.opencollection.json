@@ -1,0 +1,67 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Radar Addresses Tiles API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Tiles",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get a raster map tile.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.radar.io/v1/maps/tiles/:z/:x/:y.png",
+            "params": [
+              {
+                "name": "z",
+                "value": "",
+                "type": "path",
+                "description": "The zoom level."
+              },
+              {
+                "name": "x",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "y",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "style",
+                "value": "",
+                "type": "query",
+                "description": "The map style (e.g. radar-default-v1, radar-light-v1, radar-dark-v1)."
+              },
+              {
+                "name": "scale",
+                "value": "",
+                "type": "query",
+                "description": "The tile scale (1 or 2 for retina)."
+              }
+            ]
+          },
+          "docs": "Returns a raster (PNG) map tile for the given zoom, x, and y coordinates."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

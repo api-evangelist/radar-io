@@ -1,0 +1,76 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Radar Addresses API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Addresses",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Validate an address.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.radar.io/v1/addresses/validate",
+            "params": [
+              {
+                "name": "countryCode",
+                "value": "US",
+                "type": "query",
+                "description": "The ISO 3166 country code."
+              },
+              {
+                "name": "stateCode",
+                "value": "NY",
+                "type": "query"
+              },
+              {
+                "name": "city",
+                "value": "New York",
+                "type": "query"
+              },
+              {
+                "name": "postalCode",
+                "value": "10003",
+                "type": "query"
+              },
+              {
+                "name": "number",
+                "value": "841",
+                "type": "query"
+              },
+              {
+                "name": "street",
+                "value": "Broadway",
+                "type": "query"
+              },
+              {
+                "name": "addressLabel",
+                "value": "",
+                "type": "query",
+                "description": "A full single-line address to validate."
+              }
+            ]
+          },
+          "docs": "Validates and standardizes an address, returning a verification status and standardized components."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

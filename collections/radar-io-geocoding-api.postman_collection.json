@@ -1,0 +1,355 @@
+{
+  "item": [
+    {
+      "id": "99600552-4ec3-42bd-83a6-cfcc55d7d3ed",
+      "name": "Geocoding",
+      "description": {
+        "content": "Forward, reverse, and IP geocoding.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "92734927-29d3-4463-8e1d-481626aa66f0",
+          "name": "Forward geocode an address.",
+          "request": {
+            "name": "Forward geocode an address.",
+            "description": {
+              "content": "Geocodes an address, converting an address string to coordinates.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "geocode",
+                "forward"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "query",
+                  "value": "<string>",
+                  "description": "(Required) The address to geocode."
+                },
+                {
+                  "disabled": false,
+                  "key": "layers",
+                  "value": "<string>",
+                  "description": "Optional comma-separated layers to filter (e.g. address, postalCode, locality)."
+                },
+                {
+                  "disabled": false,
+                  "key": "country",
+                  "value": "<string>",
+                  "description": "Optional comma-separated ISO 3166 country codes to filter."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "69523f65-e79a-4c86-ad3a-79be4563201a",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "geocode",
+                    "forward"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "query",
+                      "value": "841 Broadway, New York, NY 10003"
+                    },
+                    {
+                      "key": "layers",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "country",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"code\": 200\n  },\n  \"addresses\": [\n    {\n      \"latitude\": 5445.640990593527,\n      \"longitude\": 6852.968374835456,\n      \"geometry\": {\n        \"type\": \"Point\",\n        \"coordinates\": [\n          1771.000844479118,\n          2728.8974249395483\n        ]\n      },\n      \"country\": \"string\",\n      \"countryCode\": \"string\",\n      \"state\": \"string\",\n      \"stateCode\": \"string\",\n      \"city\": \"string\",\n      \"postalCode\": \"string\",\n      \"number\": \"string\",\n      \"street\": \"string\",\n      \"addressLabel\": \"string\",\n      \"formattedAddress\": \"string\",\n      \"layer\": \"string\",\n      \"confidence\": \"string\"\n    },\n    {\n      \"latitude\": 5204.786116149122,\n      \"longitude\": 5614.32771338866,\n      \"geometry\": {\n        \"type\": \"Point\",\n        \"coordinates\": [\n          4167.231280454118,\n          8290.866957489596\n        ]\n      },\n      \"country\": \"string\",\n      \"countryCode\": \"string\",\n      \"state\": \"string\",\n      \"stateCode\": \"string\",\n      \"city\": \"string\",\n      \"postalCode\": \"string\",\n      \"number\": \"string\",\n      \"street\": \"string\",\n      \"addressLabel\": \"string\",\n      \"formattedAddress\": \"string\",\n      \"layer\": \"string\",\n      \"confidence\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2c566427-eda9-4ca3-b3ef-e1042bf0e8c9",
+          "name": "Reverse geocode coordinates.",
+          "request": {
+            "name": "Reverse geocode coordinates.",
+            "description": {
+              "content": "Reverse geocodes a location, converting coordinates to an address.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "geocode",
+                "reverse"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "coordinates",
+                  "value": "<string>",
+                  "description": "(Required) The latitude and longitude to reverse geocode, comma-separated."
+                },
+                {
+                  "disabled": false,
+                  "key": "layers",
+                  "value": "<string>",
+                  "description": "Optional comma-separated layers to filter."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "44eb0d18-bdab-4a52-b56b-e6443d9aa84a",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "geocode",
+                    "reverse"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "coordinates",
+                      "value": "40.73430,-73.99110"
+                    },
+                    {
+                      "key": "layers",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"code\": 200\n  },\n  \"addresses\": [\n    {\n      \"latitude\": 2442.4888551202894,\n      \"longitude\": 171.2045080468394,\n      \"geometry\": {\n        \"type\": \"Point\",\n        \"coordinates\": [\n          5803.232983216704,\n          9456.016604455388\n        ]\n      },\n      \"country\": \"string\",\n      \"countryCode\": \"string\",\n      \"state\": \"string\",\n      \"stateCode\": \"string\",\n      \"city\": \"string\",\n      \"postalCode\": \"string\",\n      \"number\": \"string\",\n      \"street\": \"string\",\n      \"addressLabel\": \"string\",\n      \"formattedAddress\": \"string\",\n      \"layer\": \"string\",\n      \"confidence\": \"string\"\n    },\n    {\n      \"latitude\": 8657.031618240557,\n      \"longitude\": 1911.999127787153,\n      \"geometry\": {\n        \"type\": \"Point\",\n        \"coordinates\": [\n          2190.0727760940154,\n          2397.349015489125\n        ]\n      },\n      \"country\": \"string\",\n      \"countryCode\": \"string\",\n      \"state\": \"string\",\n      \"stateCode\": \"string\",\n      \"city\": \"string\",\n      \"postalCode\": \"string\",\n      \"number\": \"string\",\n      \"street\": \"string\",\n      \"addressLabel\": \"string\",\n      \"formattedAddress\": \"string\",\n      \"layer\": \"string\",\n      \"confidence\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "23d1960d-cc73-4363-9d14-e626ea06c0d7",
+          "name": "IP geocode.",
+          "request": {
+            "name": "IP geocode.",
+            "description": {
+              "content": "Geocodes the requester's IP address (or an explicitly provided IP) to a city, state, and country.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "geocode",
+                "ip"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "ip",
+                  "value": "<string>",
+                  "description": "Optional IP address to geocode. Defaults to the requester IP."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "27343304-963d-4535-9045-aaee5c7f65ec",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "geocode",
+                    "ip"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "ip",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"code\": 200\n  },\n  \"ip\": \"string\",\n  \"address\": {\n    \"latitude\": 6982.989213220979,\n    \"longitude\": 4519.210269606886,\n    \"geometry\": {\n      \"type\": \"Point\",\n      \"coordinates\": [\n        9778.515875707933,\n        1788.3205508446597\n      ]\n    },\n    \"country\": \"string\",\n    \"countryCode\": \"string\",\n    \"state\": \"string\",\n    \"stateCode\": \"string\",\n    \"city\": \"string\",\n    \"postalCode\": \"string\",\n    \"number\": \"string\",\n    \"street\": \"string\",\n    \"addressLabel\": \"string\",\n    \"formattedAddress\": \"string\",\n    \"layer\": \"string\",\n    \"confidence\": \"string\"\n  },\n  \"proxy\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.radar.io/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "d3589f43-8680-4430-a567-d6f374ff51b9",
+    "name": "Radar Addresses Geocoding API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Radar is a geofencing and maps platform. The Radar API provides forward and reverse geocoding, IP geocoding, address and place search with autocomplete, geofence search, routing (distance, matrix, directions, and route matching), geofence management, user (device) tracking, events, trips, address verification, and map tiles. All requests are authenticated with an Authorization header containing a publishable (client) key prefixed `prj_live_pk_` / `prj_test_pk_` or a secret (server) key prefixed `prj_live_sk_` / `prj_test_sk_`.\n\nContact Support:\n Name: Radar Support\n Email: support@radar.com",
+      "type": "text/plain"
+    }
+  }
+}

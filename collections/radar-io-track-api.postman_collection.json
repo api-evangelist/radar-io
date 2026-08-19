@@ -1,0 +1,420 @@
+{
+  "item": [
+    {
+      "id": "976eb6ed-7d40-41bf-a10a-94bcbf76a844",
+      "name": "Track",
+      "description": {
+        "content": "Track device location and manage users.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "910908b6-1df9-486a-a5d5-7a5f765dfa45",
+          "name": "Track a device location.",
+          "request": {
+            "name": "Track a device location.",
+            "description": {
+              "content": "Tracks a device's location server-side, generating events and updating the user. Requires a secret key.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "track"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"deviceId\": \"<string>\",\n  \"latitude\": \"<double>\",\n  \"longitude\": \"<double>\",\n  \"accuracy\": \"<number>\",\n  \"userId\": \"<string>\",\n  \"foreground\": \"<boolean>\",\n  \"stopped\": \"<boolean>\",\n  \"deviceType\": \"<string>\",\n  \"metadata\": {\n    \"key_0\": \"string\",\n    \"key_1\": true\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "d2f85456-2c7e-4ed7-b34c-1df94faf2c2f",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "track"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"deviceId\": \"<string>\",\n  \"latitude\": \"<double>\",\n  \"longitude\": \"<double>\",\n  \"accuracy\": \"<number>\",\n  \"userId\": \"<string>\",\n  \"foreground\": \"<boolean>\",\n  \"stopped\": \"<boolean>\",\n  \"deviceType\": \"<string>\",\n  \"metadata\": {\n    \"key_0\": 4121,\n    \"key_1\": 6077\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"code\": 200\n  },\n  \"user\": {\n    \"_id\": \"string\",\n    \"userId\": \"string\",\n    \"deviceId\": \"string\",\n    \"description\": \"string\",\n    \"metadata\": {\n      \"key_0\": 233,\n      \"key_1\": false\n    },\n    \"location\": {\n      \"type\": \"Point\",\n      \"coordinates\": [\n        6566.510138598328,\n        1247.0373331841045\n      ]\n    },\n    \"locationAccuracy\": 9470.48929143201,\n    \"geofences\": [\n      {\n        \"_id\": \"string\",\n        \"description\": \"string\",\n        \"tag\": \"string\",\n        \"externalId\": \"string\",\n        \"type\": \"polygon\",\n        \"geometryCenter\": {\n          \"type\": \"Point\",\n          \"coordinates\": [\n            5319.775294732729,\n            8841.117177148808\n          ]\n        },\n        \"geometryRadius\": 8494,\n        \"enabled\": true,\n        \"metadata\": {\n          \"key_0\": true,\n          \"key_1\": 8912.089655008102\n        },\n        \"createdAt\": \"1991-09-19T16:14:01.596Z\",\n        \"updatedAt\": \"2022-02-17T01:24:09.407Z\"\n      },\n      {\n        \"_id\": \"string\",\n        \"description\": \"string\",\n        \"tag\": \"string\",\n        \"externalId\": \"string\",\n        \"type\": \"polygon\",\n        \"geometryCenter\": {\n          \"type\": \"Point\",\n          \"coordinates\": [\n            1160.8126403062724,\n            4735.034197029011\n          ]\n        },\n        \"geometryRadius\": 3509,\n        \"enabled\": false,\n        \"metadata\": {\n          \"key_0\": 8129\n        },\n        \"createdAt\": \"1972-08-13T21:34:25.705Z\",\n        \"updatedAt\": \"1972-10-05T22:55:36.793Z\"\n      }\n    ],\n    \"place\": {\n      \"_id\": \"string\",\n      \"name\": \"string\",\n      \"categories\": [\n        \"string\",\n        \"string\"\n      ],\n      \"chain\": {\n        \"name\": \"string\",\n        \"slug\": \"string\"\n      },\n      \"location\": {\n        \"type\": \"Point\",\n        \"coordinates\": [\n          9220.225547113641,\n          9711.762380377453\n        ]\n      }\n    },\n    \"updatedAt\": \"1979-12-20T13:01:40.316Z\"\n  },\n  \"events\": [\n    {\n      \"_id\": \"string\",\n      \"type\": \"user.entered_geofence\",\n      \"live\": true,\n      \"user\": {\n        \"_id\": \"string\",\n        \"userId\": \"string\",\n        \"deviceId\": \"string\",\n        \"description\": \"string\",\n        \"metadata\": {\n          \"key_0\": 5377.207399235361\n        },\n        \"location\": {\n          \"type\": \"Point\",\n          \"coordinates\": [\n            1091.3432736762463,\n            7530.611793875297\n          ]\n        },\n        \"locationAccuracy\": 6280.944488425011,\n        \"geofences\": [\n          {\n            \"_id\": \"string\",\n            \"description\": \"string\",\n            \"tag\": \"string\",\n            \"externalId\": \"string\",\n            \"type\": \"isochrone\",\n            \"geometryCenter\": {\n              \"type\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"coordinates\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"geometryRadius\": 7552,\n            \"enabled\": true,\n            \"metadata\": {\n              \"key_0\": 1226.3339273705842,\n              \"key_1\": false,\n              \"key_2\": \"string\"\n            },\n            \"createdAt\": \"2019-03-27T21:42:52.079Z\",\n            \"updatedAt\": \"1992-03-13T16:58:34.970Z\"\n          },\n          {\n            \"_id\": \"string\",\n            \"description\": \"string\",\n            \"tag\": \"string\",\n            \"externalId\": \"string\",\n            \"type\": \"circle\",\n            \"geometryCenter\": {\n              \"type\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"coordinates\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"geometryRadius\": 9392,\n            \"enabled\": false,\n            \"metadata\": {\n              \"key_0\": 5707\n            },\n            \"createdAt\": \"1998-09-30T14:26:46.569Z\",\n            \"updatedAt\": \"1988-01-26T10:58:20.690Z\"\n          }\n        ],\n        \"place\": {\n          \"_id\": \"string\",\n          \"name\": \"string\",\n          \"categories\": [\n            \"string\",\n            \"string\"\n          ],\n          \"chain\": {\n            \"name\": \"string\",\n            \"slug\": \"string\"\n          },\n          \"location\": {\n            \"type\": \"Point\",\n            \"coordinates\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ]\n          }\n        },\n        \"updatedAt\": \"2017-09-06T12:41:44.671Z\"\n      },\n      \"geofence\": {\n        \"_id\": \"string\",\n        \"description\": \"string\",\n        \"tag\": \"string\",\n        \"externalId\": \"string\",\n        \"type\": \"polygon\",\n        \"geometryCenter\": {\n          \"type\": \"Point\",\n          \"coordinates\": [\n            3023.8348245542766,\n            2440.1392246102314\n          ]\n        },\n        \"geometryRadius\": 5011,\n        \"enabled\": true,\n        \"metadata\": {\n          \"key_0\": 7880.787328861761\n        },\n        \"createdAt\": \"1987-12-05T09:14:29.965Z\",\n        \"updatedAt\": \"2019-08-21T21:54:56.603Z\"\n      },\n      \"place\": {\n        \"_id\": \"string\",\n        \"name\": \"string\",\n        \"categories\": [\n          \"string\",\n          \"string\"\n        ],\n        \"chain\": {\n          \"name\": \"string\",\n          \"slug\": \"string\"\n        },\n        \"location\": {\n          \"type\": \"Point\",\n          \"coordinates\": [\n            8171.784062695373,\n            7803.984792331924\n          ]\n        }\n      },\n      \"confidence\": 4848,\n      \"createdAt\": \"1968-02-08T18:43:00.691Z\"\n    },\n    {\n      \"_id\": \"string\",\n      \"type\": \"user.entered_geofence\",\n      \"live\": false,\n      \"user\": {\n        \"_id\": \"string\",\n        \"userId\": \"string\",\n        \"deviceId\": \"string\",\n        \"description\": \"string\",\n        \"metadata\": {\n          \"key_0\": 478,\n          \"key_1\": 9649\n        },\n        \"location\": {\n          \"type\": \"Point\",\n          \"coordinates\": [\n            4621.1044020266945,\n            9576.935453041146\n          ]\n        },\n        \"locationAccuracy\": 8413.358482035777,\n        \"geofences\": [\n          {\n            \"_id\": \"string\",\n            \"description\": \"string\",\n            \"tag\": \"string\",\n            \"externalId\": \"string\",\n            \"type\": \"isochrone\",\n            \"geometryCenter\": {\n              \"type\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"coordinates\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"geometryRadius\": 465,\n            \"enabled\": true,\n            \"metadata\": {\n              \"key_0\": \"string\",\n              \"key_1\": 1517,\n              \"key_2\": 3577.6775706594744\n            },\n            \"createdAt\": \"1967-04-26T09:57:15.168Z\",\n            \"updatedAt\": \"1959-12-07T14:37:32.963Z\"\n          },\n          {\n            \"_id\": \"string\",\n            \"description\": \"string\",\n            \"tag\": \"string\",\n            \"externalId\": \"string\",\n            \"type\": \"polygon\",\n            \"geometryCenter\": {\n              \"type\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"coordinates\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"geometryRadius\": 2665,\n            \"enabled\": true,\n            \"metadata\": {\n              \"key_0\": 4904.369970495129\n            },\n            \"createdAt\": \"2023-04-09T01:23:16.589Z\",\n            \"updatedAt\": \"1964-04-08T13:57:16.492Z\"\n          }\n        ],\n        \"place\": {\n          \"_id\": \"string\",\n          \"name\": \"string\",\n          \"categories\": [\n            \"string\",\n            \"string\"\n          ],\n          \"chain\": {\n            \"name\": \"string\",\n            \"slug\": \"string\"\n          },\n          \"location\": {\n            \"type\": \"Point\",\n            \"coordinates\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ]\n          }\n        },\n        \"updatedAt\": \"2000-11-04T16:22:21.781Z\"\n      },\n      \"geofence\": {\n        \"_id\": \"string\",\n        \"description\": \"string\",\n        \"tag\": \"string\",\n        \"externalId\": \"string\",\n        \"type\": \"polygon\",\n        \"geometryCenter\": {\n          \"type\": \"Point\",\n          \"coordinates\": [\n            3227.224296270932,\n            4978.561457679566\n          ]\n        },\n        \"geometryRadius\": 5413,\n        \"enabled\": false,\n        \"metadata\": {\n          \"key_0\": 6286,\n          \"key_1\": 2549,\n          \"key_2\": \"string\"\n        },\n        \"createdAt\": \"2014-05-13T10:28:45.026Z\",\n        \"updatedAt\": \"2007-04-04T15:19:03.429Z\"\n      },\n      \"place\": {\n        \"_id\": \"string\",\n        \"name\": \"string\",\n        \"categories\": [\n          \"string\",\n          \"string\"\n        ],\n        \"chain\": {\n          \"name\": \"string\",\n          \"slug\": \"string\"\n        },\n        \"location\": {\n          \"type\": \"Point\",\n          \"coordinates\": [\n            9417.133442443395,\n            1283.2287740551396\n          ]\n        }\n      },\n      \"confidence\": 516,\n      \"createdAt\": \"2024-10-16T18:44:36.810Z\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "06009391-52c4-44cc-b303-7ab907e690af",
+          "name": "List users.",
+          "request": {
+            "name": "List users.",
+            "description": {
+              "content": "Lists users, sorted by last updated descending.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "users"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "100",
+                  "description": "The maximum number of users (default 100, max 1000)."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "90081bb6-4653-46fd-a846-9759d29d91d7",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"code\": 200\n  },\n  \"users\": [\n    {\n      \"_id\": \"string\",\n      \"userId\": \"string\",\n      \"deviceId\": \"string\",\n      \"description\": \"string\",\n      \"metadata\": {\n        \"key_0\": true,\n        \"key_1\": true\n      },\n      \"location\": {\n        \"type\": \"Point\",\n        \"coordinates\": [\n          8812.239664194554,\n          8759.748540511624\n        ]\n      },\n      \"locationAccuracy\": 8092.124622417404,\n      \"geofences\": [\n        {\n          \"_id\": \"string\",\n          \"description\": \"string\",\n          \"tag\": \"string\",\n          \"externalId\": \"string\",\n          \"type\": \"circle\",\n          \"geometryCenter\": {\n            \"type\": \"Point\",\n            \"coordinates\": [\n              135.5099388700476,\n              2770.015832524534\n            ]\n          },\n          \"geometryRadius\": 2201,\n          \"enabled\": false,\n          \"metadata\": {\n            \"key_0\": true\n          },\n          \"createdAt\": \"2012-12-01T09:14:23.066Z\",\n          \"updatedAt\": \"1958-03-20T02:15:37.044Z\"\n        },\n        {\n          \"_id\": \"string\",\n          \"description\": \"string\",\n          \"tag\": \"string\",\n          \"externalId\": \"string\",\n          \"type\": \"polygon\",\n          \"geometryCenter\": {\n            \"type\": \"Point\",\n            \"coordinates\": [\n              1872.4411592477086,\n              9875.393006074099\n            ]\n          },\n          \"geometryRadius\": 6384,\n          \"enabled\": false,\n          \"metadata\": {\n            \"key_0\": 9096.250702664593\n          },\n          \"createdAt\": \"1969-06-13T07:01:34.994Z\",\n          \"updatedAt\": \"2004-12-28T06:52:00.944Z\"\n        }\n      ],\n      \"place\": {\n        \"_id\": \"string\",\n        \"name\": \"string\",\n        \"categories\": [\n          \"string\",\n          \"string\"\n        ],\n        \"chain\": {\n          \"name\": \"string\",\n          \"slug\": \"string\"\n        },\n        \"location\": {\n          \"type\": \"Point\",\n          \"coordinates\": [\n            3361.7628121552034,\n            9219.381618778196\n          ]\n        }\n      },\n      \"updatedAt\": \"2016-11-28T17:46:58.483Z\"\n    },\n    {\n      \"_id\": \"string\",\n      \"userId\": \"string\",\n      \"deviceId\": \"string\",\n      \"description\": \"string\",\n      \"metadata\": {\n        \"key_0\": 8563,\n        \"key_1\": false\n      },\n      \"location\": {\n        \"type\": \"Point\",\n        \"coordinates\": [\n          4347.808945283117,\n          2353.588177727095\n        ]\n      },\n      \"locationAccuracy\": 6111.462689882077,\n      \"geofences\": [\n        {\n          \"_id\": \"string\",\n          \"description\": \"string\",\n          \"tag\": \"string\",\n          \"externalId\": \"string\",\n          \"type\": \"polygon\",\n          \"geometryCenter\": {\n            \"type\": \"Point\",\n            \"coordinates\": [\n              2750.2046133616486,\n              8186.078468092995\n            ]\n          },\n          \"geometryRadius\": 9396,\n          \"enabled\": true,\n          \"metadata\": {\n            \"key_0\": \"string\",\n            \"key_1\": 3353.8668774497714\n          },\n          \"createdAt\": \"2001-11-03T10:25:07.908Z\",\n          \"updatedAt\": \"1953-06-05T02:54:16.638Z\"\n        },\n        {\n          \"_id\": \"string\",\n          \"description\": \"string\",\n          \"tag\": \"string\",\n          \"externalId\": \"string\",\n          \"type\": \"circle\",\n          \"geometryCenter\": {\n            \"type\": \"Point\",\n            \"coordinates\": [\n              3051.9067248322963,\n              8030.568566954082\n            ]\n          },\n          \"geometryRadius\": 8607,\n          \"enabled\": true,\n          \"metadata\": {\n            \"key_0\": false\n          },\n          \"createdAt\": \"1997-06-15T01:29:00.678Z\",\n          \"updatedAt\": \"1951-07-24T11:57:40.529Z\"\n        }\n      ],\n      \"place\": {\n        \"_id\": \"string\",\n        \"name\": \"string\",\n        \"categories\": [\n          \"string\",\n          \"string\"\n        ],\n        \"chain\": {\n          \"name\": \"string\",\n          \"slug\": \"string\"\n        },\n        \"location\": {\n          \"type\": \"Point\",\n          \"coordinates\": [\n            849.8975450226576,\n            1425.7219982695913\n          ]\n        }\n      },\n      \"updatedAt\": \"2015-08-19T19:56:28.204Z\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "aac94bf0-edc2-4701-a0f4-c82ba576a708",
+          "name": "Get a user.",
+          "request": {
+            "name": "Get a user.",
+            "description": {
+              "content": "Retrieves a user by Radar ID or external ID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "users",
+                ":userId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "userId",
+                  "description": "(Required) The Radar _id, or an external ID prefixed with externalId=."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b43df182-bf39-4f11-aa18-83661f2ebb26",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users",
+                    ":userId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "userId",
+                      "description": "(Required) The Radar _id, or an external ID prefixed with externalId=."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"code\": 200\n  },\n  \"user\": {\n    \"_id\": \"string\",\n    \"userId\": \"string\",\n    \"deviceId\": \"string\",\n    \"description\": \"string\",\n    \"metadata\": {\n      \"key_0\": \"string\"\n    },\n    \"location\": {\n      \"type\": \"Point\",\n      \"coordinates\": [\n        3327.43599270555,\n        8135.726992707429\n      ]\n    },\n    \"locationAccuracy\": 1703.0170262472966,\n    \"geofences\": [\n      {\n        \"_id\": \"string\",\n        \"description\": \"string\",\n        \"tag\": \"string\",\n        \"externalId\": \"string\",\n        \"type\": \"isochrone\",\n        \"geometryCenter\": {\n          \"type\": \"Point\",\n          \"coordinates\": [\n            768.3261879335635,\n            8233.519092994757\n          ]\n        },\n        \"geometryRadius\": 9124,\n        \"enabled\": true,\n        \"metadata\": {\n          \"key_0\": 2713.3330554001345,\n          \"key_1\": \"string\",\n          \"key_2\": \"string\",\n          \"key_3\": 15.70311986533901\n        },\n        \"createdAt\": \"1976-04-07T18:22:24.225Z\",\n        \"updatedAt\": \"2017-01-25T16:09:51.285Z\"\n      },\n      {\n        \"_id\": \"string\",\n        \"description\": \"string\",\n        \"tag\": \"string\",\n        \"externalId\": \"string\",\n        \"type\": \"polygon\",\n        \"geometryCenter\": {\n          \"type\": \"Point\",\n          \"coordinates\": [\n            2978.0449659226683,\n            1392.6518843253177\n          ]\n        },\n        \"geometryRadius\": 1739,\n        \"enabled\": false,\n        \"metadata\": {\n          \"key_0\": true,\n          \"key_1\": 931,\n          \"key_2\": true\n        },\n        \"createdAt\": \"2023-09-20T02:33:13.129Z\",\n        \"updatedAt\": \"1984-04-17T01:50:19.078Z\"\n      }\n    ],\n    \"place\": {\n      \"_id\": \"string\",\n      \"name\": \"string\",\n      \"categories\": [\n        \"string\",\n        \"string\"\n      ],\n      \"chain\": {\n        \"name\": \"string\",\n        \"slug\": \"string\"\n      },\n      \"location\": {\n        \"type\": \"Point\",\n        \"coordinates\": [\n          9858.077437135822,\n          5040.332926360853\n        ]\n      }\n    },\n    \"updatedAt\": \"1987-12-05T11:01:46.057Z\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4f0d283f-175f-45d6-bb6b-f89d23ecdcb3",
+          "name": "Delete a user.",
+          "request": {
+            "name": "Delete a user.",
+            "description": {
+              "content": "Deletes a user and associated location data.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "users",
+                ":userId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "userId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "12db2c92-b945-4949-a703-b34d7ef9a494",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users",
+                    ":userId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "userId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.radar.io/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "9732c3ab-0fd0-4ca2-9315-be72d10fce72",
+    "name": "Radar Addresses Track API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Radar is a geofencing and maps platform. The Radar API provides forward and reverse geocoding, IP geocoding, address and place search with autocomplete, geofence search, routing (distance, matrix, directions, and route matching), geofence management, user (device) tracking, events, trips, address verification, and map tiles. All requests are authenticated with an Authorization header containing a publishable (client) key prefixed `prj_live_pk_` / `prj_test_pk_` or a secret (server) key prefixed `prj_live_sk_` / `prj_test_sk_`.\n\nContact Support:\n Name: Radar Support\n Email: support@radar.com",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,101 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Radar Addresses Geocoding API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Geocoding",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Forward geocode an address.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.radar.io/v1/geocode/forward",
+            "params": [
+              {
+                "name": "query",
+                "value": "841 Broadway, New York, NY 10003",
+                "type": "query",
+                "description": "The address to geocode."
+              },
+              {
+                "name": "layers",
+                "value": "",
+                "type": "query",
+                "description": "Optional comma-separated layers to filter (e.g. address, postalCode, locality)."
+              },
+              {
+                "name": "country",
+                "value": "",
+                "type": "query",
+                "description": "Optional comma-separated ISO 3166 country codes to filter."
+              }
+            ]
+          },
+          "docs": "Geocodes an address, converting an address string to coordinates."
+        },
+        {
+          "info": {
+            "name": "Reverse geocode coordinates.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.radar.io/v1/geocode/reverse",
+            "params": [
+              {
+                "name": "coordinates",
+                "value": "40.73430,-73.99110",
+                "type": "query",
+                "description": "The latitude and longitude to reverse geocode, comma-separated."
+              },
+              {
+                "name": "layers",
+                "value": "",
+                "type": "query",
+                "description": "Optional comma-separated layers to filter."
+              }
+            ]
+          },
+          "docs": "Reverse geocodes a location, converting coordinates to an address."
+        },
+        {
+          "info": {
+            "name": "IP geocode.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.radar.io/v1/geocode/ip",
+            "params": [
+              {
+                "name": "ip",
+                "value": "",
+                "type": "query",
+                "description": "Optional IP address to geocode. Defaults to the requester IP."
+              }
+            ]
+          },
+          "docs": "Geocodes the requester's IP address (or an explicitly provided IP) to a city, state, and country."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

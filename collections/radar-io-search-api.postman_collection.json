@@ -1,0 +1,435 @@
+{
+  "item": [
+    {
+      "id": "1ce6a75a-dec1-4ffa-87a2-aabd5f3ee93f",
+      "name": "Search",
+      "description": {
+        "content": "Address and place autocomplete, place search, and geofence search.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "3a5a93fc-e655-4cb4-bd5a-bf44c5ddf7d6",
+          "name": "Autocomplete addresses and places.",
+          "request": {
+            "name": "Autocomplete addresses and places.",
+            "description": {
+              "content": "Autocompletes partial addresses and place names, returning ranked suggestions.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "search",
+                "autocomplete"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "query",
+                  "value": "<string>",
+                  "description": "(Required) The partial address or place to autocomplete."
+                },
+                {
+                  "disabled": false,
+                  "key": "near",
+                  "value": "<string>",
+                  "description": "Optional latitude,longitude to bias results toward."
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "10",
+                  "description": "The maximum number of results (default 10, max 100)."
+                },
+                {
+                  "disabled": false,
+                  "key": "layers",
+                  "value": "<string>",
+                  "description": "Optional comma-separated layers to filter (e.g. address, street, locality, place)."
+                },
+                {
+                  "disabled": false,
+                  "key": "countryCode",
+                  "value": "<string>",
+                  "description": "Optional ISO 3166 country code to filter."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "386c9cb1-65ca-4d73-8a5a-4435e47a2d44",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "search",
+                    "autocomplete"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "query",
+                      "value": "841 Broadway"
+                    },
+                    {
+                      "key": "near",
+                      "value": "40.70390,-73.98730"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "key": "layers",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "countryCode",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"code\": 200\n  },\n  \"addresses\": [\n    {\n      \"latitude\": 3683.071588477825,\n      \"longitude\": 173.96650324250308,\n      \"geometry\": {\n        \"type\": \"Point\",\n        \"coordinates\": [\n          5524.914013228579,\n          3875.9796348242626\n        ]\n      },\n      \"country\": \"string\",\n      \"countryCode\": \"string\",\n      \"state\": \"string\",\n      \"stateCode\": \"string\",\n      \"city\": \"string\",\n      \"postalCode\": \"string\",\n      \"number\": \"string\",\n      \"street\": \"string\",\n      \"addressLabel\": \"string\",\n      \"formattedAddress\": \"string\",\n      \"layer\": \"string\",\n      \"confidence\": \"string\"\n    },\n    {\n      \"latitude\": 9564.708229985628,\n      \"longitude\": 8366.611618294975,\n      \"geometry\": {\n        \"type\": \"Point\",\n        \"coordinates\": [\n          2591.2176309072656,\n          4174.403031193568\n        ]\n      },\n      \"country\": \"string\",\n      \"countryCode\": \"string\",\n      \"state\": \"string\",\n      \"stateCode\": \"string\",\n      \"city\": \"string\",\n      \"postalCode\": \"string\",\n      \"number\": \"string\",\n      \"street\": \"string\",\n      \"addressLabel\": \"string\",\n      \"formattedAddress\": \"string\",\n      \"layer\": \"string\",\n      \"confidence\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c655a301-5305-4f20-851b-3fb620bd30ce",
+          "name": "Search for places.",
+          "request": {
+            "name": "Search for places.",
+            "description": {
+              "content": "Searches for places near a location, filtered by chain, category, or Radar place group.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "search",
+                "places"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "near",
+                  "value": "<string>",
+                  "description": "(Required) The latitude,longitude to search near."
+                },
+                {
+                  "disabled": false,
+                  "key": "radius",
+                  "value": "1000",
+                  "description": "The radius to search within, in meters (max 10000)."
+                },
+                {
+                  "disabled": false,
+                  "key": "chains",
+                  "value": "<string>",
+                  "description": "Optional comma-separated chain slugs to filter (e.g. starbucks)."
+                },
+                {
+                  "disabled": false,
+                  "key": "categories",
+                  "value": "<string>",
+                  "description": "Optional comma-separated categories to filter (e.g. food-beverage)."
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "10",
+                  "description": "The maximum number of results (default 10, max 100)."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "11a6d3b2-1c97-49df-8cf7-d81668e0d768",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "search",
+                    "places"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "near",
+                      "value": "40.78382,-73.97536"
+                    },
+                    {
+                      "key": "radius",
+                      "value": "1000"
+                    },
+                    {
+                      "key": "chains",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "categories",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"code\": 200\n  },\n  \"places\": [\n    {\n      \"_id\": \"string\",\n      \"name\": \"string\",\n      \"categories\": [\n        \"string\",\n        \"string\"\n      ],\n      \"chain\": {\n        \"name\": \"string\",\n        \"slug\": \"string\"\n      },\n      \"location\": {\n        \"type\": \"Point\",\n        \"coordinates\": [\n          7279.967794535101,\n          1368.501993362543\n        ]\n      }\n    },\n    {\n      \"_id\": \"string\",\n      \"name\": \"string\",\n      \"categories\": [\n        \"string\",\n        \"string\"\n      ],\n      \"chain\": {\n        \"name\": \"string\",\n        \"slug\": \"string\"\n      },\n      \"location\": {\n        \"type\": \"Point\",\n        \"coordinates\": [\n          8211.59916856026,\n          7969.873739588952\n        ]\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "fdcb8008-d1dc-496a-8f13-9a0e07499dd7",
+          "name": "Search for geofences.",
+          "request": {
+            "name": "Search for geofences.",
+            "description": {
+              "content": "Searches for geofences near a location, filtered by tag and metadata.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "search",
+                "geofences"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "near",
+                  "value": "<string>",
+                  "description": "(Required) The latitude,longitude to search near."
+                },
+                {
+                  "disabled": false,
+                  "key": "radius",
+                  "value": "1000",
+                  "description": "The radius to search within, in meters (max 10000)."
+                },
+                {
+                  "disabled": false,
+                  "key": "tags",
+                  "value": "<string>",
+                  "description": "Optional comma-separated geofence tags to filter."
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "100",
+                  "description": "The maximum number of results (default 100, max 1000)."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d2070be1-aa61-44b6-b538-85abff30b864",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "search",
+                    "geofences"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "near",
+                      "value": "40.78382,-73.97536"
+                    },
+                    {
+                      "key": "radius",
+                      "value": "1000"
+                    },
+                    {
+                      "key": "tags",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"code\": 200\n  },\n  \"geofences\": [\n    {\n      \"_id\": \"string\",\n      \"description\": \"string\",\n      \"tag\": \"string\",\n      \"externalId\": \"string\",\n      \"type\": \"circle\",\n      \"geometryCenter\": {\n        \"type\": \"Point\",\n        \"coordinates\": [\n          8970.787541676758,\n          9932.265617907102\n        ]\n      },\n      \"geometryRadius\": 1632,\n      \"enabled\": false,\n      \"metadata\": {\n        \"key_0\": 6658.015472727162,\n        \"key_1\": true\n      },\n      \"createdAt\": \"1950-10-01T09:45:52.308Z\",\n      \"updatedAt\": \"2002-03-05T00:24:03.953Z\"\n    },\n    {\n      \"_id\": \"string\",\n      \"description\": \"string\",\n      \"tag\": \"string\",\n      \"externalId\": \"string\",\n      \"type\": \"circle\",\n      \"geometryCenter\": {\n        \"type\": \"Point\",\n        \"coordinates\": [\n          5019.107443974574,\n          4169.454456116646\n        ]\n      },\n      \"geometryRadius\": 6053,\n      \"enabled\": false,\n      \"metadata\": {\n        \"key_0\": \"string\",\n        \"key_1\": \"string\"\n      },\n      \"createdAt\": \"2002-12-23T17:38:42.686Z\",\n      \"updatedAt\": \"2022-10-08T10:22:41.605Z\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.radar.io/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "d2421ad5-4aef-4532-bf97-ccd31432997f",
+    "name": "Radar Addresses Search API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Radar is a geofencing and maps platform. The Radar API provides forward and reverse geocoding, IP geocoding, address and place search with autocomplete, geofence search, routing (distance, matrix, directions, and route matching), geofence management, user (device) tracking, events, trips, address verification, and map tiles. All requests are authenticated with an Authorization header containing a publishable (client) key prefixed `prj_live_pk_` / `prj_test_pk_` or a secret (server) key prefixed `prj_live_sk_` / `prj_test_sk_`.\n\nContact Support:\n Name: Radar Support\n Email: support@radar.com",
+      "type": "text/plain"
+    }
+  }
+}

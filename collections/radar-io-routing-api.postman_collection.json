@@ -1,0 +1,516 @@
+{
+  "item": [
+    {
+      "id": "785ccc06-0858-46f9-b03d-1dfa1a6fa12d",
+      "name": "Routing",
+      "description": {
+        "content": "Distance, matrix, directions, and route matching.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "67b240f0-a275-4965-8d53-40e8c4584094",
+          "name": "Calculate travel distance and duration.",
+          "request": {
+            "name": "Calculate travel distance and duration.",
+            "description": {
+              "content": "Calculates the travel distance and duration between an origin and a destination for one or more travel modes.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "route",
+                "distance"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "origin",
+                  "value": "<string>",
+                  "description": "(Required) The origin latitude,longitude."
+                },
+                {
+                  "disabled": false,
+                  "key": "destination",
+                  "value": "<string>",
+                  "description": "(Required) The destination latitude,longitude."
+                },
+                {
+                  "disabled": false,
+                  "key": "modes",
+                  "value": "<string>",
+                  "description": "(Required) Comma-separated travel modes (foot, bike, car, truck, motorbike)."
+                },
+                {
+                  "disabled": false,
+                  "key": "units",
+                  "value": "imperial",
+                  "description": "The distance units (metric or imperial)."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0e779676-1347-4cec-a04b-f6e69da63b33",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "route",
+                    "distance"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "origin",
+                      "value": "40.78382,-73.97536"
+                    },
+                    {
+                      "key": "destination",
+                      "value": "40.70390,-73.98730"
+                    },
+                    {
+                      "key": "modes",
+                      "value": "car,foot"
+                    },
+                    {
+                      "key": "units",
+                      "value": "imperial"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"code\": 200\n  },\n  \"routes\": {\n    \"key_0\": {\n      \"distance\": {\n        \"value\": 3283.156531843521,\n        \"text\": \"string\"\n      },\n      \"duration\": {\n        \"value\": 5310.9037254550085,\n        \"text\": \"string\"\n      }\n    },\n    \"key_1\": {\n      \"distance\": {\n        \"value\": 4750.456370763991,\n        \"text\": \"string\"\n      },\n      \"duration\": {\n        \"value\": 150.93623388829468,\n        \"text\": \"string\"\n      }\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3745c057-9aa7-4ab3-9d28-0939a5a1ae19",
+          "name": "Calculate a distance matrix.",
+          "request": {
+            "name": "Calculate a distance matrix.",
+            "description": {
+              "content": "Calculates travel distances and durations between multiple origins and destinations.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "route",
+                "matrix"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "origins",
+                  "value": "<string>",
+                  "description": "(Required) Pipe-separated list of origin latitude,longitude pairs."
+                },
+                {
+                  "disabled": false,
+                  "key": "destinations",
+                  "value": "<string>",
+                  "description": "(Required) Pipe-separated list of destination latitude,longitude pairs."
+                },
+                {
+                  "disabled": false,
+                  "key": "mode",
+                  "value": "<string>",
+                  "description": "(Required) The travel mode (foot, bike, car, truck, motorbike)."
+                },
+                {
+                  "disabled": false,
+                  "key": "units",
+                  "value": "imperial",
+                  "description": "The distance units (metric or imperial)."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3bcfe4c7-a68a-4567-bc09-a35de6ec8d34",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "route",
+                    "matrix"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "origins",
+                      "value": "40.78382,-73.97536|40.70390,-73.98730"
+                    },
+                    {
+                      "key": "destinations",
+                      "value": "40.73430,-73.99110|40.75080,-73.99340"
+                    },
+                    {
+                      "key": "mode",
+                      "value": "car"
+                    },
+                    {
+                      "key": "units",
+                      "value": "imperial"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"code\": 200\n  },\n  \"matrix\": [\n    [\n      {\n        \"distance\": {\n          \"value\": 2118.249560573352,\n          \"text\": \"string\"\n        },\n        \"duration\": {\n          \"value\": 2754.0729324451986,\n          \"text\": \"string\"\n        }\n      },\n      {\n        \"distance\": {\n          \"value\": 1580.0875685187443,\n          \"text\": \"string\"\n        },\n        \"duration\": {\n          \"value\": 2255.6905019749997,\n          \"text\": \"string\"\n        }\n      }\n    ],\n    [\n      {\n        \"distance\": {\n          \"value\": 9128.124172880172,\n          \"text\": \"string\"\n        },\n        \"duration\": {\n          \"value\": 2582.279831891515,\n          \"text\": \"string\"\n        }\n      },\n      {\n        \"distance\": {\n          \"value\": 3322.907316092677,\n          \"text\": \"string\"\n        },\n        \"duration\": {\n          \"value\": 7855.222872514814,\n          \"text\": \"string\"\n        }\n      }\n    ]\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6e2a25c3-3c54-41da-9dd2-d97c0c57eb93",
+          "name": "Get turn-by-turn directions.",
+          "request": {
+            "name": "Get turn-by-turn directions.",
+            "description": {
+              "content": "Returns turn-by-turn directions and route geometry between a series of locations.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "route",
+                "directions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "locations",
+                  "value": "<string>",
+                  "description": "(Required) Pipe-separated list of latitude,longitude waypoints."
+                },
+                {
+                  "disabled": false,
+                  "key": "mode",
+                  "value": "<string>",
+                  "description": "(Required) The travel mode (foot, bike, car, truck, motorbike)."
+                },
+                {
+                  "disabled": false,
+                  "key": "units",
+                  "value": "imperial",
+                  "description": "The distance units (metric or imperial)."
+                },
+                {
+                  "disabled": false,
+                  "key": "geometry",
+                  "value": "linestring",
+                  "description": "The geometry encoding (linestring, polyline, or polyline6)."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1ad3c9ba-f595-4eda-917f-16cdd93d35c2",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "route",
+                    "directions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "locations",
+                      "value": "40.78382,-73.97536|40.70390,-73.98730"
+                    },
+                    {
+                      "key": "mode",
+                      "value": "car"
+                    },
+                    {
+                      "key": "units",
+                      "value": "imperial"
+                    },
+                    {
+                      "key": "geometry",
+                      "value": "linestring"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"code\": 200\n  },\n  \"routes\": [\n    {\n      \"distance\": {},\n      \"duration\": {},\n      \"geometry\": {}\n    },\n    {\n      \"distance\": {},\n      \"duration\": {},\n      \"geometry\": {}\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ed946b2d-c85f-48ab-b1b2-85f23751c18a",
+          "name": "Match a GPS trace to roads.",
+          "request": {
+            "name": "Match a GPS trace to roads.",
+            "description": {
+              "content": "Snaps a sequence of noisy GPS coordinates to the road network and returns the matched route.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "route",
+                "match"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"coordinates\": [\n    [\n      \"<number>\",\n      \"<number>\"\n    ],\n    [\n      \"<number>\",\n      \"<number>\"\n    ]\n  ],\n  \"mode\": \"<string>\",\n  \"timestamps\": [\n    \"<integer>\",\n    \"<integer>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "58771044-4922-4db3-89a9-fc7c9991ebcb",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "route",
+                    "match"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"coordinates\": [\n    [\n      \"<number>\",\n      \"<number>\"\n    ],\n    [\n      \"<number>\",\n      \"<number>\"\n    ]\n  ],\n  \"mode\": \"car\",\n  \"timestamps\": [\n    \"<integer>\",\n    \"<integer>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"code\": 200\n  },\n  \"routes\": [\n    {\n      \"distance\": {},\n      \"duration\": {},\n      \"geometry\": {}\n    },\n    {\n      \"distance\": {},\n      \"duration\": {},\n      \"geometry\": {}\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.radar.io/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "3ccbe1dd-f80e-4151-a6dc-fcd0475fa169",
+    "name": "Radar Addresses Routing API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Radar is a geofencing and maps platform. The Radar API provides forward and reverse geocoding, IP geocoding, address and place search with autocomplete, geofence search, routing (distance, matrix, directions, and route matching), geofence management, user (device) tracking, events, trips, address verification, and map tiles. All requests are authenticated with an Authorization header containing a publishable (client) key prefixed `prj_live_pk_` / `prj_test_pk_` or a secret (server) key prefixed `prj_live_sk_` / `prj_test_sk_`.\n\nContact Support:\n Name: Radar Support\n Email: support@radar.com",
+      "type": "text/plain"
+    }
+  }
+}

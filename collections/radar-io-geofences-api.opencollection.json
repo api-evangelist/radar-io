@@ -1,0 +1,126 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Radar Addresses Geofences API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Geofences",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List geofences.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.radar.io/v1/geofences",
+            "params": [
+              {
+                "name": "tag",
+                "value": "",
+                "type": "query",
+                "description": "Optional geofence tag to filter."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The maximum number of geofences (default 100, max 1000)."
+              }
+            ]
+          },
+          "docs": "Lists geofences, sorted by creation date descending."
+        },
+        {
+          "info": {
+            "name": "Get a geofence.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.radar.io/v1/geofences/:tag/:externalId",
+            "params": [
+              {
+                "name": "tag",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "externalId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieves a geofence by tag and external ID."
+        },
+        {
+          "info": {
+            "name": "Create or update a geofence.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.radar.io/v1/geofences/:tag/:externalId",
+            "params": [
+              {
+                "name": "tag",
+                "value": "",
+                "type": "path",
+                "description": "The geofence tag."
+              },
+              {
+                "name": "externalId",
+                "value": "",
+                "type": "path",
+                "description": "The external ID that uniquely identifies the geofence within the tag."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates or updates a geofence identified by a tag and external ID."
+        },
+        {
+          "info": {
+            "name": "Delete a geofence.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.radar.io/v1/geofences/:tag/:externalId",
+            "params": [
+              {
+                "name": "tag",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "externalId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Deletes a geofence by tag and external ID."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

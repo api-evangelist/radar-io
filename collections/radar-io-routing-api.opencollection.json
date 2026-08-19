@@ -1,0 +1,152 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Radar Addresses Routing API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Routing",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Calculate travel distance and duration.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.radar.io/v1/route/distance",
+            "params": [
+              {
+                "name": "origin",
+                "value": "40.78382,-73.97536",
+                "type": "query",
+                "description": "The origin latitude,longitude."
+              },
+              {
+                "name": "destination",
+                "value": "40.70390,-73.98730",
+                "type": "query",
+                "description": "The destination latitude,longitude."
+              },
+              {
+                "name": "modes",
+                "value": "car,foot",
+                "type": "query",
+                "description": "Comma-separated travel modes (foot, bike, car, truck, motorbike)."
+              },
+              {
+                "name": "units",
+                "value": "",
+                "type": "query",
+                "description": "The distance units (metric or imperial)."
+              }
+            ]
+          },
+          "docs": "Calculates the travel distance and duration between an origin and a destination for one or more travel modes."
+        },
+        {
+          "info": {
+            "name": "Calculate a distance matrix.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.radar.io/v1/route/matrix",
+            "params": [
+              {
+                "name": "origins",
+                "value": "40.78382,-73.97536|40.70390,-73.98730",
+                "type": "query",
+                "description": "Pipe-separated list of origin latitude,longitude pairs."
+              },
+              {
+                "name": "destinations",
+                "value": "40.73430,-73.99110|40.75080,-73.99340",
+                "type": "query",
+                "description": "Pipe-separated list of destination latitude,longitude pairs."
+              },
+              {
+                "name": "mode",
+                "value": "car",
+                "type": "query",
+                "description": "The travel mode (foot, bike, car, truck, motorbike)."
+              },
+              {
+                "name": "units",
+                "value": "",
+                "type": "query",
+                "description": "The distance units (metric or imperial)."
+              }
+            ]
+          },
+          "docs": "Calculates travel distances and durations between multiple origins and destinations."
+        },
+        {
+          "info": {
+            "name": "Get turn-by-turn directions.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.radar.io/v1/route/directions",
+            "params": [
+              {
+                "name": "locations",
+                "value": "40.78382,-73.97536|40.70390,-73.98730",
+                "type": "query",
+                "description": "Pipe-separated list of latitude,longitude waypoints."
+              },
+              {
+                "name": "mode",
+                "value": "car",
+                "type": "query",
+                "description": "The travel mode (foot, bike, car, truck, motorbike)."
+              },
+              {
+                "name": "units",
+                "value": "",
+                "type": "query",
+                "description": "The distance units (metric or imperial)."
+              },
+              {
+                "name": "geometry",
+                "value": "",
+                "type": "query",
+                "description": "The geometry encoding (linestring, polyline, or polyline6)."
+              }
+            ]
+          },
+          "docs": "Returns turn-by-turn directions and route geometry between a series of locations."
+        },
+        {
+          "info": {
+            "name": "Match a GPS trace to roads.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.radar.io/v1/route/match",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Snaps a sequence of noisy GPS coordinates to the road network and returns the matched route."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

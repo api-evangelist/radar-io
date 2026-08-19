@@ -1,0 +1,496 @@
+{
+  "item": [
+    {
+      "id": "f5086986-902a-40b9-997a-847182d93dcb",
+      "name": "Geofences",
+      "description": {
+        "content": "Create, read, update, and delete geofences.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "8c5bb787-7617-424a-98f5-4ab11b379da2",
+          "name": "List geofences.",
+          "request": {
+            "name": "List geofences.",
+            "description": {
+              "content": "Lists geofences, sorted by creation date descending.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "geofences"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "tag",
+                  "value": "<string>",
+                  "description": "Optional geofence tag to filter."
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "100",
+                  "description": "The maximum number of geofences (default 100, max 1000)."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8a27a6ab-f2ad-4b1e-8427-1e21efb7cafc",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "geofences"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "tag",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"code\": 200\n  },\n  \"geofences\": [\n    {\n      \"_id\": \"string\",\n      \"description\": \"string\",\n      \"tag\": \"string\",\n      \"externalId\": \"string\",\n      \"type\": \"isochrone\",\n      \"geometryCenter\": {\n        \"type\": \"Point\",\n        \"coordinates\": [\n          6009.824187039527,\n          3512.9860364516608\n        ]\n      },\n      \"geometryRadius\": 8182,\n      \"enabled\": true,\n      \"metadata\": {\n        \"key_0\": 4231.457968389743\n      },\n      \"createdAt\": \"2015-07-20T12:45:11.782Z\",\n      \"updatedAt\": \"2019-12-07T12:58:38.844Z\"\n    },\n    {\n      \"_id\": \"string\",\n      \"description\": \"string\",\n      \"tag\": \"string\",\n      \"externalId\": \"string\",\n      \"type\": \"circle\",\n      \"geometryCenter\": {\n        \"type\": \"Point\",\n        \"coordinates\": [\n          1396.9561246525952,\n          7552.966481969046\n        ]\n      },\n      \"geometryRadius\": 2551,\n      \"enabled\": true,\n      \"metadata\": {\n        \"key_0\": 4117.1430329146415\n      },\n      \"createdAt\": \"1973-02-01T15:19:41.744Z\",\n      \"updatedAt\": \"1958-01-28T22:13:30.806Z\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "37e7010e-83c5-4088-81e3-e0ccfebb7572",
+          "name": "Create or update a geofence.",
+          "request": {
+            "name": "Create or update a geofence.",
+            "description": {
+              "content": "Creates or updates a geofence identified by a tag and external ID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "geofences",
+                ":tag",
+                ":externalId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "tag",
+                  "description": "(Required) The geofence tag."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "externalId",
+                  "description": "(Required) The external ID that uniquely identifies the geofence within the tag."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"description\": \"<string>\",\n  \"type\": \"<string>\",\n  \"radius\": \"<integer>\",\n  \"enabled\": true,\n  \"metadata\": {\n    \"key_0\": true,\n    \"key_1\": 4230\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "1a732c60-2ff8-4342-af67-b43525ceaa30",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "geofences",
+                    ":tag",
+                    ":externalId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "tag",
+                      "description": "(Required) The geofence tag."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "externalId",
+                      "description": "(Required) The external ID that uniquely identifies the geofence within the tag."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"description\": \"<string>\",\n  \"type\": \"<string>\",\n  \"radius\": \"<integer>\",\n  \"enabled\": true,\n  \"metadata\": {\n    \"key_0\": true,\n    \"key_1\": 1946.1581996695243,\n    \"key_2\": 3524\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"code\": 200\n  },\n  \"geofence\": {\n    \"_id\": \"string\",\n    \"description\": \"string\",\n    \"tag\": \"string\",\n    \"externalId\": \"string\",\n    \"type\": \"polygon\",\n    \"geometryCenter\": {\n      \"type\": \"Point\",\n      \"coordinates\": [\n        4297.212761155669,\n        6336.231599272904\n      ]\n    },\n    \"geometryRadius\": 6372,\n    \"enabled\": false,\n    \"metadata\": {\n      \"key_0\": true\n    },\n    \"createdAt\": \"1984-05-25T15:17:47.137Z\",\n    \"updatedAt\": \"1958-05-10T21:16:05.428Z\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "edb486e8-a193-4e7b-a418-b214397333c3",
+          "name": "Get a geofence.",
+          "request": {
+            "name": "Get a geofence.",
+            "description": {
+              "content": "Retrieves a geofence by tag and external ID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "geofences",
+                ":tag",
+                ":externalId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "tag",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "externalId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4a5de325-44f6-4fc7-b32b-c62949a8eecf",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "geofences",
+                    ":tag",
+                    ":externalId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "tag",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "externalId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"code\": 200\n  },\n  \"geofence\": {\n    \"_id\": \"string\",\n    \"description\": \"string\",\n    \"tag\": \"string\",\n    \"externalId\": \"string\",\n    \"type\": \"polygon\",\n    \"geometryCenter\": {\n      \"type\": \"Point\",\n      \"coordinates\": [\n        4297.212761155669,\n        6336.231599272904\n      ]\n    },\n    \"geometryRadius\": 6372,\n    \"enabled\": false,\n    \"metadata\": {\n      \"key_0\": true\n    },\n    \"createdAt\": \"1984-05-25T15:17:47.137Z\",\n    \"updatedAt\": \"1958-05-10T21:16:05.428Z\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3faf4ed4-7261-4c50-a06e-6df5a5302d27",
+          "name": "Delete a geofence.",
+          "request": {
+            "name": "Delete a geofence.",
+            "description": {
+              "content": "Deletes a geofence by tag and external ID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "geofences",
+                ":tag",
+                ":externalId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "tag",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "externalId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ee853f4a-c06f-4951-989f-f6afd65ac664",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "geofences",
+                    ":tag",
+                    ":externalId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "tag",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "externalId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.radar.io/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "0ea05018-6ef1-4f78-b703-c1571a0bdf35",
+    "name": "Radar Addresses Geofences API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Radar is a geofencing and maps platform. The Radar API provides forward and reverse geocoding, IP geocoding, address and place search with autocomplete, geofence search, routing (distance, matrix, directions, and route matching), geofence management, user (device) tracking, events, trips, address verification, and map tiles. All requests are authenticated with an Authorization header containing a publishable (client) key prefixed `prj_live_pk_` / `prj_test_pk_` or a secret (server) key prefixed `prj_live_sk_` / `prj_test_sk_`.\n\nContact Support:\n Name: Radar Support\n Email: support@radar.com",
+      "type": "text/plain"
+    }
+  }
+}

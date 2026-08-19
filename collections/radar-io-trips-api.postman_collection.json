@@ -1,0 +1,478 @@
+{
+  "item": [
+    {
+      "id": "d1a094a1-65de-45b7-a8d8-f0b221cafc37",
+      "name": "Trips",
+      "description": {
+        "content": "Create, update, and list trips for trip tracking.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "f6b1b3f0-ae3a-43d1-9b5e-fd8a5565c661",
+          "name": "List trips.",
+          "request": {
+            "name": "List trips.",
+            "description": {
+              "content": "Lists trips, sorted by creation date descending.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "trips"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "<string>",
+                  "description": "Optional trip status to filter (started, approaching, arrived, completed, canceled, expired)."
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "100"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "56fb7a00-1269-4eb3-a883-4bd8eee6fb84",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "trips"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"code\": 200\n  },\n  \"trips\": [\n    {\n      \"_id\": \"string\",\n      \"externalId\": \"string\",\n      \"status\": \"expired\",\n      \"mode\": \"string\",\n      \"destinationGeofenceTag\": \"string\",\n      \"destinationGeofenceExternalId\": \"string\",\n      \"metadata\": {\n        \"key_0\": 3533.045772749197\n      },\n      \"createdAt\": \"2009-09-27T08:07:42.417Z\",\n      \"updatedAt\": \"1960-09-30T01:30:26.373Z\"\n    },\n    {\n      \"_id\": \"string\",\n      \"externalId\": \"string\",\n      \"status\": \"completed\",\n      \"mode\": \"string\",\n      \"destinationGeofenceTag\": \"string\",\n      \"destinationGeofenceExternalId\": \"string\",\n      \"metadata\": {\n        \"key_0\": false,\n        \"key_1\": 8542.24539934196,\n        \"key_2\": 1917.9582158533303\n      },\n      \"createdAt\": \"1958-09-20T18:12:09.847Z\",\n      \"updatedAt\": \"1979-02-19T08:41:49.770Z\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "90186730-eb1e-4741-a55d-6d481c8af130",
+          "name": "Create or update a trip.",
+          "request": {
+            "name": "Create or update a trip.",
+            "description": {
+              "content": "Creates or updates a trip identified by an external ID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "trips",
+                ":externalId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "externalId",
+                  "description": "(Required) The external ID that uniquely identifies the trip."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"userId\": \"<string>\",\n  \"mode\": \"<string>\",\n  \"destinationGeofenceTag\": \"<string>\",\n  \"destinationGeofenceExternalId\": \"<string>\",\n  \"approachingThreshold\": \"<integer>\",\n  \"metadata\": {\n    \"key_0\": false,\n    \"key_1\": 1534.877652564347\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "62601f51-067f-48cf-a44f-55e3677a596b",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "trips",
+                    ":externalId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "externalId",
+                      "description": "(Required) The external ID that uniquely identifies the trip."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"userId\": \"<string>\",\n  \"mode\": \"car\",\n  \"destinationGeofenceTag\": \"<string>\",\n  \"destinationGeofenceExternalId\": \"<string>\",\n  \"approachingThreshold\": \"<integer>\",\n  \"metadata\": {\n    \"key_0\": true,\n    \"key_1\": true,\n    \"key_2\": 9837,\n    \"key_3\": false\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"code\": 200\n  },\n  \"trip\": {\n    \"_id\": \"string\",\n    \"externalId\": \"string\",\n    \"status\": \"approaching\",\n    \"mode\": \"string\",\n    \"destinationGeofenceTag\": \"string\",\n    \"destinationGeofenceExternalId\": \"string\",\n    \"metadata\": {\n      \"key_0\": true\n    },\n    \"createdAt\": \"1980-12-25T08:03:34.506Z\",\n    \"updatedAt\": \"1987-07-14T13:34:57.888Z\"\n  },\n  \"events\": [\n    {\n      \"_id\": \"string\",\n      \"type\": \"user.entered_geofence\",\n      \"live\": false,\n      \"user\": {\n        \"_id\": \"string\",\n        \"userId\": \"string\",\n        \"deviceId\": \"string\",\n        \"description\": \"string\",\n        \"metadata\": {\n          \"key_0\": false,\n          \"key_1\": 9897\n        },\n        \"location\": {\n          \"type\": \"Point\",\n          \"coordinates\": [\n            5072.457535125521,\n            6847.246943635814\n          ]\n        },\n        \"locationAccuracy\": 6919.56101534978,\n        \"geofences\": [\n          {\n            \"_id\": \"string\",\n            \"description\": \"string\",\n            \"tag\": \"string\",\n            \"externalId\": \"string\",\n            \"type\": \"isochrone\",\n            \"geometryCenter\": {\n              \"type\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"coordinates\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"geometryRadius\": 8752,\n            \"enabled\": false,\n            \"metadata\": {\n              \"key_0\": \"string\",\n              \"key_1\": \"string\"\n            },\n            \"createdAt\": \"1999-03-10T05:09:10.410Z\",\n            \"updatedAt\": \"1960-08-09T21:26:53.111Z\"\n          },\n          {\n            \"_id\": \"string\",\n            \"description\": \"string\",\n            \"tag\": \"string\",\n            \"externalId\": \"string\",\n            \"type\": \"isochrone\",\n            \"geometryCenter\": {\n              \"type\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"coordinates\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"geometryRadius\": 2592,\n            \"enabled\": false,\n            \"metadata\": {\n              \"key_0\": \"string\"\n            },\n            \"createdAt\": \"1967-12-23T20:00:28.488Z\",\n            \"updatedAt\": \"1978-01-17T12:39:05.468Z\"\n          }\n        ],\n        \"place\": {\n          \"_id\": \"string\",\n          \"name\": \"string\",\n          \"categories\": [\n            \"string\",\n            \"string\"\n          ],\n          \"chain\": {\n            \"name\": \"string\",\n            \"slug\": \"string\"\n          },\n          \"location\": {\n            \"type\": \"Point\",\n            \"coordinates\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ]\n          }\n        },\n        \"updatedAt\": \"2012-12-09T11:11:05.518Z\"\n      },\n      \"geofence\": {\n        \"_id\": \"string\",\n        \"description\": \"string\",\n        \"tag\": \"string\",\n        \"externalId\": \"string\",\n        \"type\": \"polygon\",\n        \"geometryCenter\": {\n          \"type\": \"Point\",\n          \"coordinates\": [\n            4465.147792512643,\n            6142.506586322141\n          ]\n        },\n        \"geometryRadius\": 9910,\n        \"enabled\": true,\n        \"metadata\": {\n          \"key_0\": false,\n          \"key_1\": 8160,\n          \"key_2\": 7505.415012966235\n        },\n        \"createdAt\": \"1984-05-12T14:41:05.090Z\",\n        \"updatedAt\": \"1960-01-15T15:35:35.528Z\"\n      },\n      \"place\": {\n        \"_id\": \"string\",\n        \"name\": \"string\",\n        \"categories\": [\n          \"string\",\n          \"string\"\n        ],\n        \"chain\": {\n          \"name\": \"string\",\n          \"slug\": \"string\"\n        },\n        \"location\": {\n          \"type\": \"Point\",\n          \"coordinates\": [\n            6358.990927504542,\n            7338.855096943259\n          ]\n        }\n      },\n      \"confidence\": 7526,\n      \"createdAt\": \"1957-08-27T12:41:28.779Z\"\n    },\n    {\n      \"_id\": \"string\",\n      \"type\": \"user.entered_geofence\",\n      \"live\": false,\n      \"user\": {\n        \"_id\": \"string\",\n        \"userId\": \"string\",\n        \"deviceId\": \"string\",\n        \"description\": \"string\",\n        \"metadata\": {\n          \"key_0\": 3748\n        },\n        \"location\": {\n          \"type\": \"Point\",\n          \"coordinates\": [\n            434.7593595138144,\n            3909.901148880476\n          ]\n        },\n        \"locationAccuracy\": 6849.696983623748,\n        \"geofences\": [\n          {\n            \"_id\": \"string\",\n            \"description\": \"string\",\n            \"tag\": \"string\",\n            \"externalId\": \"string\",\n            \"type\": \"circle\",\n            \"geometryCenter\": {\n              \"type\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"coordinates\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"geometryRadius\": 6206,\n            \"enabled\": true,\n            \"metadata\": {\n              \"key_0\": 8733.393980033467,\n              \"key_1\": \"string\",\n              \"key_2\": true\n            },\n            \"createdAt\": \"1982-03-16T00:07:13.911Z\",\n            \"updatedAt\": \"2022-09-07T21:05:58.301Z\"\n          },\n          {\n            \"_id\": \"string\",\n            \"description\": \"string\",\n            \"tag\": \"string\",\n            \"externalId\": \"string\",\n            \"type\": \"polygon\",\n            \"geometryCenter\": {\n              \"type\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"coordinates\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"geometryRadius\": 4893,\n            \"enabled\": true,\n            \"metadata\": {\n              \"key_0\": true,\n              \"key_1\": 750\n            },\n            \"createdAt\": \"1980-08-12T07:59:04.590Z\",\n            \"updatedAt\": \"1972-02-03T02:57:08.769Z\"\n          }\n        ],\n        \"place\": {\n          \"_id\": \"string\",\n          \"name\": \"string\",\n          \"categories\": [\n            \"string\",\n            \"string\"\n          ],\n          \"chain\": {\n            \"name\": \"string\",\n            \"slug\": \"string\"\n          },\n          \"location\": {\n            \"type\": \"Point\",\n            \"coordinates\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ]\n          }\n        },\n        \"updatedAt\": \"2016-09-26T11:04:59.344Z\"\n      },\n      \"geofence\": {\n        \"_id\": \"string\",\n        \"description\": \"string\",\n        \"tag\": \"string\",\n        \"externalId\": \"string\",\n        \"type\": \"polygon\",\n        \"geometryCenter\": {\n          \"type\": \"Point\",\n          \"coordinates\": [\n            4911.829647275667,\n            9495.758093659355\n          ]\n        },\n        \"geometryRadius\": 1246,\n        \"enabled\": true,\n        \"metadata\": {\n          \"key_0\": 6040\n        },\n        \"createdAt\": \"2013-04-03T11:54:25.120Z\",\n        \"updatedAt\": \"1991-08-01T16:30:15.407Z\"\n      },\n      \"place\": {\n        \"_id\": \"string\",\n        \"name\": \"string\",\n        \"categories\": [\n          \"string\",\n          \"string\"\n        ],\n        \"chain\": {\n          \"name\": \"string\",\n          \"slug\": \"string\"\n        },\n        \"location\": {\n          \"type\": \"Point\",\n          \"coordinates\": [\n            4171.67155027147,\n            1021.9703052755102\n          ]\n        }\n      },\n      \"confidence\": 1778,\n      \"createdAt\": \"2019-11-23T16:37:23.479Z\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c1022afe-3977-4352-91e3-0b69eaf03223",
+          "name": "Get a trip.",
+          "request": {
+            "name": "Get a trip.",
+            "description": {
+              "content": "Retrieves a trip by external ID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "trips",
+                ":externalId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "externalId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "50096e2a-47d0-4fea-a556-035aea5a6b92",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "trips",
+                    ":externalId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "externalId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"code\": 200\n  },\n  \"trip\": {\n    \"_id\": \"string\",\n    \"externalId\": \"string\",\n    \"status\": \"canceled\",\n    \"mode\": \"string\",\n    \"destinationGeofenceTag\": \"string\",\n    \"destinationGeofenceExternalId\": \"string\",\n    \"metadata\": {\n      \"key_0\": false,\n      \"key_1\": \"string\"\n    },\n    \"createdAt\": \"1952-03-06T13:01:05.890Z\",\n    \"updatedAt\": \"1955-09-28T03:39:45.189Z\"\n  },\n  \"events\": [\n    {\n      \"_id\": \"string\",\n      \"type\": \"user.entered_geofence\",\n      \"live\": true,\n      \"user\": {\n        \"_id\": \"string\",\n        \"userId\": \"string\",\n        \"deviceId\": \"string\",\n        \"description\": \"string\",\n        \"metadata\": {\n          \"key_0\": \"string\",\n          \"key_1\": \"string\",\n          \"key_2\": true,\n          \"key_3\": false\n        },\n        \"location\": {\n          \"type\": \"Point\",\n          \"coordinates\": [\n            1799.1073531520685,\n            1231.777531028918\n          ]\n        },\n        \"locationAccuracy\": 2202.662928189414,\n        \"geofences\": [\n          {\n            \"_id\": \"string\",\n            \"description\": \"string\",\n            \"tag\": \"string\",\n            \"externalId\": \"string\",\n            \"type\": \"circle\",\n            \"geometryCenter\": {\n              \"type\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"coordinates\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"geometryRadius\": 8770,\n            \"enabled\": false,\n            \"metadata\": {\n              \"key_0\": 869.2885794212857,\n              \"key_1\": 4533.690432384471,\n              \"key_2\": 3886.480792745954,\n              \"key_3\": 9203\n            },\n            \"createdAt\": \"1974-04-01T09:42:08.261Z\",\n            \"updatedAt\": \"1959-11-11T09:53:20.996Z\"\n          },\n          {\n            \"_id\": \"string\",\n            \"description\": \"string\",\n            \"tag\": \"string\",\n            \"externalId\": \"string\",\n            \"type\": \"polygon\",\n            \"geometryCenter\": {\n              \"type\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"coordinates\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"geometryRadius\": 5020,\n            \"enabled\": false,\n            \"metadata\": {\n              \"key_0\": \"string\",\n              \"key_1\": true\n            },\n            \"createdAt\": \"1999-10-04T12:40:47.934Z\",\n            \"updatedAt\": \"1975-02-19T15:17:41.888Z\"\n          }\n        ],\n        \"place\": {\n          \"_id\": \"string\",\n          \"name\": \"string\",\n          \"categories\": [\n            \"string\",\n            \"string\"\n          ],\n          \"chain\": {\n            \"name\": \"string\",\n            \"slug\": \"string\"\n          },\n          \"location\": {\n            \"type\": \"Point\",\n            \"coordinates\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ]\n          }\n        },\n        \"updatedAt\": \"1974-02-08T00:40:32.793Z\"\n      },\n      \"geofence\": {\n        \"_id\": \"string\",\n        \"description\": \"string\",\n        \"tag\": \"string\",\n        \"externalId\": \"string\",\n        \"type\": \"polygon\",\n        \"geometryCenter\": {\n          \"type\": \"Point\",\n          \"coordinates\": [\n            3216.6978080370545,\n            3617.4128720276312\n          ]\n        },\n        \"geometryRadius\": 820,\n        \"enabled\": false,\n        \"metadata\": {\n          \"key_0\": false\n        },\n        \"createdAt\": \"1960-09-06T16:03:49.078Z\",\n        \"updatedAt\": \"1996-05-18T06:58:36.276Z\"\n      },\n      \"place\": {\n        \"_id\": \"string\",\n        \"name\": \"string\",\n        \"categories\": [\n          \"string\",\n          \"string\"\n        ],\n        \"chain\": {\n          \"name\": \"string\",\n          \"slug\": \"string\"\n        },\n        \"location\": {\n          \"type\": \"Point\",\n          \"coordinates\": [\n            7051.817629887372,\n            811.8659042109755\n          ]\n        }\n      },\n      \"confidence\": 1258,\n      \"createdAt\": \"2008-03-26T16:24:54.099Z\"\n    },\n    {\n      \"_id\": \"string\",\n      \"type\": \"user.entered_geofence\",\n      \"live\": false,\n      \"user\": {\n        \"_id\": \"string\",\n        \"userId\": \"string\",\n        \"deviceId\": \"string\",\n        \"description\": \"string\",\n        \"metadata\": {\n          \"key_0\": 8330.029492199588,\n          \"key_1\": \"string\"\n        },\n        \"location\": {\n          \"type\": \"Point\",\n          \"coordinates\": [\n            1368.21234522001,\n            5121.510389996737\n          ]\n        },\n        \"locationAccuracy\": 7768.525047864824,\n        \"geofences\": [\n          {\n            \"_id\": \"string\",\n            \"description\": \"string\",\n            \"tag\": \"string\",\n            \"externalId\": \"string\",\n            \"type\": \"polygon\",\n            \"geometryCenter\": {\n              \"type\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"coordinates\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"geometryRadius\": 7395,\n            \"enabled\": true,\n            \"metadata\": {\n              \"key_0\": true,\n              \"key_1\": 4756\n            },\n            \"createdAt\": \"2003-10-31T23:43:04.800Z\",\n            \"updatedAt\": \"2004-08-22T06:53:10.986Z\"\n          },\n          {\n            \"_id\": \"string\",\n            \"description\": \"string\",\n            \"tag\": \"string\",\n            \"externalId\": \"string\",\n            \"type\": \"isochrone\",\n            \"geometryCenter\": {\n              \"type\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"coordinates\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"geometryRadius\": 3550,\n            \"enabled\": true,\n            \"metadata\": {\n              \"key_0\": true\n            },\n            \"createdAt\": \"1986-10-05T10:12:46.153Z\",\n            \"updatedAt\": \"1974-07-26T16:41:55.591Z\"\n          }\n        ],\n        \"place\": {\n          \"_id\": \"string\",\n          \"name\": \"string\",\n          \"categories\": [\n            \"string\",\n            \"string\"\n          ],\n          \"chain\": {\n            \"name\": \"string\",\n            \"slug\": \"string\"\n          },\n          \"location\": {\n            \"type\": \"Point\",\n            \"coordinates\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ]\n          }\n        },\n        \"updatedAt\": \"2017-01-25T08:59:23.214Z\"\n      },\n      \"geofence\": {\n        \"_id\": \"string\",\n        \"description\": \"string\",\n        \"tag\": \"string\",\n        \"externalId\": \"string\",\n        \"type\": \"isochrone\",\n        \"geometryCenter\": {\n          \"type\": \"Point\",\n          \"coordinates\": [\n            423.46498184280824,\n            1387.4117282284537\n          ]\n        },\n        \"geometryRadius\": 8816,\n        \"enabled\": false,\n        \"metadata\": {\n          \"key_0\": \"string\",\n          \"key_1\": \"string\"\n        },\n        \"createdAt\": \"1990-03-28T20:58:13.056Z\",\n        \"updatedAt\": \"1982-08-14T04:09:22.159Z\"\n      },\n      \"place\": {\n        \"_id\": \"string\",\n        \"name\": \"string\",\n        \"categories\": [\n          \"string\",\n          \"string\"\n        ],\n        \"chain\": {\n          \"name\": \"string\",\n          \"slug\": \"string\"\n        },\n        \"location\": {\n          \"type\": \"Point\",\n          \"coordinates\": [\n            6114.6502315801445,\n            9851.429872707982\n          ]\n        }\n      },\n      \"confidence\": 8679,\n      \"createdAt\": \"1979-02-11T15:14:33.390Z\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a342dec6-3681-48e8-b44a-acfa04a8bf42",
+          "name": "Update a trip.",
+          "request": {
+            "name": "Update a trip.",
+            "description": {
+              "content": "Updates the status or metadata of an existing trip.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "trips",
+                ":externalId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "externalId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"status\": \"<string>\",\n  \"metadata\": {\n    \"key_0\": true,\n    \"key_1\": \"string\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "d87acb0e-d62f-47c4-98ff-531d909bec0a",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "trips",
+                    ":externalId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "externalId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"status\": \"<string>\",\n  \"metadata\": {\n    \"key_0\": 7019\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"code\": 200\n  },\n  \"trip\": {\n    \"_id\": \"string\",\n    \"externalId\": \"string\",\n    \"status\": \"canceled\",\n    \"mode\": \"string\",\n    \"destinationGeofenceTag\": \"string\",\n    \"destinationGeofenceExternalId\": \"string\",\n    \"metadata\": {\n      \"key_0\": false,\n      \"key_1\": \"string\"\n    },\n    \"createdAt\": \"1952-03-06T13:01:05.890Z\",\n    \"updatedAt\": \"1955-09-28T03:39:45.189Z\"\n  },\n  \"events\": [\n    {\n      \"_id\": \"string\",\n      \"type\": \"user.entered_geofence\",\n      \"live\": true,\n      \"user\": {\n        \"_id\": \"string\",\n        \"userId\": \"string\",\n        \"deviceId\": \"string\",\n        \"description\": \"string\",\n        \"metadata\": {\n          \"key_0\": \"string\",\n          \"key_1\": \"string\",\n          \"key_2\": true,\n          \"key_3\": false\n        },\n        \"location\": {\n          \"type\": \"Point\",\n          \"coordinates\": [\n            1799.1073531520685,\n            1231.777531028918\n          ]\n        },\n        \"locationAccuracy\": 2202.662928189414,\n        \"geofences\": [\n          {\n            \"_id\": \"string\",\n            \"description\": \"string\",\n            \"tag\": \"string\",\n            \"externalId\": \"string\",\n            \"type\": \"circle\",\n            \"geometryCenter\": {\n              \"type\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"coordinates\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"geometryRadius\": 8770,\n            \"enabled\": false,\n            \"metadata\": {\n              \"key_0\": 869.2885794212857,\n              \"key_1\": 4533.690432384471,\n              \"key_2\": 3886.480792745954,\n              \"key_3\": 9203\n            },\n            \"createdAt\": \"1974-04-01T09:42:08.261Z\",\n            \"updatedAt\": \"1959-11-11T09:53:20.996Z\"\n          },\n          {\n            \"_id\": \"string\",\n            \"description\": \"string\",\n            \"tag\": \"string\",\n            \"externalId\": \"string\",\n            \"type\": \"polygon\",\n            \"geometryCenter\": {\n              \"type\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"coordinates\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"geometryRadius\": 5020,\n            \"enabled\": false,\n            \"metadata\": {\n              \"key_0\": \"string\",\n              \"key_1\": true\n            },\n            \"createdAt\": \"1999-10-04T12:40:47.934Z\",\n            \"updatedAt\": \"1975-02-19T15:17:41.888Z\"\n          }\n        ],\n        \"place\": {\n          \"_id\": \"string\",\n          \"name\": \"string\",\n          \"categories\": [\n            \"string\",\n            \"string\"\n          ],\n          \"chain\": {\n            \"name\": \"string\",\n            \"slug\": \"string\"\n          },\n          \"location\": {\n            \"type\": \"Point\",\n            \"coordinates\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ]\n          }\n        },\n        \"updatedAt\": \"1974-02-08T00:40:32.793Z\"\n      },\n      \"geofence\": {\n        \"_id\": \"string\",\n        \"description\": \"string\",\n        \"tag\": \"string\",\n        \"externalId\": \"string\",\n        \"type\": \"polygon\",\n        \"geometryCenter\": {\n          \"type\": \"Point\",\n          \"coordinates\": [\n            3216.6978080370545,\n            3617.4128720276312\n          ]\n        },\n        \"geometryRadius\": 820,\n        \"enabled\": false,\n        \"metadata\": {\n          \"key_0\": false\n        },\n        \"createdAt\": \"1960-09-06T16:03:49.078Z\",\n        \"updatedAt\": \"1996-05-18T06:58:36.276Z\"\n      },\n      \"place\": {\n        \"_id\": \"string\",\n        \"name\": \"string\",\n        \"categories\": [\n          \"string\",\n          \"string\"\n        ],\n        \"chain\": {\n          \"name\": \"string\",\n          \"slug\": \"string\"\n        },\n        \"location\": {\n          \"type\": \"Point\",\n          \"coordinates\": [\n            7051.817629887372,\n            811.8659042109755\n          ]\n        }\n      },\n      \"confidence\": 1258,\n      \"createdAt\": \"2008-03-26T16:24:54.099Z\"\n    },\n    {\n      \"_id\": \"string\",\n      \"type\": \"user.entered_geofence\",\n      \"live\": false,\n      \"user\": {\n        \"_id\": \"string\",\n        \"userId\": \"string\",\n        \"deviceId\": \"string\",\n        \"description\": \"string\",\n        \"metadata\": {\n          \"key_0\": 8330.029492199588,\n          \"key_1\": \"string\"\n        },\n        \"location\": {\n          \"type\": \"Point\",\n          \"coordinates\": [\n            1368.21234522001,\n            5121.510389996737\n          ]\n        },\n        \"locationAccuracy\": 7768.525047864824,\n        \"geofences\": [\n          {\n            \"_id\": \"string\",\n            \"description\": \"string\",\n            \"tag\": \"string\",\n            \"externalId\": \"string\",\n            \"type\": \"polygon\",\n            \"geometryCenter\": {\n              \"type\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"coordinates\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"geometryRadius\": 7395,\n            \"enabled\": true,\n            \"metadata\": {\n              \"key_0\": true,\n              \"key_1\": 4756\n            },\n            \"createdAt\": \"2003-10-31T23:43:04.800Z\",\n            \"updatedAt\": \"2004-08-22T06:53:10.986Z\"\n          },\n          {\n            \"_id\": \"string\",\n            \"description\": \"string\",\n            \"tag\": \"string\",\n            \"externalId\": \"string\",\n            \"type\": \"isochrone\",\n            \"geometryCenter\": {\n              \"type\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"coordinates\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"geometryRadius\": 3550,\n            \"enabled\": true,\n            \"metadata\": {\n              \"key_0\": true\n            },\n            \"createdAt\": \"1986-10-05T10:12:46.153Z\",\n            \"updatedAt\": \"1974-07-26T16:41:55.591Z\"\n          }\n        ],\n        \"place\": {\n          \"_id\": \"string\",\n          \"name\": \"string\",\n          \"categories\": [\n            \"string\",\n            \"string\"\n          ],\n          \"chain\": {\n            \"name\": \"string\",\n            \"slug\": \"string\"\n          },\n          \"location\": {\n            \"type\": \"Point\",\n            \"coordinates\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ]\n          }\n        },\n        \"updatedAt\": \"2017-01-25T08:59:23.214Z\"\n      },\n      \"geofence\": {\n        \"_id\": \"string\",\n        \"description\": \"string\",\n        \"tag\": \"string\",\n        \"externalId\": \"string\",\n        \"type\": \"isochrone\",\n        \"geometryCenter\": {\n          \"type\": \"Point\",\n          \"coordinates\": [\n            423.46498184280824,\n            1387.4117282284537\n          ]\n        },\n        \"geometryRadius\": 8816,\n        \"enabled\": false,\n        \"metadata\": {\n          \"key_0\": \"string\",\n          \"key_1\": \"string\"\n        },\n        \"createdAt\": \"1990-03-28T20:58:13.056Z\",\n        \"updatedAt\": \"1982-08-14T04:09:22.159Z\"\n      },\n      \"place\": {\n        \"_id\": \"string\",\n        \"name\": \"string\",\n        \"categories\": [\n          \"string\",\n          \"string\"\n        ],\n        \"chain\": {\n          \"name\": \"string\",\n          \"slug\": \"string\"\n        },\n        \"location\": {\n          \"type\": \"Point\",\n          \"coordinates\": [\n            6114.6502315801445,\n            9851.429872707982\n          ]\n        }\n      },\n      \"confidence\": 8679,\n      \"createdAt\": \"1979-02-11T15:14:33.390Z\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.radar.io/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "52a63497-37b8-4f58-acfa-8f2cddd73b0b",
+    "name": "Radar Addresses Trips API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Radar is a geofencing and maps platform. The Radar API provides forward and reverse geocoding, IP geocoding, address and place search with autocomplete, geofence search, routing (distance, matrix, directions, and route matching), geofence management, user (device) tracking, events, trips, address verification, and map tiles. All requests are authenticated with an Authorization header containing a publishable (client) key prefixed `prj_live_pk_` / `prj_test_pk_` or a secret (server) key prefixed `prj_live_sk_` / `prj_test_sk_`.\n\nContact Support:\n Name: Radar Support\n Email: support@radar.com",
+      "type": "text/plain"
+    }
+  }
+}
