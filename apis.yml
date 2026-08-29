@@ -7,6 +7,18 @@ description: Radar is a geofencing and maps platform that gives developers a uni
   place autocomplete, place and geofence search, routing (distance, matrix, directions,
   and route matching), geofence management, device tracking, events, trips, address
   verification, and map tiles - all under a single api.radar.io/v1 REST interface.
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: true
+  label: Hosted service · you call their endpoint
+  confidence: high
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: freemium
   onboarding: self-serve
