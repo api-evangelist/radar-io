@@ -1,7 +1,7 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Radar Addresses Tiles API
-  description: Radar is a geofencing and maps platform. The Radar API provides forward and reverse geocoding, IP geocoding, address and place search with autocomplete, geofence search, routing (distance, matrix, directions, and route matching), geofence management, user (device) tracking, events, trips, address verification, and map tiles. All requests are authenticated with an Authorization header containing a publishable (client) key prefixed `prj_live_pk_` / `prj_test_pk_` or a secret (server) key prefixed `prj_live_sk_` / `prj_test_sk_`.
+  title: Radar Tiles API
+  description: Radar is a geofencing and maps platform.
   termsOfService: https://radar.com/terms
   contact:
     name: Radar Support
@@ -22,7 +22,7 @@ paths:
       operationId: getRasterTile
       tags:
       - Tiles
-      summary: Get a raster map tile.
+      summary: Get a raster map tile
       description: Returns a raster (PNG) map tile for the given zoom, x, and y coordinates.
       parameters:
       - name: z

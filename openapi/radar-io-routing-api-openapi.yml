@@ -1,7 +1,7 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Radar Addresses Routing API
-  description: Radar is a geofencing and maps platform. The Radar API provides forward and reverse geocoding, IP geocoding, address and place search with autocomplete, geofence search, routing (distance, matrix, directions, and route matching), geofence management, user (device) tracking, events, trips, address verification, and map tiles. All requests are authenticated with an Authorization header containing a publishable (client) key prefixed `prj_live_pk_` / `prj_test_pk_` or a secret (server) key prefixed `prj_live_sk_` / `prj_test_sk_`.
+  title: Radar Routing API
+  description: Radar is a geofencing and maps platform.
   termsOfService: https://radar.com/terms
   contact:
     name: Radar Support
@@ -22,7 +22,7 @@ paths:
       operationId: routeDistance
       tags:
       - Routing
-      summary: Calculate travel distance and duration.
+      summary: Calculate travel distance and duration
       description: Calculates the travel distance and duration between an origin and a destination for one or more travel modes.
       parameters:
       - name: origin
@@ -68,7 +68,7 @@ paths:
       operationId: routeMatrix
       tags:
       - Routing
-      summary: Calculate a distance matrix.
+      summary: Calculate a distance matrix
       description: Calculates travel distances and durations between multiple origins and destinations.
       parameters:
       - name: origins
@@ -114,7 +114,7 @@ paths:
       operationId: routeDirections
       tags:
       - Routing
-      summary: Get turn-by-turn directions.
+      summary: Get turn-by-turn directions
       description: Returns turn-by-turn directions and route geometry between a series of locations.
       parameters:
       - name: locations
@@ -160,7 +160,7 @@ paths:
       operationId: routeMatch
       tags:
       - Routing
-      summary: Match a GPS trace to roads.
+      summary: Match a GPS trace to roads
       description: Snaps a sequence of noisy GPS coordinates to the road network and returns the matched route.
       requestBody:
         required: true
@@ -177,26 +177,6 @@ paths:
                 $ref: '#/components/schemas/DirectionsResponse'
 components:
   schemas:
-    DirectionsResponse:
-      type: object
-      properties:
-        meta:
-          $ref: '#/components/schemas/Meta'
-        routes:
-          type: array
-          items:
-            type: object
-            properties:
-              distance:
-                type: object
-              duration:
-                type: object
-              geometry:
-                type: object
-              legs:
-                type: array
-                items:
-                  type: object
     RouteMatchRequest:
       type: object
       required:
@@ -218,6 +198,58 @@ components:
           description: Optional UNIX timestamps aligned with coordinates.
           items:
             type: integer
+    RouteLeg:
+      type: object
+      properties:
+        distance:
+          type: object
+          properties:
+            value:
+              type: number
+            text:
+              type: string
+        duration:
+          type: object
+          properties:
+            value:
+              type: number
+            text:
+              type: string
+    Meta:
+      type: object
+      properties:
+        code:
+          type: integer
+          example: 200
+    DistanceResponse:
+      type: object
+      properties:
+        meta:
+          $ref: '#/components/schemas/Meta'
+        routes:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/RouteLeg'
+    DirectionsResponse:
+      type: object
+      properties:
+        meta:
+          $ref: '#/components/schemas/Meta'
+        routes:
+          type: array
+          items:
+            type: object
+            properties:
+              distance:
+                type: object
+              duration:
+                type: object
+              geometry:
+                type: object
+              legs:
+                type: array
+                items:
+                  type: object
     MatrixResponse:
       type: object
       properties:
@@ -238,38 +270,6 @@ components:
             type: array
             items:
               $ref: '#/components/schemas/RouteLeg'
-    Meta:
-      type: object
-      properties:
-        code:
-          type: integer
-          example: 200
-    DistanceResponse:
-      type: object
-      properties:
-        meta:
-          $ref: '#/components/schemas/Meta'
-        routes:
-          type: object
-          additionalProperties:
-            $ref: '#/components/schemas/RouteLeg'
-    RouteLeg:
-      type: object
-      properties:
-        distance:
-          type: object
-          properties:
-            value:
-              type: number
-            text:
-              type: string
-        duration:
-          type: object
-          properties:
-            value:
-              type: number
-            text:
-              type: string
   securitySchemes:
     RadarKey:
       type: apiKey

@@ -1,7 +1,7 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Radar Addresses Trips API
-  description: Radar is a geofencing and maps platform. The Radar API provides forward and reverse geocoding, IP geocoding, address and place search with autocomplete, geofence search, routing (distance, matrix, directions, and route matching), geofence management, user (device) tracking, events, trips, address verification, and map tiles. All requests are authenticated with an Authorization header containing a publishable (client) key prefixed `prj_live_pk_` / `prj_test_pk_` or a secret (server) key prefixed `prj_live_sk_` / `prj_test_sk_`.
+  title: Radar Trips API
+  description: Radar is a geofencing and maps platform.
   termsOfService: https://radar.com/terms
   contact:
     name: Radar Support
@@ -22,7 +22,7 @@ paths:
       operationId: listTrips
       tags:
       - Trips
-      summary: List trips.
+      summary: List trips
       description: Lists trips, sorted by creation date descending.
       parameters:
       - name: status
@@ -49,7 +49,7 @@ paths:
       operationId: upsertTrip
       tags:
       - Trips
-      summary: Create or update a trip.
+      summary: Create or update a trip
       description: Creates or updates a trip identified by an external ID.
       parameters:
       - name: externalId
@@ -75,7 +75,7 @@ paths:
       operationId: getTrip
       tags:
       - Trips
-      summary: Get a trip.
+      summary: Get a trip
       description: Retrieves a trip by external ID.
       parameters:
       - name: externalId
@@ -94,7 +94,7 @@ paths:
       operationId: updateTrip
       tags:
       - Trips
-      summary: Update a trip.
+      summary: Update a trip
       description: Updates the status or metadata of an existing trip.
       parameters:
       - name: externalId
@@ -117,84 +117,6 @@ paths:
                 $ref: '#/components/schemas/TripResponse'
 components:
   schemas:
-    TripListResponse:
-      type: object
-      properties:
-        meta:
-          $ref: '#/components/schemas/Meta'
-        trips:
-          type: array
-          items:
-            $ref: '#/components/schemas/Trip'
-    Location:
-      type: object
-      properties:
-        type:
-          type: string
-          example: Point
-        coordinates:
-          type: array
-          items:
-            type: number
-    TripUpsertRequest:
-      type: object
-      properties:
-        userId:
-          type: string
-        mode:
-          type: string
-          example: car
-        destinationGeofenceTag:
-          type: string
-        destinationGeofenceExternalId:
-          type: string
-        approachingThreshold:
-          type: integer
-        metadata:
-          type: object
-          additionalProperties: true
-    TripResponse:
-      type: object
-      properties:
-        meta:
-          $ref: '#/components/schemas/Meta'
-        trip:
-          $ref: '#/components/schemas/Trip'
-        events:
-          type: array
-          items:
-            $ref: '#/components/schemas/Event'
-    Trip:
-      type: object
-      properties:
-        _id:
-          type: string
-        externalId:
-          type: string
-        status:
-          type: string
-          enum:
-          - started
-          - approaching
-          - arrived
-          - completed
-          - canceled
-          - expired
-        mode:
-          type: string
-        destinationGeofenceTag:
-          type: string
-        destinationGeofenceExternalId:
-          type: string
-        metadata:
-          type: object
-          additionalProperties: true
-        createdAt:
-          type: string
-          format: date-time
-        updatedAt:
-          type: string
-          format: date-time
     TripUpdateRequest:
       type: object
       properties:
@@ -210,12 +132,103 @@ components:
         metadata:
           type: object
           additionalProperties: true
+    Geofence:
+      type: object
+      properties:
+        _id:
+          type: string
+        description:
+          type: string
+        tag:
+          type: string
+        externalId:
+          type: string
+        type:
+          type: string
+          enum:
+          - circle
+          - polygon
+          - isochrone
+        geometryCenter:
+          type: object
+          properties:
+            type:
+              type: string
+              example: Point
+            coordinates:
+              type: array
+              items:
+                type: number
+        geometryRadius:
+          type: integer
+        enabled:
+          type: boolean
+        metadata:
+          type: object
+          additionalProperties: true
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+    Location:
+      type: object
+      properties:
+        type:
+          type: string
+          example: Point
+        coordinates:
+          type: array
+          items:
+            type: number
     Meta:
       type: object
       properties:
         code:
           type: integer
           example: 200
+    TripListResponse:
+      type: object
+      properties:
+        meta:
+          $ref: '#/components/schemas/Meta'
+        trips:
+          type: array
+          items:
+            $ref: '#/components/schemas/Trip'
+    TripResponse:
+      type: object
+      properties:
+        meta:
+          $ref: '#/components/schemas/Meta'
+        trip:
+          $ref: '#/components/schemas/Trip'
+        events:
+          type: array
+          items:
+            $ref: '#/components/schemas/Event'
+    Event:
+      type: object
+      properties:
+        _id:
+          type: string
+        type:
+          type: string
+          example: user.entered_geofence
+        live:
+          type: boolean
+        user:
+          $ref: '#/components/schemas/User'
+        geofence:
+          $ref: '#/components/schemas/Geofence'
+        place:
+          $ref: '#/components/schemas/Place'
+        confidence:
+          type: integer
+        createdAt:
+          type: string
+          format: date-time
     Place:
       type: object
       properties:
@@ -271,58 +284,28 @@ components:
         updatedAt:
           type: string
           format: date-time
-    Event:
+    Trip:
       type: object
       properties:
         _id:
-          type: string
-        type:
-          type: string
-          example: user.entered_geofence
-        live:
-          type: boolean
-        user:
-          $ref: '#/components/schemas/User'
-        geofence:
-          $ref: '#/components/schemas/Geofence'
-        place:
-          $ref: '#/components/schemas/Place'
-        confidence:
-          type: integer
-        createdAt:
-          type: string
-          format: date-time
-    Geofence:
-      type: object
-      properties:
-        _id:
-          type: string
-        description:
-          type: string
-        tag:
           type: string
         externalId:
           type: string
-        type:
+        status:
           type: string
           enum:
-          - circle
-          - polygon
-          - isochrone
-        geometryCenter:
-          type: object
-          properties:
-            type:
-              type: string
-              example: Point
-            coordinates:
-              type: array
-              items:
-                type: number
-        geometryRadius:
-          type: integer
-        enabled:
-          type: boolean
+          - started
+          - approaching
+          - arrived
+          - completed
+          - canceled
+          - expired
+        mode:
+          type: string
+        destinationGeofenceTag:
+          type: string
+        destinationGeofenceExternalId:
+          type: string
         metadata:
           type: object
           additionalProperties: true
@@ -332,6 +315,23 @@ components:
         updatedAt:
           type: string
           format: date-time
+    TripUpsertRequest:
+      type: object
+      properties:
+        userId:
+          type: string
+        mode:
+          type: string
+          example: car
+        destinationGeofenceTag:
+          type: string
+        destinationGeofenceExternalId:
+          type: string
+        approachingThreshold:
+          type: integer
+        metadata:
+          type: object
+          additionalProperties: true
   securitySchemes:
     RadarKey:
       type: apiKey

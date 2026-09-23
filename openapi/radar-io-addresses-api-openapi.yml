@@ -1,7 +1,7 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   title: Radar Addresses API
-  description: Radar is a geofencing and maps platform. The Radar API provides forward and reverse geocoding, IP geocoding, address and place search with autocomplete, geofence search, routing (distance, matrix, directions, and route matching), geofence management, user (device) tracking, events, trips, address verification, and map tiles. All requests are authenticated with an Authorization header containing a publishable (client) key prefixed `prj_live_pk_` / `prj_test_pk_` or a secret (server) key prefixed `prj_live_sk_` / `prj_test_sk_`.
+  description: Radar is a geofencing and maps platform.
   termsOfService: https://radar.com/terms
   contact:
     name: Radar Support
@@ -22,7 +22,7 @@ paths:
       operationId: validateAddress
       tags:
       - Addresses
-      summary: Validate an address.
+      summary: Validate an address
       description: Validates and standardizes an address, returning a verification status and standardized components.
       parameters:
       - name: countryCode
@@ -77,23 +77,6 @@ paths:
                 $ref: '#/components/schemas/AddressValidationResponse'
 components:
   schemas:
-    AddressValidationResponse:
-      type: object
-      properties:
-        meta:
-          $ref: '#/components/schemas/Meta'
-        address:
-          $ref: '#/components/schemas/Address'
-        result:
-          type: object
-          properties:
-            verificationStatus:
-              type: string
-              enum:
-              - verified
-              - partially verified
-              - ambiguous
-              - unverified
     Address:
       type: object
       properties:
@@ -143,6 +126,23 @@ components:
         code:
           type: integer
           example: 200
+    AddressValidationResponse:
+      type: object
+      properties:
+        meta:
+          $ref: '#/components/schemas/Meta'
+        address:
+          $ref: '#/components/schemas/Address'
+        result:
+          type: object
+          properties:
+            verificationStatus:
+              type: string
+              enum:
+              - verified
+              - partially verified
+              - ambiguous
+              - unverified
   securitySchemes:
     RadarKey:
       type: apiKey

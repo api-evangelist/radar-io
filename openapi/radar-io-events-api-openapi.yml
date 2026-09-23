@@ -1,7 +1,7 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Radar Addresses Events API
-  description: Radar is a geofencing and maps platform. The Radar API provides forward and reverse geocoding, IP geocoding, address and place search with autocomplete, geofence search, routing (distance, matrix, directions, and route matching), geofence management, user (device) tracking, events, trips, address verification, and map tiles. All requests are authenticated with an Authorization header containing a publishable (client) key prefixed `prj_live_pk_` / `prj_test_pk_` or a secret (server) key prefixed `prj_live_sk_` / `prj_test_sk_`.
+  title: Radar Events API
+  description: Radar is a geofencing and maps platform.
   termsOfService: https://radar.com/terms
   contact:
     name: Radar Support
@@ -22,7 +22,7 @@ paths:
       operationId: listEvents
       tags:
       - Events
-      summary: List events.
+      summary: List events
       description: Lists geofence, place, and trip events, sorted by creation date descending.
       parameters:
       - name: limit
@@ -44,7 +44,7 @@ paths:
       operationId: getEvent
       tags:
       - Events
-      summary: Get an event.
+      summary: Get an event
       description: Retrieves an event by ID.
       parameters:
       - name: eventId
@@ -61,6 +61,55 @@ paths:
                 $ref: '#/components/schemas/EventResponse'
 components:
   schemas:
+    Geofence:
+      type: object
+      properties:
+        _id:
+          type: string
+        description:
+          type: string
+        tag:
+          type: string
+        externalId:
+          type: string
+        type:
+          type: string
+          enum:
+          - circle
+          - polygon
+          - isochrone
+        geometryCenter:
+          type: object
+          properties:
+            type:
+              type: string
+              example: Point
+            coordinates:
+              type: array
+              items:
+                type: number
+        geometryRadius:
+          type: integer
+        enabled:
+          type: boolean
+        metadata:
+          type: object
+          additionalProperties: true
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+    EventListResponse:
+      type: object
+      properties:
+        meta:
+          $ref: '#/components/schemas/Meta'
+        events:
+          type: array
+          items:
+            $ref: '#/components/schemas/Event'
     Location:
       type: object
       properties:
@@ -71,15 +120,6 @@ components:
           type: array
           items:
             type: number
-    EventListResponse:
-      type: object
-      properties:
-        meta:
-          $ref: '#/components/schemas/Meta'
-        events:
-          type: array
-          items:
-            $ref: '#/components/schemas/Event'
     Meta:
       type: object
       properties:
@@ -121,6 +161,27 @@ components:
               type: array
               items:
                 type: number
+    Event:
+      type: object
+      properties:
+        _id:
+          type: string
+        type:
+          type: string
+          example: user.entered_geofence
+        live:
+          type: boolean
+        user:
+          $ref: '#/components/schemas/User'
+        geofence:
+          $ref: '#/components/schemas/Geofence'
+        place:
+          $ref: '#/components/schemas/Place'
+        confidence:
+          type: integer
+        createdAt:
+          type: string
+          format: date-time
     User:
       type: object
       properties:
@@ -145,67 +206,6 @@ components:
             $ref: '#/components/schemas/Geofence'
         place:
           $ref: '#/components/schemas/Place'
-        updatedAt:
-          type: string
-          format: date-time
-    Event:
-      type: object
-      properties:
-        _id:
-          type: string
-        type:
-          type: string
-          example: user.entered_geofence
-        live:
-          type: boolean
-        user:
-          $ref: '#/components/schemas/User'
-        geofence:
-          $ref: '#/components/schemas/Geofence'
-        place:
-          $ref: '#/components/schemas/Place'
-        confidence:
-          type: integer
-        createdAt:
-          type: string
-          format: date-time
-    Geofence:
-      type: object
-      properties:
-        _id:
-          type: string
-        description:
-          type: string
-        tag:
-          type: string
-        externalId:
-          type: string
-        type:
-          type: string
-          enum:
-          - circle
-          - polygon
-          - isochrone
-        geometryCenter:
-          type: object
-          properties:
-            type:
-              type: string
-              example: Point
-            coordinates:
-              type: array
-              items:
-                type: number
-        geometryRadius:
-          type: integer
-        enabled:
-          type: boolean
-        metadata:
-          type: object
-          additionalProperties: true
-        createdAt:
-          type: string
-          format: date-time
         updatedAt:
           type: string
           format: date-time

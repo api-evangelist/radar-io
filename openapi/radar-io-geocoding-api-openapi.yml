@@ -1,7 +1,7 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Radar Addresses Geocoding API
-  description: Radar is a geofencing and maps platform. The Radar API provides forward and reverse geocoding, IP geocoding, address and place search with autocomplete, geofence search, routing (distance, matrix, directions, and route matching), geofence management, user (device) tracking, events, trips, address verification, and map tiles. All requests are authenticated with an Authorization header containing a publishable (client) key prefixed `prj_live_pk_` / `prj_test_pk_` or a secret (server) key prefixed `prj_live_sk_` / `prj_test_sk_`.
+  title: Radar Geocoding API
+  description: Radar is a geofencing and maps platform.
   termsOfService: https://radar.com/terms
   contact:
     name: Radar Support
@@ -22,7 +22,7 @@ paths:
       operationId: forwardGeocode
       tags:
       - Geocoding
-      summary: Forward geocode an address.
+      summary: Forward geocode an address
       description: Geocodes an address, converting an address string to coordinates.
       parameters:
       - name: query
@@ -56,7 +56,7 @@ paths:
       operationId: reverseGeocode
       tags:
       - Geocoding
-      summary: Reverse geocode coordinates.
+      summary: Reverse geocode coordinates
       description: Reverse geocodes a location, converting coordinates to an address.
       parameters:
       - name: coordinates
@@ -84,7 +84,7 @@ paths:
       operationId: ipGeocode
       tags:
       - Geocoding
-      summary: IP geocode.
+      summary: IP geocode
       description: Geocodes the requester's IP address (or an explicitly provided IP) to a city, state, and country.
       parameters:
       - name: ip
@@ -113,6 +113,21 @@ components:
           $ref: '#/components/schemas/Address'
         proxy:
           type: boolean
+    Meta:
+      type: object
+      properties:
+        code:
+          type: integer
+          example: 200
+    GeocodeResponse:
+      type: object
+      properties:
+        meta:
+          $ref: '#/components/schemas/Meta'
+        addresses:
+          type: array
+          items:
+            $ref: '#/components/schemas/Address'
     Address:
       type: object
       properties:
@@ -156,21 +171,6 @@ components:
           type: string
         confidence:
           type: string
-    GeocodeResponse:
-      type: object
-      properties:
-        meta:
-          $ref: '#/components/schemas/Meta'
-        addresses:
-          type: array
-          items:
-            $ref: '#/components/schemas/Address'
-    Meta:
-      type: object
-      properties:
-        code:
-          type: integer
-          example: 200
   securitySchemes:
     RadarKey:
       type: apiKey

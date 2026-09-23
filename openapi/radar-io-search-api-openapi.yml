@@ -1,7 +1,7 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Radar Addresses Search API
-  description: Radar is a geofencing and maps platform. The Radar API provides forward and reverse geocoding, IP geocoding, address and place search with autocomplete, geofence search, routing (distance, matrix, directions, and route matching), geofence management, user (device) tracking, events, trips, address verification, and map tiles. All requests are authenticated with an Authorization header containing a publishable (client) key prefixed `prj_live_pk_` / `prj_test_pk_` or a secret (server) key prefixed `prj_live_sk_` / `prj_test_sk_`.
+  title: Radar Search API
+  description: Radar is a geofencing and maps platform.
   termsOfService: https://radar.com/terms
   contact:
     name: Radar Support
@@ -22,7 +22,7 @@ paths:
       operationId: autocomplete
       tags:
       - Search
-      summary: Autocomplete addresses and places.
+      summary: Autocomplete addresses and places
       description: Autocompletes partial addresses and place names, returning ranked suggestions.
       parameters:
       - name: query
@@ -70,7 +70,7 @@ paths:
       operationId: searchPlaces
       tags:
       - Search
-      summary: Search for places.
+      summary: Search for places
       description: Searches for places near a location, filtered by chain, category, or Radar place group.
       parameters:
       - name: near
@@ -118,7 +118,7 @@ paths:
       operationId: searchGeofences
       tags:
       - Search
-      summary: Search for geofences.
+      summary: Search for geofences
       description: Searches for geofences near a location, filtered by tag and metadata.
       parameters:
       - name: near
@@ -157,15 +157,15 @@ paths:
                 $ref: '#/components/schemas/GeofenceListResponse'
 components:
   schemas:
-    GeofenceListResponse:
+    PlaceSearchResponse:
       type: object
       properties:
         meta:
           $ref: '#/components/schemas/Meta'
-        geofences:
+        places:
           type: array
           items:
-            $ref: '#/components/schemas/Geofence'
+            $ref: '#/components/schemas/Place'
     Address:
       type: object
       properties:
@@ -209,58 +209,6 @@ components:
           type: string
         confidence:
           type: string
-    PlaceSearchResponse:
-      type: object
-      properties:
-        meta:
-          $ref: '#/components/schemas/Meta'
-        places:
-          type: array
-          items:
-            $ref: '#/components/schemas/Place'
-    Meta:
-      type: object
-      properties:
-        code:
-          type: integer
-          example: 200
-    AutocompleteResponse:
-      type: object
-      properties:
-        meta:
-          $ref: '#/components/schemas/Meta'
-        addresses:
-          type: array
-          items:
-            $ref: '#/components/schemas/Address'
-    Place:
-      type: object
-      properties:
-        _id:
-          type: string
-        name:
-          type: string
-        categories:
-          type: array
-          items:
-            type: string
-        chain:
-          type: object
-          properties:
-            name:
-              type: string
-            slug:
-              type: string
-        location:
-          type: object
-          properties:
-            type:
-              type: string
-              example: Point
-            coordinates:
-              type: array
-              items:
-                type: number
     Geofence:
       type: object
       properties:
@@ -301,6 +249,58 @@ components:
         updatedAt:
           type: string
           format: date-time
+    Meta:
+      type: object
+      properties:
+        code:
+          type: integer
+          example: 200
+    AutocompleteResponse:
+      type: object
+      properties:
+        meta:
+          $ref: '#/components/schemas/Meta'
+        addresses:
+          type: array
+          items:
+            $ref: '#/components/schemas/Address'
+    GeofenceListResponse:
+      type: object
+      properties:
+        meta:
+          $ref: '#/components/schemas/Meta'
+        geofences:
+          type: array
+          items:
+            $ref: '#/components/schemas/Geofence'
+    Place:
+      type: object
+      properties:
+        _id:
+          type: string
+        name:
+          type: string
+        categories:
+          type: array
+          items:
+            type: string
+        chain:
+          type: object
+          properties:
+            name:
+              type: string
+            slug:
+              type: string
+        location:
+          type: object
+          properties:
+            type:
+              type: string
+              example: Point
+            coordinates:
+              type: array
+              items:
+                type: number
   securitySchemes:
     RadarKey:
       type: apiKey
