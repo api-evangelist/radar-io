@@ -177,6 +177,78 @@ paths:
                 $ref: '#/components/schemas/DirectionsResponse'
 components:
   schemas:
+    RouteLeg:
+      type: object
+      properties:
+        distance:
+          type: object
+          properties:
+            value:
+              type: number
+            text:
+              type: string
+        duration:
+          type: object
+          properties:
+            value:
+              type: number
+            text:
+              type: string
+    DistanceResponse:
+      type: object
+      properties:
+        meta:
+          $ref: '#/components/schemas/Meta'
+        routes:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/RouteLeg'
+    Meta:
+      type: object
+      properties:
+        code:
+          type: integer
+          example: 200
+    MatrixResponse:
+      type: object
+      properties:
+        meta:
+          $ref: '#/components/schemas/Meta'
+        origins:
+          type: array
+          items:
+            type: object
+        destinations:
+          type: array
+          items:
+            type: object
+        matrix:
+          type: array
+          description: A 2D array of route legs indexed by origin then destination.
+          items:
+            type: array
+            items:
+              $ref: '#/components/schemas/RouteLeg'
+    DirectionsResponse:
+      type: object
+      properties:
+        meta:
+          $ref: '#/components/schemas/Meta'
+        routes:
+          type: array
+          items:
+            type: object
+            properties:
+              distance:
+                type: object
+              duration:
+                type: object
+              geometry:
+                type: object
+              legs:
+                type: array
+                items:
+                  type: object
     RouteMatchRequest:
       type: object
       required:
@@ -198,78 +270,6 @@ components:
           description: Optional UNIX timestamps aligned with coordinates.
           items:
             type: integer
-    RouteLeg:
-      type: object
-      properties:
-        distance:
-          type: object
-          properties:
-            value:
-              type: number
-            text:
-              type: string
-        duration:
-          type: object
-          properties:
-            value:
-              type: number
-            text:
-              type: string
-    Meta:
-      type: object
-      properties:
-        code:
-          type: integer
-          example: 200
-    DistanceResponse:
-      type: object
-      properties:
-        meta:
-          $ref: '#/components/schemas/Meta'
-        routes:
-          type: object
-          additionalProperties:
-            $ref: '#/components/schemas/RouteLeg'
-    DirectionsResponse:
-      type: object
-      properties:
-        meta:
-          $ref: '#/components/schemas/Meta'
-        routes:
-          type: array
-          items:
-            type: object
-            properties:
-              distance:
-                type: object
-              duration:
-                type: object
-              geometry:
-                type: object
-              legs:
-                type: array
-                items:
-                  type: object
-    MatrixResponse:
-      type: object
-      properties:
-        meta:
-          $ref: '#/components/schemas/Meta'
-        origins:
-          type: array
-          items:
-            type: object
-        destinations:
-          type: array
-          items:
-            type: object
-        matrix:
-          type: array
-          description: A 2D array of route legs indexed by origin then destination.
-          items:
-            type: array
-            items:
-              $ref: '#/components/schemas/RouteLeg'
   securitySchemes:
     RadarKey:
       type: apiKey

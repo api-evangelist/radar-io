@@ -157,6 +157,43 @@ paths:
                 $ref: '#/components/schemas/GeofenceListResponse'
 components:
   schemas:
+    GeofenceListResponse:
+      type: object
+      properties:
+        meta:
+          $ref: '#/components/schemas/Meta'
+        geofences:
+          type: array
+          items:
+            $ref: '#/components/schemas/Geofence'
+    Place:
+      type: object
+      properties:
+        _id:
+          type: string
+        name:
+          type: string
+        categories:
+          type: array
+          items:
+            type: string
+        chain:
+          type: object
+          properties:
+            name:
+              type: string
+            slug:
+              type: string
+        location:
+          type: object
+          properties:
+            type:
+              type: string
+              example: Point
+            coordinates:
+              type: array
+              items:
+                type: number
     PlaceSearchResponse:
       type: object
       properties:
@@ -166,6 +203,12 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Place'
+    Meta:
+      type: object
+      properties:
+        code:
+          type: integer
+          example: 200
     Address:
       type: object
       properties:
@@ -249,12 +292,6 @@ components:
         updatedAt:
           type: string
           format: date-time
-    Meta:
-      type: object
-      properties:
-        code:
-          type: integer
-          example: 200
     AutocompleteResponse:
       type: object
       properties:
@@ -264,43 +301,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Address'
-    GeofenceListResponse:
-      type: object
-      properties:
-        meta:
-          $ref: '#/components/schemas/Meta'
-        geofences:
-          type: array
-          items:
-            $ref: '#/components/schemas/Geofence'
-    Place:
-      type: object
-      properties:
-        _id:
-          type: string
-        name:
-          type: string
-        categories:
-          type: array
-          items:
-            type: string
-        chain:
-          type: object
-          properties:
-            name:
-              type: string
-            slug:
-              type: string
-        location:
-          type: object
-          properties:
-            type:
-              type: string
-              example: Point
-            coordinates:
-              type: array
-              items:
-                type: number
   securitySchemes:
     RadarKey:
       type: apiKey

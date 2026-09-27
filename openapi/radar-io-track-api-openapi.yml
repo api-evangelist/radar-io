@@ -107,43 +107,30 @@ components:
           type: array
           items:
             type: number
-    Geofence:
+    User:
       type: object
       properties:
         _id:
           type: string
+        userId:
+          type: string
+        deviceId:
+          type: string
         description:
           type: string
-        tag:
-          type: string
-        externalId:
-          type: string
-        type:
-          type: string
-          enum:
-          - circle
-          - polygon
-          - isochrone
-        geometryCenter:
-          type: object
-          properties:
-            type:
-              type: string
-              example: Point
-            coordinates:
-              type: array
-              items:
-                type: number
-        geometryRadius:
-          type: integer
-        enabled:
-          type: boolean
         metadata:
           type: object
           additionalProperties: true
-        createdAt:
-          type: string
-          format: date-time
+        location:
+          $ref: '#/components/schemas/Location'
+        locationAccuracy:
+          type: number
+        geofences:
+          type: array
+          items:
+            $ref: '#/components/schemas/Geofence'
+        place:
+          $ref: '#/components/schemas/Place'
         updatedAt:
           type: string
           format: date-time
@@ -156,12 +143,34 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/User'
-    Meta:
+    Place:
       type: object
       properties:
-        code:
-          type: integer
-          example: 200
+        _id:
+          type: string
+        name:
+          type: string
+        categories:
+          type: array
+          items:
+            type: string
+        chain:
+          type: object
+          properties:
+            name:
+              type: string
+            slug:
+              type: string
+        location:
+          type: object
+          properties:
+            type:
+              type: string
+              example: Point
+            coordinates:
+              type: array
+              items:
+                type: number
     TrackRequest:
       type: object
       required:
@@ -209,34 +218,12 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Event'
-    Place:
+    Meta:
       type: object
       properties:
-        _id:
-          type: string
-        name:
-          type: string
-        categories:
-          type: array
-          items:
-            type: string
-        chain:
-          type: object
-          properties:
-            name:
-              type: string
-            slug:
-              type: string
-        location:
-          type: object
-          properties:
-            type:
-              type: string
-              example: Point
-            coordinates:
-              type: array
-              items:
-                type: number
+        code:
+          type: integer
+          example: 200
     Event:
       type: object
       properties:
@@ -258,30 +245,43 @@ components:
         createdAt:
           type: string
           format: date-time
-    User:
+    Geofence:
       type: object
       properties:
         _id:
           type: string
-        userId:
-          type: string
-        deviceId:
-          type: string
         description:
           type: string
+        tag:
+          type: string
+        externalId:
+          type: string
+        type:
+          type: string
+          enum:
+          - circle
+          - polygon
+          - isochrone
+        geometryCenter:
+          type: object
+          properties:
+            type:
+              type: string
+              example: Point
+            coordinates:
+              type: array
+              items:
+                type: number
+        geometryRadius:
+          type: integer
+        enabled:
+          type: boolean
         metadata:
           type: object
           additionalProperties: true
-        location:
-          $ref: '#/components/schemas/Location'
-        locationAccuracy:
-          type: number
-        geofences:
-          type: array
-          items:
-            $ref: '#/components/schemas/Geofence'
-        place:
-          $ref: '#/components/schemas/Place'
+        createdAt:
+          type: string
+          format: date-time
         updatedAt:
           type: string
           format: date-time

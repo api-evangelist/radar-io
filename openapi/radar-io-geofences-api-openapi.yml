@@ -124,6 +124,28 @@ paths:
           description: OK
 components:
   schemas:
+    GeofenceListResponse:
+      type: object
+      properties:
+        meta:
+          $ref: '#/components/schemas/Meta'
+        geofences:
+          type: array
+          items:
+            $ref: '#/components/schemas/Geofence'
+    Meta:
+      type: object
+      properties:
+        code:
+          type: integer
+          example: 200
+    GeofenceResponse:
+      type: object
+      properties:
+        meta:
+          $ref: '#/components/schemas/Meta'
+        geofence:
+          $ref: '#/components/schemas/Geofence'
     Geofence:
       type: object
       properties:
@@ -191,28 +213,6 @@ components:
         metadata:
           type: object
           additionalProperties: true
-    Meta:
-      type: object
-      properties:
-        code:
-          type: integer
-          example: 200
-    GeofenceListResponse:
-      type: object
-      properties:
-        meta:
-          $ref: '#/components/schemas/Meta'
-        geofences:
-          type: array
-          items:
-            $ref: '#/components/schemas/Geofence'
-    GeofenceResponse:
-      type: object
-      properties:
-        meta:
-          $ref: '#/components/schemas/Meta'
-        geofence:
-          $ref: '#/components/schemas/Geofence'
   securitySchemes:
     RadarKey:
       type: apiKey

@@ -113,21 +113,6 @@ components:
           $ref: '#/components/schemas/Address'
         proxy:
           type: boolean
-    Meta:
-      type: object
-      properties:
-        code:
-          type: integer
-          example: 200
-    GeocodeResponse:
-      type: object
-      properties:
-        meta:
-          $ref: '#/components/schemas/Meta'
-        addresses:
-          type: array
-          items:
-            $ref: '#/components/schemas/Address'
     Address:
       type: object
       properties:
@@ -171,6 +156,21 @@ components:
           type: string
         confidence:
           type: string
+    GeocodeResponse:
+      type: object
+      properties:
+        meta:
+          $ref: '#/components/schemas/Meta'
+        addresses:
+          type: array
+          items:
+            $ref: '#/components/schemas/Address'
+    Meta:
+      type: object
+      properties:
+        code:
+          type: integer
+          example: 200
   securitySchemes:
     RadarKey:
       type: apiKey
