@@ -124,6 +124,40 @@ paths:
           description: OK
 components:
   schemas:
+    GeofenceResponse:
+      type: object
+      properties:
+        meta:
+          $ref: '#/components/schemas/Meta'
+        geofence:
+          $ref: '#/components/schemas/Geofence'
+    GeofenceUpsertRequest:
+      type: object
+      required:
+      - description
+      - type
+      properties:
+        description:
+          type: string
+        type:
+          type: string
+          enum:
+          - circle
+          - polygon
+          - isochrone
+        coordinates:
+          type: array
+          description: For circle, [longitude, latitude]. For polygon, an array of [lng, lat] pairs.
+          items: {}
+        radius:
+          type: integer
+          description: The radius in meters (for circle geofences).
+        enabled:
+          type: boolean
+          default: true
+        metadata:
+          type: object
+          additionalProperties: true
     GeofenceListResponse:
       type: object
       properties:
@@ -133,19 +167,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Geofence'
-    Meta:
-      type: object
-      properties:
-        code:
-          type: integer
-          example: 200
-    GeofenceResponse:
-      type: object
-      properties:
-        meta:
-          $ref: '#/components/schemas/Meta'
-        geofence:
-          $ref: '#/components/schemas/Geofence'
     Geofence:
       type: object
       properties:
@@ -186,33 +207,12 @@ components:
         updatedAt:
           type: string
           format: date-time
-    GeofenceUpsertRequest:
+    Meta:
       type: object
-      required:
-      - description
-      - type
       properties:
-        description:
-          type: string
-        type:
-          type: string
-          enum:
-          - circle
-          - polygon
-          - isochrone
-        coordinates:
-          type: array
-          description: For circle, [longitude, latitude]. For polygon, an array of [lng, lat] pairs.
-          items: {}
-        radius:
+        code:
           type: integer
-          description: The radius in meters (for circle geofences).
-        enabled:
-          type: boolean
-          default: true
-        metadata:
-          type: object
-          additionalProperties: true
+          example: 200
   securitySchemes:
     RadarKey:
       type: apiKey

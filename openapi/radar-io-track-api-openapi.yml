@@ -97,52 +97,6 @@ paths:
           description: OK
 components:
   schemas:
-    Location:
-      type: object
-      properties:
-        type:
-          type: string
-          example: Point
-        coordinates:
-          type: array
-          items:
-            type: number
-    User:
-      type: object
-      properties:
-        _id:
-          type: string
-        userId:
-          type: string
-        deviceId:
-          type: string
-        description:
-          type: string
-        metadata:
-          type: object
-          additionalProperties: true
-        location:
-          $ref: '#/components/schemas/Location'
-        locationAccuracy:
-          type: number
-        geofences:
-          type: array
-          items:
-            $ref: '#/components/schemas/Geofence'
-        place:
-          $ref: '#/components/schemas/Place'
-        updatedAt:
-          type: string
-          format: date-time
-    UserListResponse:
-      type: object
-      properties:
-        meta:
-          $ref: '#/components/schemas/Meta'
-        users:
-          type: array
-          items:
-            $ref: '#/components/schemas/User'
     Place:
       type: object
       properties:
@@ -171,6 +125,33 @@ components:
               type: array
               items:
                 type: number
+    TrackResponse:
+      type: object
+      properties:
+        meta:
+          $ref: '#/components/schemas/Meta'
+        user:
+          $ref: '#/components/schemas/User'
+        events:
+          type: array
+          items:
+            $ref: '#/components/schemas/Event'
+    UserListResponse:
+      type: object
+      properties:
+        meta:
+          $ref: '#/components/schemas/Meta'
+        users:
+          type: array
+          items:
+            $ref: '#/components/schemas/User'
+    UserResponse:
+      type: object
+      properties:
+        meta:
+          $ref: '#/components/schemas/Meta'
+        user:
+          $ref: '#/components/schemas/User'
     TrackRequest:
       type: object
       required:
@@ -200,49 +181,31 @@ components:
         metadata:
           type: object
           additionalProperties: true
-    UserResponse:
-      type: object
-      properties:
-        meta:
-          $ref: '#/components/schemas/Meta'
-        user:
-          $ref: '#/components/schemas/User'
-    TrackResponse:
-      type: object
-      properties:
-        meta:
-          $ref: '#/components/schemas/Meta'
-        user:
-          $ref: '#/components/schemas/User'
-        events:
-          type: array
-          items:
-            $ref: '#/components/schemas/Event'
-    Meta:
-      type: object
-      properties:
-        code:
-          type: integer
-          example: 200
-    Event:
+    User:
       type: object
       properties:
         _id:
           type: string
-        type:
+        userId:
           type: string
-          example: user.entered_geofence
-        live:
-          type: boolean
-        user:
-          $ref: '#/components/schemas/User'
-        geofence:
-          $ref: '#/components/schemas/Geofence'
+        deviceId:
+          type: string
+        description:
+          type: string
+        metadata:
+          type: object
+          additionalProperties: true
+        location:
+          $ref: '#/components/schemas/Location'
+        locationAccuracy:
+          type: number
+        geofences:
+          type: array
+          items:
+            $ref: '#/components/schemas/Geofence'
         place:
           $ref: '#/components/schemas/Place'
-        confidence:
-          type: integer
-        createdAt:
+        updatedAt:
           type: string
           format: date-time
     Geofence:
@@ -285,6 +248,43 @@ components:
         updatedAt:
           type: string
           format: date-time
+    Location:
+      type: object
+      properties:
+        type:
+          type: string
+          example: Point
+        coordinates:
+          type: array
+          items:
+            type: number
+    Event:
+      type: object
+      properties:
+        _id:
+          type: string
+        type:
+          type: string
+          example: user.entered_geofence
+        live:
+          type: boolean
+        user:
+          $ref: '#/components/schemas/User'
+        geofence:
+          $ref: '#/components/schemas/Geofence'
+        place:
+          $ref: '#/components/schemas/Place'
+        confidence:
+          type: integer
+        createdAt:
+          type: string
+          format: date-time
+    Meta:
+      type: object
+      properties:
+        code:
+          type: integer
+          example: 200
   securitySchemes:
     RadarKey:
       type: apiKey

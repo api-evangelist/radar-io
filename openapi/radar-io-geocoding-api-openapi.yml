@@ -102,17 +102,15 @@ paths:
                 $ref: '#/components/schemas/IpGeocodeResponse'
 components:
   schemas:
-    IpGeocodeResponse:
+    GeocodeResponse:
       type: object
       properties:
         meta:
           $ref: '#/components/schemas/Meta'
-        ip:
-          type: string
-        address:
-          $ref: '#/components/schemas/Address'
-        proxy:
-          type: boolean
+        addresses:
+          type: array
+          items:
+            $ref: '#/components/schemas/Address'
     Address:
       type: object
       properties:
@@ -156,15 +154,17 @@ components:
           type: string
         confidence:
           type: string
-    GeocodeResponse:
+    IpGeocodeResponse:
       type: object
       properties:
         meta:
           $ref: '#/components/schemas/Meta'
-        addresses:
-          type: array
-          items:
-            $ref: '#/components/schemas/Address'
+        ip:
+          type: string
+        address:
+          $ref: '#/components/schemas/Address'
+        proxy:
+          type: boolean
     Meta:
       type: object
       properties:
