@@ -157,6 +157,21 @@ paths:
                 $ref: '#/components/schemas/GeofenceListResponse'
 components:
   schemas:
+    Meta:
+      type: object
+      properties:
+        code:
+          type: integer
+          example: 200
+    PlaceSearchResponse:
+      type: object
+      properties:
+        meta:
+          $ref: '#/components/schemas/Meta'
+        places:
+          type: array
+          items:
+            $ref: '#/components/schemas/Place'
     Address:
       type: object
       properties:
@@ -200,15 +215,6 @@ components:
           type: string
         confidence:
           type: string
-    PlaceSearchResponse:
-      type: object
-      properties:
-        meta:
-          $ref: '#/components/schemas/Meta'
-        places:
-          type: array
-          items:
-            $ref: '#/components/schemas/Place'
     AutocompleteResponse:
       type: object
       properties:
@@ -246,15 +252,6 @@ components:
               type: array
               items:
                 type: number
-    GeofenceListResponse:
-      type: object
-      properties:
-        meta:
-          $ref: '#/components/schemas/Meta'
-        geofences:
-          type: array
-          items:
-            $ref: '#/components/schemas/Geofence'
     Geofence:
       type: object
       properties:
@@ -295,12 +292,15 @@ components:
         updatedAt:
           type: string
           format: date-time
-    Meta:
+    GeofenceListResponse:
       type: object
       properties:
-        code:
-          type: integer
-          example: 200
+        meta:
+          $ref: '#/components/schemas/Meta'
+        geofences:
+          type: array
+          items:
+            $ref: '#/components/schemas/Geofence'
   securitySchemes:
     RadarKey:
       type: apiKey

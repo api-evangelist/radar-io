@@ -77,12 +77,6 @@ paths:
                 $ref: '#/components/schemas/AddressValidationResponse'
 components:
   schemas:
-    Meta:
-      type: object
-      properties:
-        code:
-          type: integer
-          example: 200
     Address:
       type: object
       properties:
@@ -126,6 +120,12 @@ components:
           type: string
         confidence:
           type: string
+    Meta:
+      type: object
+      properties:
+        code:
+          type: integer
+          example: 200
     AddressValidationResponse:
       type: object
       properties:

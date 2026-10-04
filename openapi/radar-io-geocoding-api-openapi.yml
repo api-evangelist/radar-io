@@ -111,6 +111,23 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Address'
+    Meta:
+      type: object
+      properties:
+        code:
+          type: integer
+          example: 200
+    IpGeocodeResponse:
+      type: object
+      properties:
+        meta:
+          $ref: '#/components/schemas/Meta'
+        ip:
+          type: string
+        address:
+          $ref: '#/components/schemas/Address'
+        proxy:
+          type: boolean
     Address:
       type: object
       properties:
@@ -154,23 +171,6 @@ components:
           type: string
         confidence:
           type: string
-    IpGeocodeResponse:
-      type: object
-      properties:
-        meta:
-          $ref: '#/components/schemas/Meta'
-        ip:
-          type: string
-        address:
-          $ref: '#/components/schemas/Address'
-        proxy:
-          type: boolean
-    Meta:
-      type: object
-      properties:
-        code:
-          type: integer
-          example: 200
   securitySchemes:
     RadarKey:
       type: apiKey

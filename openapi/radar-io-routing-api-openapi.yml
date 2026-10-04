@@ -177,6 +177,12 @@ paths:
                 $ref: '#/components/schemas/DirectionsResponse'
 components:
   schemas:
+    Meta:
+      type: object
+      properties:
+        code:
+          type: integer
+          example: 200
     DirectionsResponse:
       type: object
       properties:
@@ -197,36 +203,6 @@ components:
                 type: array
                 items:
                   type: object
-    DistanceResponse:
-      type: object
-      properties:
-        meta:
-          $ref: '#/components/schemas/Meta'
-        routes:
-          type: object
-          additionalProperties:
-            $ref: '#/components/schemas/RouteLeg'
-    RouteMatchRequest:
-      type: object
-      required:
-      - coordinates
-      - mode
-      properties:
-        coordinates:
-          type: array
-          description: An ordered list of [longitude, latitude] GPS points.
-          items:
-            type: array
-            items:
-              type: number
-        mode:
-          type: string
-          example: car
-        timestamps:
-          type: array
-          description: Optional UNIX timestamps aligned with coordinates.
-          items:
-            type: integer
     RouteLeg:
       type: object
       properties:
@@ -264,12 +240,36 @@ components:
             type: array
             items:
               $ref: '#/components/schemas/RouteLeg'
-    Meta:
+    DistanceResponse:
       type: object
       properties:
-        code:
-          type: integer
-          example: 200
+        meta:
+          $ref: '#/components/schemas/Meta'
+        routes:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/RouteLeg'
+    RouteMatchRequest:
+      type: object
+      required:
+      - coordinates
+      - mode
+      properties:
+        coordinates:
+          type: array
+          description: An ordered list of [longitude, latitude] GPS points.
+          items:
+            type: array
+            items:
+              type: number
+        mode:
+          type: string
+          example: car
+        timestamps:
+          type: array
+          description: Optional UNIX timestamps aligned with coordinates.
+          items:
+            type: integer
   securitySchemes:
     RadarKey:
       type: apiKey
