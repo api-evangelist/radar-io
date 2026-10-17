@@ -124,39 +124,6 @@ paths:
           description: OK
 components:
   schemas:
-    GeofenceUpsertRequest:
-      type: object
-      required:
-      - description
-      - type
-      properties:
-        description:
-          type: string
-        type:
-          type: string
-          enum:
-          - circle
-          - polygon
-          - isochrone
-        coordinates:
-          type: array
-          description: For circle, [longitude, latitude]. For polygon, an array of [lng, lat] pairs.
-          items: {}
-        radius:
-          type: integer
-          description: The radius in meters (for circle geofences).
-        enabled:
-          type: boolean
-          default: true
-        metadata:
-          type: object
-          additionalProperties: true
-    Meta:
-      type: object
-      properties:
-        code:
-          type: integer
-          example: 200
     Geofence:
       type: object
       properties:
@@ -197,13 +164,33 @@ components:
         updatedAt:
           type: string
           format: date-time
-    GeofenceResponse:
+    GeofenceUpsertRequest:
       type: object
+      required:
+      - description
+      - type
       properties:
-        meta:
-          $ref: '#/components/schemas/Meta'
-        geofence:
-          $ref: '#/components/schemas/Geofence'
+        description:
+          type: string
+        type:
+          type: string
+          enum:
+          - circle
+          - polygon
+          - isochrone
+        coordinates:
+          type: array
+          description: For circle, [longitude, latitude]. For polygon, an array of [lng, lat] pairs.
+          items: {}
+        radius:
+          type: integer
+          description: The radius in meters (for circle geofences).
+        enabled:
+          type: boolean
+          default: true
+        metadata:
+          type: object
+          additionalProperties: true
     GeofenceListResponse:
       type: object
       properties:
@@ -213,6 +200,19 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Geofence'
+    GeofenceResponse:
+      type: object
+      properties:
+        meta:
+          $ref: '#/components/schemas/Meta'
+        geofence:
+          $ref: '#/components/schemas/Geofence'
+    Meta:
+      type: object
+      properties:
+        code:
+          type: integer
+          example: 200
   securitySchemes:
     RadarKey:
       type: apiKey

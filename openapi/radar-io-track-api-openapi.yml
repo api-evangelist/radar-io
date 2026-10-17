@@ -97,22 +97,6 @@ paths:
           description: OK
 components:
   schemas:
-    UserListResponse:
-      type: object
-      properties:
-        meta:
-          $ref: '#/components/schemas/Meta'
-        users:
-          type: array
-          items:
-            $ref: '#/components/schemas/User'
-    UserResponse:
-      type: object
-      properties:
-        meta:
-          $ref: '#/components/schemas/Meta'
-        user:
-          $ref: '#/components/schemas/User'
     Location:
       type: object
       properties:
@@ -123,12 +107,6 @@ components:
           type: array
           items:
             type: number
-    Meta:
-      type: object
-      properties:
-        code:
-          type: integer
-          example: 200
     TrackRequest:
       type: object
       required:
@@ -177,44 +155,6 @@ components:
         confidence:
           type: integer
         createdAt:
-          type: string
-          format: date-time
-    TrackResponse:
-      type: object
-      properties:
-        meta:
-          $ref: '#/components/schemas/Meta'
-        user:
-          $ref: '#/components/schemas/User'
-        events:
-          type: array
-          items:
-            $ref: '#/components/schemas/Event'
-    User:
-      type: object
-      properties:
-        _id:
-          type: string
-        userId:
-          type: string
-        deviceId:
-          type: string
-        description:
-          type: string
-        metadata:
-          type: object
-          additionalProperties: true
-        location:
-          $ref: '#/components/schemas/Location'
-        locationAccuracy:
-          type: number
-        geofences:
-          type: array
-          items:
-            $ref: '#/components/schemas/Geofence'
-        place:
-          $ref: '#/components/schemas/Place'
-        updatedAt:
           type: string
           format: date-time
     Place:
@@ -282,6 +222,66 @@ components:
         createdAt:
           type: string
           format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+    TrackResponse:
+      type: object
+      properties:
+        meta:
+          $ref: '#/components/schemas/Meta'
+        user:
+          $ref: '#/components/schemas/User'
+        events:
+          type: array
+          items:
+            $ref: '#/components/schemas/Event'
+    UserResponse:
+      type: object
+      properties:
+        meta:
+          $ref: '#/components/schemas/Meta'
+        user:
+          $ref: '#/components/schemas/User'
+    Meta:
+      type: object
+      properties:
+        code:
+          type: integer
+          example: 200
+    UserListResponse:
+      type: object
+      properties:
+        meta:
+          $ref: '#/components/schemas/Meta'
+        users:
+          type: array
+          items:
+            $ref: '#/components/schemas/User'
+    User:
+      type: object
+      properties:
+        _id:
+          type: string
+        userId:
+          type: string
+        deviceId:
+          type: string
+        description:
+          type: string
+        metadata:
+          type: object
+          additionalProperties: true
+        location:
+          $ref: '#/components/schemas/Location'
+        locationAccuracy:
+          type: number
+        geofences:
+          type: array
+          items:
+            $ref: '#/components/schemas/Geofence'
+        place:
+          $ref: '#/components/schemas/Place'
         updatedAt:
           type: string
           format: date-time

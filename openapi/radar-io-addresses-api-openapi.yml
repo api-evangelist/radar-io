@@ -77,6 +77,23 @@ paths:
                 $ref: '#/components/schemas/AddressValidationResponse'
 components:
   schemas:
+    AddressValidationResponse:
+      type: object
+      properties:
+        meta:
+          $ref: '#/components/schemas/Meta'
+        address:
+          $ref: '#/components/schemas/Address'
+        result:
+          type: object
+          properties:
+            verificationStatus:
+              type: string
+              enum:
+              - verified
+              - partially verified
+              - ambiguous
+              - unverified
     Address:
       type: object
       properties:
@@ -126,23 +143,6 @@ components:
         code:
           type: integer
           example: 200
-    AddressValidationResponse:
-      type: object
-      properties:
-        meta:
-          $ref: '#/components/schemas/Meta'
-        address:
-          $ref: '#/components/schemas/Address'
-        result:
-          type: object
-          properties:
-            verificationStatus:
-              type: string
-              enum:
-              - verified
-              - partially verified
-              - ambiguous
-              - unverified
   securitySchemes:
     RadarKey:
       type: apiKey

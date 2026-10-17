@@ -61,15 +61,6 @@ paths:
                 $ref: '#/components/schemas/EventResponse'
 components:
   schemas:
-    EventListResponse:
-      type: object
-      properties:
-        meta:
-          $ref: '#/components/schemas/Meta'
-        events:
-          type: array
-          items:
-            $ref: '#/components/schemas/Event'
     Location:
       type: object
       properties:
@@ -80,12 +71,6 @@ components:
           type: array
           items:
             type: number
-    Meta:
-      type: object
-      properties:
-        code:
-          type: integer
-          example: 200
     Event:
       type: object
       properties:
@@ -105,33 +90,6 @@ components:
         confidence:
           type: integer
         createdAt:
-          type: string
-          format: date-time
-    User:
-      type: object
-      properties:
-        _id:
-          type: string
-        userId:
-          type: string
-        deviceId:
-          type: string
-        description:
-          type: string
-        metadata:
-          type: object
-          additionalProperties: true
-        location:
-          $ref: '#/components/schemas/Location'
-        locationAccuracy:
-          type: number
-        geofences:
-          type: array
-          items:
-            $ref: '#/components/schemas/Geofence'
-        place:
-          $ref: '#/components/schemas/Place'
-        updatedAt:
           type: string
           format: date-time
     Place:
@@ -162,13 +120,15 @@ components:
               type: array
               items:
                 type: number
-    EventResponse:
+    EventListResponse:
       type: object
       properties:
         meta:
           $ref: '#/components/schemas/Meta'
-        event:
-          $ref: '#/components/schemas/Event'
+        events:
+          type: array
+          items:
+            $ref: '#/components/schemas/Event'
     Geofence:
       type: object
       properties:
@@ -206,6 +166,46 @@ components:
         createdAt:
           type: string
           format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+    EventResponse:
+      type: object
+      properties:
+        meta:
+          $ref: '#/components/schemas/Meta'
+        event:
+          $ref: '#/components/schemas/Event'
+    Meta:
+      type: object
+      properties:
+        code:
+          type: integer
+          example: 200
+    User:
+      type: object
+      properties:
+        _id:
+          type: string
+        userId:
+          type: string
+        deviceId:
+          type: string
+        description:
+          type: string
+        metadata:
+          type: object
+          additionalProperties: true
+        location:
+          $ref: '#/components/schemas/Location'
+        locationAccuracy:
+          type: number
+        geofences:
+          type: array
+          items:
+            $ref: '#/components/schemas/Geofence'
+        place:
+          $ref: '#/components/schemas/Place'
         updatedAt:
           type: string
           format: date-time
