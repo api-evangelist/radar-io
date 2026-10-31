@@ -1,4 +1,4 @@
-# Radar (radar-io)
+# Radar
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,224 +66,132 @@
 
 Radar is a geofencing and maps platform that gives developers a unified location infrastructure - forward and reverse geocoding, IP geocoding, address and place autocomplete, place and geofence search, routing (distance, matrix, directions, and route matching), geofence management, device tracking, events, trips, address verification, and map tiles - all under a single api.radar.io/v1 REST interface.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/radar-io/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/radar-io/refs/heads/main/apis.yml)
+**Areas:** Location · Geocoding · Geofencing · Maps · Routing
 
-## Tags
+## Radar on APIs.io
 
-- Location
-- Geocoding
-- Geofencing
-- Maps
-- Routing
+Everything profiled for Radar is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/radar-io/](https://apis.io/providers/radar-io/)** — or go straight to one of the APIs or properties below.
 
-## Timestamps
+### APIs (9)
 
-- **Created:** 2026-07-01
-- **Modified:** 2026-07-01
+- [Radar Addresses API](https://apis.io/apis/radar-io/radar-io-addresses-api/) — Validate and verify addresses.
+- [Radar Events API](https://apis.io/apis/radar-io/radar-io-events-api/) — List and manage geofence and place events.
+- [Radar Geocoding API](https://apis.io/apis/radar-io/radar-io-geocoding-api/) — Forward, reverse, and IP geocoding.
+- [Radar Geofences API](https://apis.io/apis/radar-io/radar-io-geofences-api/) — Create, read, update, and delete geofences.
+- [Radar Routing API](https://apis.io/apis/radar-io/radar-io-routing-api/) — Distance, matrix, directions, and route matching.
+- [Radar Search API](https://apis.io/apis/radar-io/radar-io-search-api/) — Address and place autocomplete, place search, and geofence search.
+- [Radar Tiles API](https://apis.io/apis/radar-io/radar-io-tiles-api/) — Raster and vector map tiles.
+- [Radar Track API](https://apis.io/apis/radar-io/radar-io-track-api/) — Track device location and manage users.
+- [Radar Trips API](https://apis.io/apis/radar-io/radar-io-trips-api/) — Create, update, and list trips for trip tracking.
 
-## APIs
+### Published properties
 
-### Radar Geocoding API
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-Forward geocoding (address to coordinates), reverse geocoding (coordinates to address), and IP geocoding (IP to city/state/country) over api.radar.io/v1/geocode.
+#### Agentic access (1)
 
-- **Human URL:** [https://radar.com/documentation/api#geocoding](https://radar.com/documentation/api#geocoding)
-- **Base URL:** `https://api.radar.io/v1`
+Which operations an agent can call, which act, and which need a human in the loop.
 
-#### Tags
+- [Radar Io Agentic Access](https://apis.io/agentic-access/radar-io/radar-io-agentic-access/)
 
-- Geocoding
-- Reverse Geocoding
-- IP Geocoding
+#### Collections (10)
 
-#### Properties
+Postman and Open Collection request collections.
 
-- [Documentation](https://radar.com/documentation/api#geocoding)
-- [API Reference](https://radar.com/documentation/api#forward-geocode)
-- [OpenAPI](openapi/radar-io-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/radar-io.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/radar-io.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Radar API](https://apis.io/collections/radar-io/open-radar-io/)
+- [Radar Addresses API](https://apis.io/collections/radar-io/open-radar-io-addresses-api/)
+- [Radar Addresses Events API](https://apis.io/collections/radar-io/open-radar-io-events-api/)
+- [Radar Addresses Geocoding API](https://apis.io/collections/radar-io/open-radar-io-geocoding-api/)
+- [Radar Addresses Geofences API](https://apis.io/collections/radar-io/open-radar-io-geofences-api/)
+- [Radar Addresses Routing API](https://apis.io/collections/radar-io/open-radar-io-routing-api/)
+- [Radar Addresses Search API](https://apis.io/collections/radar-io/open-radar-io-search-api/)
+- [Radar Addresses Tiles API](https://apis.io/collections/radar-io/open-radar-io-tiles-api/)
+- [Radar Addresses Track API](https://apis.io/collections/radar-io/open-radar-io-track-api/)
+- [Radar Addresses Trips API](https://apis.io/collections/radar-io/open-radar-io-trips-api/)
 
-### Radar Search & Autocomplete API
+#### Security (2)
 
-Address and place autocomplete, place search by chain/category near a location, and geofence search over api.radar.io/v1/search.
+Authentication, trust centre, and vulnerability disclosure.
 
-- **Human URL:** [https://radar.com/documentation/api#search](https://radar.com/documentation/api#search)
-- **Base URL:** `https://api.radar.io/v1`
+- [Radar Io Authentication](https://apis.io/security/radar-io/radar-io-authentication/)
+- [Radar Io Domain Security](https://apis.io/security/radar-io/radar-io-domain-security/)
 
-#### Tags
+#### Plans and pricing (1)
 
-- Autocomplete
-- Search
-- Places
+Published plans, tiers and prices.
 
-#### Properties
+- [Radar Io Plans Pricing](https://apis.io/plans/radar-io/radar-io-plans-pricing/)
 
-- [Documentation](https://radar.com/documentation/api#search)
-- [API Reference](https://radar.com/documentation/api#autocomplete)
-- [OpenAPI](openapi/radar-io-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/radar-io.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/radar-io.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+#### Rate limits (1)
 
-### Radar Routing, Distance & Matrix API
+Published request limits.
 
-Travel distance and duration, distance matrix across multiple origins and destinations, turn-by-turn directions, and GPS trace-to-road matching over api.radar.io/v1/route.
+- [Radar Io Rate Limits](https://apis.io/rate-limits/radar-io/radar-io-rate-limits/)
 
-- **Human URL:** [https://radar.com/documentation/api#routing](https://radar.com/documentation/api#routing)
-- **Base URL:** `https://api.radar.io/v1`
+#### FinOps (1)
 
-#### Tags
+What the API costs to run, by operation.
 
-- Routing
-- Distance
-- Matrix
-- Directions
+- [Radar Io Finops](https://apis.io/finops/radar-io/radar-io-finops/)
 
-#### Properties
+## Where to find this API
 
-- [Documentation](https://radar.com/documentation/api#routing)
-- [API Reference](https://radar.com/documentation/api#distance)
-- [OpenAPI](openapi/radar-io-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/radar-io.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/radar-io.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
 
-### Radar Geofences API
-
-Create, read, update, and delete circle, polygon, and isochrone geofences keyed by tag and external ID over api.radar.io/v1/geofences.
-
-- **Human URL:** [https://radar.com/documentation/api#geofences](https://radar.com/documentation/api#geofences)
-- **Base URL:** `https://api.radar.io/v1`
-
-#### Tags
-
-- Geofences
-- Geofencing
-- CRUD
-
-#### Properties
-
-- [Documentation](https://radar.com/documentation/api#geofences)
-- [API Reference](https://radar.com/documentation/api#list-geofences)
-- [OpenAPI](openapi/radar-io-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/radar-io.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/radar-io.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### Radar Track & Users API
-
-Server-side device tracking that generates geofence and place events, plus user (device) listing, retrieval, and deletion over api.radar.io/v1/track and /users.
-
-- **Human URL:** [https://radar.com/documentation/api#track](https://radar.com/documentation/api#track)
-- **Base URL:** `https://api.radar.io/v1`
-
-#### Tags
-
-- Tracking
-- Users
-- Devices
-
-#### Properties
-
-- [Documentation](https://radar.com/documentation/api#track)
-- [API Reference](https://radar.com/documentation/api#users)
-- [OpenAPI](openapi/radar-io-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/radar-io.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/radar-io.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### Radar Events API
-
-List and retrieve geofence, place, and trip events (entered/exited, approaching, arrived) generated by tracking over api.radar.io/v1/events.
-
-- **Human URL:** [https://radar.com/documentation/api#events](https://radar.com/documentation/api#events)
-- **Base URL:** `https://api.radar.io/v1`
-
-#### Tags
-
-- Events
-- Geofence Events
-- Webhooks
-
-#### Properties
-
-- [Documentation](https://radar.com/documentation/api#events)
-- [API Reference](https://radar.com/documentation/api#list-events)
-- [OpenAPI](openapi/radar-io-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/radar-io.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/radar-io.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### Radar Trips API
-
-Create, update, list, and retrieve trips for trip tracking with destination geofences, ETAs, and approaching/arrived events over api.radar.io/v1/trips.
-
-- **Human URL:** [https://radar.com/documentation/api#trips](https://radar.com/documentation/api#trips)
-- **Base URL:** `https://api.radar.io/v1`
-
-#### Tags
-
-- Trips
-- Trip Tracking
-- ETA
-
-#### Properties
-
-- [Documentation](https://radar.com/documentation/api#trips)
-- [API Reference](https://radar.com/documentation/api#upsert-trip)
-- [OpenAPI](openapi/radar-io-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/radar-io.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/radar-io.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### Radar Address Verification API
-
-Validate and standardize postal addresses, returning a verification status and standardized components over api.radar.io/v1/addresses/validate.
-
-- **Human URL:** [https://radar.com/documentation/api#address-validation](https://radar.com/documentation/api#address-validation)
-- **Base URL:** `https://api.radar.io/v1`
-
-#### Tags
-
-- Address Verification
-- Address Validation
-- Standardization
-
-#### Properties
-
-- [Documentation](https://radar.com/documentation/api#address-validation)
-- [API Reference](https://radar.com/documentation/api#validate-an-address)
-- [OpenAPI](openapi/radar-io-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/radar-io.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/radar-io.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### Radar Maps & Tiles API
-
-Raster and vector map tiles across Radar map styles (default, light, dark) served by z/x/y over api.radar.io/v1/maps/tiles.
-
-- **Human URL:** [https://radar.com/documentation/maps](https://radar.com/documentation/maps)
-- **Base URL:** `https://api.radar.io/v1`
-
-#### Tags
-
-- Maps
-- Tiles
-- Raster
-
-#### Properties
-
-- [Documentation](https://radar.com/documentation/maps)
-- [API Reference](https://radar.com/documentation/maps/tiles)
-- [OpenAPI](openapi/radar-io-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/radar-io.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/radar-io.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-## Common Properties
-
-- [GitHub Organization](https://github.com/radarlabs)
-- [LinkedIn](https://www.linkedin.com/company/radarlabs)
 - [Website](https://radar.com/)
 - [Documentation](https://radar.com/documentation)
-- [Plans](plans/radar-io-plans-pricing.yml)
-- [Rate Limits](rate-limits/radar-io-rate-limits.yml)
-- [Fin Ops](finops/radar-io-finops.yml)
+- [Blog](https://radar.com/blog)
+- [GitHub](https://github.com/radarlabs)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Kin Score 30.9** — thin · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 66.1 |
+| Contract quality | 47.5 |
+| Contract governance | 0.0 |
+| Operational transparency | 10.5 |
+| Developer ergonomics | 31.0 |
+| Access clarity | 5.3 |
+
+**Agent readiness 22.1** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | documented (partial credit) |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | partial |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 11.8** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/radar-io/](https://apis.io/providers/radar-io/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Radar: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/radar-io/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
